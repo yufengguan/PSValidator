@@ -16,7 +16,7 @@ function App() {
   const [validationResult, setValidationResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const API_BASE_URL = 'http://localhost:5166/api'; // Adjust port if needed
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/ServiceList`)
