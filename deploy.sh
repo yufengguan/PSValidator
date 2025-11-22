@@ -5,13 +5,37 @@ set -e
 
 echo "Starting deployment..."
 
-# 1. Install Docker if not present (Assuming Amazon Linux 2023 or similar)
+# 1. Install Docker if not present
 if ! command -v docker &> /dev/null; then
     echo "Docker not found. Installing..."
-    sudo yum update -y
-    sudo yum install -y docker
-    sudo service docker start
-    sudo usermod -a -G docker ec2-user
+    
+    # Update package index
+    sudo apt-get update
+    
+    # Install prerequisites
+    sudo apt-get install -y ca-certificates curl gnupg
+    
+    # Add Docker's official GPG key
+    sudo install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+    # Set up the repository
+    echo \
+      "deb [arch=\"$(dpkg --print-architecture)\" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+      $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+      
+    # Install Docker Engine
+    sudo apt-get update
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+    # Start and enable Docker
+    sudo systemctl start docker
+    sudo systemctl enable docker
+    
+    # Add user to docker group
+    sudo usermod -aG docker $USER
     echo "Docker installed. You may need to logout and login again for group changes to take effect."
 else
     echo "Docker is already installed."
@@ -19,21 +43,19 @@ fi
 
 # 2. Install Docker Compose if not present
 if ! command -v docker-compose &> /dev/null; then
-    echo "Docker Compose not found. Installing..."
     # Check if docker compose plugin is available (newer versions)
     if docker compose version &> /dev/null; then
         echo "Docker Compose plugin found."
     else
         echo "Installing Docker Compose..."
-        sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-        sudo chmod +x /usr/local/bin/docker-compose
+        sudo apt-get install -y docker-compose-plugin
     fi
 fi
 
 # 2.5 Install Git if not present
 if ! command -v git &> /dev/null; then
     echo "Git not found. Installing..."
-    sudo yum install -y git
+    sudo apt-get install -y git
 fi
 
 # 3. Pull latest changes (if this is a git repo)
