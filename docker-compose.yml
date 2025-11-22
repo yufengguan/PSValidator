@@ -1,0 +1,23 @@
+services:
+  api:
+    build:
+      context: ./Api
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - DocsPath=/app/Docs
+    volumes:
+      - ./Docs:/app/Docs
+    restart: always
+
+  app:
+    build:
+      context: ./App
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    restart: always
