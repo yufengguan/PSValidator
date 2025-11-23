@@ -58,6 +58,22 @@ if ! command -v git &> /dev/null; then
     sudo apt-get install -y git
 fi
 
+# 2.6 Configure Firewall (UFW)
+if command -v ufw &> /dev/null; then
+    echo "Configuring UFW firewall..."
+    # Always allow SSH first to prevent lockout
+    sudo ufw allow 22/tcp
+    sudo ufw allow 80/tcp
+    sudo ufw allow 443/tcp
+    
+    # Enable UFW if not already enabled (non-interactive)
+    echo "y" | sudo ufw enable
+    
+    sudo ufw status
+else
+    echo "UFW not found. Skipping firewall configuration."
+fi
+
 # 3. Pull latest changes (if this is a git repo)
 if [ -d ".git" ]; then
     echo "Pulling latest changes from git..."
