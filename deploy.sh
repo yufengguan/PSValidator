@@ -95,8 +95,8 @@ CERT_PATH="./certbot/conf/live/demo18.com/fullchain.pem"
 # Ensure nginx directory exists
 mkdir -p nginx
 
-# Check if certificates exist
-if [ ! -f "$CERT_PATH" ]; then
+# Check if certificates exist (use sudo to check root-owned files)
+if ! sudo test -f "$CERT_PATH"; then
     echo "SSL certificates not found. Starting bootstrap process..."
     
     # 1. Start with HTTP-only config
@@ -116,10 +116,11 @@ if [ ! -f "$CERT_PATH" ]; then
     
     # 2. Request Certificate
     echo "Requesting SSL certificate..."
+    # Added --non-interactive and --keep-until-expiring to prevent prompts if cert exists
     if docker compose version &> /dev/null; then
-        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d demo18.com -d www.demo18.com --email yufeng.guan@gmail.com --agree-tos --no-eff-email
+        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d demo18.com -d www.demo18.com --email yufeng.guan@gmail.com --agree-tos --no-eff-email --non-interactive --keep-until-expiring
     else
-        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d demo18.com -d www.demo18.com --email yufeng.guan@gmail.com --agree-tos --no-eff-email
+        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d demo18.com -d www.demo18.com --email yufeng.guan@gmail.com --agree-tos --no-eff-email --non-interactive --keep-until-expiring
     fi
     
     # 3. Switch to HTTPS config
