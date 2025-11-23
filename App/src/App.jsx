@@ -66,7 +66,7 @@ function App() {
     <>
       <Navbar bg="dark" variant="dark" className="mb-4">
         <Container>
-          <Navbar.Brand href="#home">PromoStandards Validator</Navbar.Brand>
+          <Navbar.Brand href="#home">PromoStandards Web Service Validator</Navbar.Brand>
         </Container>
       </Navbar>
 
