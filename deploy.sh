@@ -83,13 +83,65 @@ fi
 # Ensure Docs directory exists (mapped in docker-compose)
 mkdir -p Docs
 
-# 4. Build and Run
+# 4. Build and Run with SSL Setup
 echo "Building and starting containers..."
-# Use 'docker compose' if available, else 'docker-compose'
-if docker compose version &> /dev/null; then
-    docker compose up -d --build
+
+# Define paths
+NGINX_CONF="./nginx/nginx.conf"
+NGINX_INIT="./nginx/nginx-init.conf"
+NGINX_HTTPS="./nginx/nginx-https.conf"
+CERT_PATH="./certbot/conf/live/demo18.com/fullchain.pem"
+
+# Ensure nginx directory exists
+mkdir -p nginx
+
+# Check if certificates exist
+if [ ! -f "$CERT_PATH" ]; then
+    echo "SSL certificates not found. Starting bootstrap process..."
+    
+    # 1. Start with HTTP-only config
+    echo "Using HTTP-only config for validation..."
+    cp "$NGINX_INIT" "$NGINX_CONF"
+    
+    # Start Nginx
+    if docker compose version &> /dev/null; then
+        docker compose up -d --build app
+    else
+        docker-compose up -d --build app
+    fi
+    
+    # Wait for Nginx to start
+    echo "Waiting for Nginx to start..."
+    sleep 5
+    
+    # 2. Request Certificate
+    echo "Requesting SSL certificate..."
+    if docker compose version &> /dev/null; then
+        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d demo18.com -d www.demo18.com --email yufeng.guan@gmail.com --agree-tos --no-eff-email
+    else
+        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d demo18.com -d www.demo18.com --email yufeng.guan@gmail.com --agree-tos --no-eff-email
+    fi
+    
+    # 3. Switch to HTTPS config
+    echo "Certificate obtained. Switching to HTTPS config..."
+    cp "$NGINX_HTTPS" "$NGINX_CONF"
+    
+    # Reload Nginx
+    if docker compose version &> /dev/null; then
+        docker compose exec app nginx -s reload
+    else
+        docker-compose exec app nginx -s reload
+    fi
+    
 else
-    docker-compose up -d --build
+    echo "SSL certificates found. Using HTTPS config..."
+    cp "$NGINX_HTTPS" "$NGINX_CONF"
+    
+    if docker compose version &> /dev/null; then
+        docker compose up -d --build
+    else
+        docker-compose up -d --build
+    fi
 fi
 
-echo "Deployment complete! App should be running on port 80."
+echo "Deployment complete! App should be running on https://demo18.com"
