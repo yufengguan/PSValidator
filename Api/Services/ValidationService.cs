@@ -50,6 +50,14 @@ public class ValidationService : IValidationService
             {
                 try 
                 {
+                    // Validate URL format before making request
+                    if (!Uri.TryCreate(endpoint, UriKind.Absolute, out var uri))
+                    {
+                        result.IsValid = false;
+                        result.ValidationResultMessages.Add($"Invalid Endpoint URL: The URL format is not valid. Please ensure it starts with http:// or https://");
+                        return result;
+                    }
+
                     var client = _httpClientFactory.CreateClient();
                     
                     // Wrap in SOAP Envelope
@@ -86,10 +94,22 @@ public class ValidationService : IValidationService
                         return result;
                     }
                 }
+                catch (UriFormatException ex)
+                {
+                    result.IsValid = false;
+                    result.ValidationResultMessages.Add($"Invalid Endpoint URL: {ex.Message}. Please ensure the URL is properly formatted (e.g., https://example.com/api)");
+                    return result;
+                }
+                catch (HttpRequestException ex)
+                {
+                    result.IsValid = false;
+                    result.ValidationResultMessages.Add($"Network Error: Unable to connect to the endpoint. {ex.Message}");
+                    return result;
+                }
                 catch (Exception ex)
                 {
                     result.IsValid = false;
-                    result.ValidationResultMessages.Add($"Network Error: {ex.Message}");
+                    result.ValidationResultMessages.Add($"Error: {ex.Message}");
                     return result;
                 }
             }
@@ -130,7 +150,8 @@ public class ValidationService : IValidationService
             // CRITICAL: Set the XmlResolver with the base URI to resolve relative schema imports
             var resolver = new XmlUrlResolver();
             var schemaDirectory = Path.GetDirectoryName(schemaPath);
-            var baseUri = new Uri(schemaDirectory + Path.DirectorySeparatorChar);
+            // Convert Windows path to file URI (e.g., C:\Path -> file:///C:/Path/)
+            var directoryUri = new Uri(Path.GetFullPath(schemaDirectory) + Path.DirectorySeparatorChar);
             settingsWithHandler.XmlResolver = resolver;
             
             // Load the schema with the base URI so imports can be resolved
@@ -141,7 +162,7 @@ public class ValidationService : IValidationService
                 using (var schemaReader = XmlReader.Create(schemaPath, new XmlReaderSettings { XmlResolver = resolver }))
                 {
                     var schema = XmlSchema.Read(schemaReader, null);
-                    schema.SourceUri = baseUri.ToString();
+                    schema.SourceUri = directoryUri.ToString();
                     schemaSet.Add(schema);
                 }
                 schemaSet.Compile();
@@ -328,7 +349,8 @@ public class ValidationService : IValidationService
             var schemaSet = new XmlSchemaSet();
             var resolver = new XmlUrlResolver();
             var schemaDirectory = Path.GetDirectoryName(schemaPath);
-            var baseUri = new Uri(schemaDirectory + Path.DirectorySeparatorChar);
+            // Convert Windows path to file URI (e.g., C:\Path -> file:///C:/Path/)
+            var directoryUri = new Uri(Path.GetFullPath(schemaDirectory) + Path.DirectorySeparatorChar);
             
             // CRITICAL: Set the resolver on the set itself so it can resolve imports during Compile
             schemaSet.XmlResolver = resolver;
@@ -340,7 +362,7 @@ public class ValidationService : IValidationService
                     // Handle read errors if any
                     // Console.WriteLine($"Schema Read Warning: {args.Message}");
                 });
-                schema.SourceUri = baseUri.ToString();
+                schema.SourceUri = directoryUri.ToString();
                 schemaSet.Add(schema);
             }
             
