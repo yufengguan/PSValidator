@@ -66,4 +66,5 @@ deploy.config
 *.config.local
 nginx/nginx.conf
 nginx/nginx-https.conf
+nginx/nginx-api.conf
 

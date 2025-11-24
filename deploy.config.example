@@ -4,4 +4,5 @@
 
 DOMAIN="your-domain.com"
 WWW_DOMAIN="www.your-domain.com"
+API_DOMAIN="api.your-domain.com"
 EMAIL="your-email@example.com"

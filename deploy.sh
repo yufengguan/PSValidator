@@ -100,7 +100,10 @@ NGINX_CONF="./nginx/nginx.conf"
 NGINX_INIT="./nginx/nginx-init.conf"
 NGINX_HTTPS="./nginx/nginx-https.conf"
 NGINX_HTTPS_TEMPLATE="./nginx/nginx-https.conf.template"
+NGINX_API_CONF="./nginx/nginx-api.conf"
+NGINX_API_TEMPLATE="./nginx/nginx-api.conf.template"
 CERT_PATH="./certbot/conf/live/${DOMAIN}/fullchain.pem"
+API_CERT_PATH="./certbot/conf/live/${API_DOMAIN}/fullchain.pem"
 
 # Ensure nginx directory exists
 mkdir -p nginx
@@ -110,6 +113,11 @@ echo "Generating nginx configuration with domain: ${DOMAIN}"
 sed -e "s/DOMAIN_PLACEHOLDER/${DOMAIN}/g" \
     -e "s/WWW_DOMAIN_PLACEHOLDER/${WWW_DOMAIN}/g" \
     "$NGINX_HTTPS_TEMPLATE" > "$NGINX_HTTPS"
+
+# Generate nginx-api.conf from template
+echo "Generating API nginx configuration with domain: ${API_DOMAIN}"
+sed -e "s/API_DOMAIN_PLACEHOLDER/${API_DOMAIN}/g" \
+    "$NGINX_API_TEMPLATE" > "$NGINX_API_CONF"
 
 # Check if certificates exist (use sudo to check root-owned files)
 if ! sudo test -f "$CERT_PATH"; then
@@ -130,13 +138,17 @@ if ! sudo test -f "$CERT_PATH"; then
     echo "Waiting for Nginx to start..."
     sleep 5
     
-    # 2. Request Certificate
-    echo "Requesting SSL certificate..."
-    # Added --non-interactive and --keep-until-expiring to prevent prompts if cert exists
+    # 2. Request Certificates
+    echo "Requesting SSL certificates..."
+    # Request certificate for main domain
     if docker compose version &> /dev/null; then
         docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${DOMAIN} -d ${WWW_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring
+        # Request certificate for API domain
+        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${API_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring
     else
         docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${DOMAIN} -d ${WWW_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring
+        # Request certificate for API domain
+        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${API_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring
     fi
     
     # 3. Switch to HTTPS config

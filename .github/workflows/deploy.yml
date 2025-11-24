@@ -19,5 +19,14 @@ jobs:
             cd PSValidator
             git fetch --all
             git reset --hard origin/main
+            
+            # Create deploy.config from GitHub Secrets
+            cat > deploy.config << EOF
+            DOMAIN="${{ secrets.DEPLOY_DOMAIN }}"
+            WWW_DOMAIN="${{ secrets.DEPLOY_WWW_DOMAIN }}"
+            API_DOMAIN="${{ secrets.DEPLOY_API_DOMAIN }}"
+            EMAIL="${{ secrets.DEPLOY_EMAIL }}"
+            EOF
+            
             chmod +x deploy.sh
             ./deploy.sh
