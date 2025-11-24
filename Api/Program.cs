@@ -16,7 +16,11 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 // Enable Swagger in all environments for API documentation
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(c =>
+{
+    c.HeadContent = "<link rel='icon' href='https://promostandards.org/wp-content/uploads/2020/08/cropped-PS_Icon_Color-1-e1753998277377-150x150.webp' />";
+});
+
 
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
