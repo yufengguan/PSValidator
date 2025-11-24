@@ -137,6 +137,9 @@ if [ "$CERTS_EXIST" = false ]; then
     echo "Using HTTP-only config for validation..."
     cp "$NGINX_INIT" "$NGINX_CONF"
     
+    # Disable API config temporarily to prevent Nginx crash due to missing certs
+    echo "# Temporary empty config for bootstrap" > "$NGINX_API_CONF"
+    
     # Start Nginx
     if docker compose version &> /dev/null; then
         docker compose up -d --build app
@@ -164,6 +167,11 @@ if [ "$CERTS_EXIST" = false ]; then
     # 3. Switch to HTTPS config
     echo "Certificate obtained. Switching to HTTPS config..."
     cp "$NGINX_HTTPS" "$NGINX_CONF"
+    
+    # Restore API config with SSL
+    echo "Restoring API nginx configuration with SSL..."
+    sed -e "s/API_DOMAIN_PLACEHOLDER/${API_DOMAIN}/g" \
+        "$NGINX_API_TEMPLATE" > "$NGINX_API_CONF"
     
     # Reload Nginx
     if docker compose version &> /dev/null; then
