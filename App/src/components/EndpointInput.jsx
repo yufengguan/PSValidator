@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 
-const EndpointInput = ({ endpoint, onChange }) => {
+const EndpointInput = ({ endpoint, onChange, error }) => {
     return (
         <Row className="mb-3">
             <Col>
@@ -12,7 +12,11 @@ const EndpointInput = ({ endpoint, onChange }) => {
                         placeholder="https://..."
                         value={endpoint}
                         onChange={(e) => onChange(e.target.value)}
+                        isInvalid={!!error}
                     />
+                    <Form.Control.Feedback type="invalid">
+                        {error}
+                    </Form.Control.Feedback>
                 </Form.Group>
             </Col>
         </Row>

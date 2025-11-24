@@ -1,15 +1,15 @@
 import React from 'react';
 import { Form, Card } from 'react-bootstrap';
 
-const RequestPanel = ({ xmlContent, onChange, error }) => {
+const ResponseSchemaPanel = ({ schemaContent }) => {
     return (
         <Card className="mb-3">
-            <Card.Header>Request Body</Card.Header>
+            <Card.Header>Testing -- Response Schema</Card.Header>
             <Card.Body style={{ padding: 0 }}>
                 <Form.Control
                     as="textarea"
-                    value={xmlContent}
-                    onChange={(e) => onChange(e.target.value)}
+                    value={schemaContent || ''}
+                    readOnly
                     style={{
                         fontFamily: 'monospace',
                         whiteSpace: 'pre',
@@ -18,16 +18,13 @@ const RequestPanel = ({ xmlContent, onChange, error }) => {
                         resize: 'vertical',
                         overflowY: 'auto',
                         border: 'none',
-                        borderRadius: 0
+                        borderRadius: 0,
+                        backgroundColor: '#f8f9fa' // Light gray for read-only
                     }}
-                    isInvalid={!!error}
                 />
-                <Form.Control.Feedback type="invalid">
-                    {error}
-                </Form.Control.Feedback>
             </Card.Body>
         </Card>
     );
 };
 
-export default RequestPanel;
+export default ResponseSchemaPanel;

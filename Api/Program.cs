@@ -8,6 +8,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Register ValidationService
+builder.Services.AddHttpClient();
 builder.Services.AddScoped<IValidationService, ValidationService>();
 
 var app = builder.Build();

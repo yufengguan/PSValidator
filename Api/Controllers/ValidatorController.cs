@@ -18,14 +18,28 @@ public class ValidatorController : ControllerBase
     }
 
     [HttpPost("validate")]
-    public IActionResult Validate([FromBody] ValidationRequest request)
+    public async Task<IActionResult> Validate([FromBody] ValidationRequest request)
     {
         if (string.IsNullOrEmpty(request.XmlContent))
         {
             return BadRequest("XmlContent is required.");
         }
 
-        var result = _validationService.Validate(request.XmlContent, request.Service, request.Version, request.Operation);
+        var result = await _validationService.Validate(request.XmlContent, request.Service, request.Version, request.Operation, request.Endpoint);
         return Ok(result);
+    }
+
+    [HttpGet("sample-request")]
+    public async Task<IActionResult> GetSampleRequest(string serviceName, string version, string operationName)
+    {
+        var xml = await _validationService.GenerateSampleRequest(serviceName, version, operationName);
+        return Ok(xml);
+    }
+
+    [HttpGet("response-schema")]
+    public async Task<IActionResult> GetResponseSchema(string serviceName, string version, string operationName)
+    {
+        var schema = await _validationService.GetResponseSchema(serviceName, version, operationName);
+        return Ok(schema);
     }
 }

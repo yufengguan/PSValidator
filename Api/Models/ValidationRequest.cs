@@ -6,4 +6,5 @@ public class ValidationRequest
     public string Version { get; set; }
     public string Operation { get; set; }
     public string XmlContent { get; set; }
+    public string Endpoint { get; set; }
 }

@@ -12,10 +12,12 @@ public class ValidationService : IValidationService
     private readonly string _docsPath;
     private readonly ILogger<ValidationService> _logger;
     private readonly List<ServiceInfo> _serviceList;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public ValidationService(IConfiguration configuration, ILogger<ValidationService> logger)
+    public ValidationService(IConfiguration configuration, ILogger<ValidationService> logger, IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
+        _httpClientFactory = httpClientFactory;
         _docsPath = configuration["DocsPath"];
         
         if (string.IsNullOrEmpty(_docsPath))
@@ -36,12 +38,67 @@ public class ValidationService : IValidationService
         }
     }
 
-    public ValidationResult Validate(string xmlContent, string serviceName, string version, string operationName)
+    public async Task<ValidationResult> Validate(string xmlContent, string serviceName, string version, string operationName, string endpoint)
     {
         var result = new ValidationResult();
-        
+        string contentToValidate = xmlContent;
+
         try
         {
+            // 0. If endpoint is provided, call it
+            if (!string.IsNullOrWhiteSpace(endpoint))
+            {
+                try 
+                {
+                    var client = _httpClientFactory.CreateClient();
+                    
+                    // Wrap in SOAP Envelope
+                    var soapRequest = $@"<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"">
+                                            <soapenv:Header/>
+                                            <soapenv:Body>
+                                                {xmlContent}
+                                            </soapenv:Body>
+                                         </soapenv:Envelope>";
+
+                    var content = new StringContent(soapRequest, System.Text.Encoding.UTF8, "text/xml");
+                    
+                    // Add SOAPAction header (required by many SOAP services)
+                    // We might need to look this up, but often "" or the operation name works.
+                    // For now, let's try adding a generic one or leaving it to the client config if needed.
+                    if (!client.DefaultRequestHeaders.Contains("SOAPAction"))
+                    {
+                        client.DefaultRequestHeaders.Add("SOAPAction", $"\"{operationName}\"");
+                    }
+                    
+                    var response = await client.PostAsync(endpoint, content);
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    
+                    // Display the full SOAP response (with envelope)
+                    result.ResponseContent = responseString;
+                    
+                    // But validate only the unwrapped body
+                    contentToValidate = ExtractSoapBody(responseString);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        result.ValidationResultMessages.Add($"HTTP Error: {response.StatusCode}");
+                        result.IsValid = false;
+                        return result;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    result.IsValid = false;
+                    result.ValidationResultMessages.Add($"Network Error: {ex.Message}");
+                    return result;
+                }
+            }
+            else
+            {
+                // Fallback: Validate the request XML itself (as before)
+                result.ResponseContent = xmlContent;
+            }
+
             // 1. Find Schema Name from Service List
             var schemaName = GetResponseSchemaName(serviceName, version, operationName);
             if (string.IsNullOrEmpty(schemaName))
@@ -61,22 +118,54 @@ public class ValidationService : IValidationService
             }
 
             // 3. Validate
-            var settings = new XmlReaderSettings();
-            settings.ValidationType = ValidationType.Schema;
-            settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessInlineSchema;
-            settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessSchemaLocation;
-            settings.ValidationFlags |= XmlSchemaValidationFlags.ReportValidationWarnings;
+            result.IsValid = true; // Assume valid, set to false on error
             
-            // Create a resolver that uses the schema file's directory as base
-            settings.XmlResolver = new XmlUrlResolver();
+            var settingsWithHandler = new XmlReaderSettings();
+            settingsWithHandler.ValidationType = ValidationType.Schema;
+            settingsWithHandler.ValidationFlags |= XmlSchemaValidationFlags.ProcessInlineSchema;
+            settingsWithHandler.ValidationFlags |= XmlSchemaValidationFlags.ProcessSchemaLocation;
+            // Don't report warnings - only errors. This allows optional fields to be missing.
+            // settingsWithHandler.ValidationFlags |= XmlSchemaValidationFlags.ReportValidationWarnings;
+            
+            // CRITICAL: Set the XmlResolver with the base URI to resolve relative schema imports
+            var resolver = new XmlUrlResolver();
+            var schemaDirectory = Path.GetDirectoryName(schemaPath);
+            var baseUri = new Uri(schemaDirectory + Path.DirectorySeparatorChar);
+            settingsWithHandler.XmlResolver = resolver;
+            
+            // Load the schema with the base URI so imports can be resolved
+            try
+            {
+                var schemaSet = new XmlSchemaSet();
+                schemaSet.XmlResolver = resolver;
+                using (var schemaReader = XmlReader.Create(schemaPath, new XmlReaderSettings { XmlResolver = resolver }))
+                {
+                    var schema = XmlSchema.Read(schemaReader, null);
+                    schema.SourceUri = baseUri.ToString();
+                    schemaSet.Add(schema);
+                }
+                schemaSet.Compile();
+                settingsWithHandler.Schemas = schemaSet;
+            }
+            catch (Exception ex)
+            {
+                result.IsValid = false;
+                result.ValidationResultMessages.Add($"Error loading schema: {ex.Message}");
+                return result;
+            }
+            
+            settingsWithHandler.ValidationEventHandler += (sender, args) =>
+            {
+                // Only report errors, not warnings
+                if (args.Severity == System.Xml.Schema.XmlSeverityType.Error)
+                {
+                    result.IsValid = false;
+                    result.ValidationResultMessages.Add($"{args.Severity}: {args.Message} at Line {args.Exception.LineNumber}, Pos {args.Exception.LinePosition}");
+                }
+            };
 
-            // Load the schema
-            // We add the schema to the set. The target namespace is usually defined in the XSD.
-            // Passing null as targetNamespace causes it to be read from the XSD.
-            settings.Schemas.Add(null, schemaPath);
-
-            using (var stringReader = new StringReader(xmlContent))
-            using (var xmlReader = XmlReader.Create(stringReader, settings))
+            using (var stringReader = new StringReader(contentToValidate))
+            using (var xmlReader = XmlReader.Create(stringReader, settingsWithHandler))
             {
                 try
                 {
@@ -88,17 +177,6 @@ public class ValidationService : IValidationService
                     result.ValidationResultMessages.Add($"XML Parsing Error: {ex.Message} at Line {ex.LineNumber}, Pos {ex.LinePosition}");
                 }
             }
-
-            // Capture validation events
-            settings.ValidationEventHandler += (sender, args) =>
-            {
-                result.IsValid = false;
-                result.ValidationResultMessages.Add($"{args.Severity}: {args.Message} at Line {args.Exception.LineNumber}, Pos {args.Exception.LinePosition}");
-            };
-
-            // Re-read to trigger validation events
-            // Wait, I need to attach the event handler BEFORE reading.
-            // Let's refactor to do it properly.
         }
         catch (Exception ex)
         {
@@ -181,29 +259,30 @@ public class ValidationService : IValidationService
         return op?.ResponseSchema;
     }
 
-    private string FindSchemaFile(string schemaName, string version)
+
+    private string ExtractSoapBody(string soapResponse)
     {
-        var schemasDir = Path.Combine(_docsPath, "Schemas");
-        var files = Directory.GetFiles(schemasDir, $"{schemaName}.xsd", SearchOption.AllDirectories);
-        
-        // Filter by version in path
-        // The version in path might be "1.0.0" or "2.0.0"
-        // We look for the file that has the version string in its parent directory path
-        
-        foreach (var file in files)
+        try
         {
-            // Check if version string is part of the path
-            // e.g. ...\2.0.0\GetInventoryLevelsResponse.xsd
-            if (file.Contains(Path.DirectorySeparatorChar + version + Path.DirectorySeparatorChar))
+            var doc = new XmlDocument();
+            doc.LoadXml(soapResponse);
+
+            var namespaceManager = new XmlNamespaceManager(doc.NameTable);
+            namespaceManager.AddNamespace("s", "http://schemas.xmlsoap.org/soap/envelope/");
+            // Handle both "s" and "soapenv" prefixes or just search for local name "Body"
+            
+            var bodyNode = doc.SelectSingleNode("//*[local-name()='Body']");
+            if (bodyNode != null && bodyNode.HasChildNodes)
             {
-                return file;
+                return bodyNode.FirstChild.OuterXml;
             }
+            
+            return soapResponse; // Fallback if no body found
         }
-
-        // Fallback: if only one found, return it
-        if (files.Length == 1) return files[0];
-
-        return null;
+        catch
+        {
+            return soapResponse; // Fallback on error
+        }
     }
 
     // Helper classes for JSON deserialization
@@ -221,9 +300,356 @@ public class ValidationService : IValidationService
         public List<OperationInfo>? Operations { get; set; }
     }
 
+    public async Task<string> GenerateSampleRequest(string serviceName, string version, string operationName)
+    {
+        // ... (existing implementation) ...
+        // 1. Try to get schema from WSDL first (most accurate)
+        var schemaName = GetRequestSchemaFromWsdl(serviceName, version, operationName);
+        
+        // 2. Fallback to JSON mapping if WSDL lookup fails
+        if (string.IsNullOrEmpty(schemaName))
+        {
+            schemaName = GetRequestSchemaName(serviceName, version, operationName);
+        }
+
+        if (string.IsNullOrEmpty(schemaName))
+        {
+            return $"<!-- Schema not found for {serviceName} {version} {operationName} -->";
+        }
+
+        var schemaPath = FindSchemaFile(schemaName, version);
+        if (string.IsNullOrEmpty(schemaPath))
+        {
+            return $"<!-- Schema file {schemaName}.xsd not found for version {version} -->";
+        }
+
+        try
+        {
+            var schemaSet = new XmlSchemaSet();
+            var resolver = new XmlUrlResolver();
+            var schemaDirectory = Path.GetDirectoryName(schemaPath);
+            var baseUri = new Uri(schemaDirectory + Path.DirectorySeparatorChar);
+            
+            // CRITICAL: Set the resolver on the set itself so it can resolve imports during Compile
+            schemaSet.XmlResolver = resolver;
+
+            using (var schemaReader = XmlReader.Create(schemaPath, new XmlReaderSettings { XmlResolver = resolver }))
+            {
+                var schema = XmlSchema.Read(schemaReader, (sender, args) => 
+                {
+                    // Handle read errors if any
+                    // Console.WriteLine($"Schema Read Warning: {args.Message}");
+                });
+                schema.SourceUri = baseUri.ToString();
+                schemaSet.Add(schema);
+            }
+            
+            schemaSet.Compile();
+
+            // Find the root element (usually matches schema name or operation name + "Request")
+            XmlSchemaElement rootElement = null;
+            foreach (XmlSchema schema in schemaSet.Schemas())
+            {
+                foreach (XmlSchemaElement element in schema.Elements.Values)
+                {
+                    // Match exact name, or name with "Request" suffix, or the resolved schema name
+                    if (element.Name.Equals(schemaName, StringComparison.OrdinalIgnoreCase) || 
+                        element.Name.Equals(operationName + "Request", StringComparison.OrdinalIgnoreCase))
+                    {
+                        rootElement = element;
+                        break;
+                    }
+                }
+                if (rootElement != null) break;
+            }
+
+            if (rootElement == null)
+            {
+                return $"<!-- Root element {schemaName} not found in schema file -->";
+            }
+
+            var doc = new XmlDocument();
+            var nsManager = new XmlNamespaceManager(doc.NameTable);
+            
+            // Generate XML
+            var xmlNode = GenerateElement(doc, rootElement, schemaSet);
+            doc.AppendChild(xmlNode);
+
+            // Format XML
+            var sb = new System.Text.StringBuilder();
+            var settings = new XmlWriterSettings
+            {
+                Indent = true,
+                IndentChars = "  ",
+                NewLineChars = "\r\n",
+                NewLineHandling = NewLineHandling.Replace,
+                OmitXmlDeclaration = true
+            };
+            using (var writer = XmlWriter.Create(sb, settings))
+            {
+                doc.Save(writer);
+            }
+
+            return sb.ToString();
+        }
+        catch (Exception ex)
+        {
+            return $"<!-- Error generating sample: {ex.Message} -->";
+        }
+    }
+
+    public async Task<string> GetResponseSchema(string serviceName, string version, string operationName)
+    {
+        var schemaName = GetResponseSchemaName(serviceName, version, operationName);
+        if (string.IsNullOrEmpty(schemaName))
+        {
+            return $"<!-- Response schema name not found for {serviceName} {version} {operationName} -->";
+        }
+
+        var schemaPath = FindSchemaFile(schemaName, version);
+        if (string.IsNullOrEmpty(schemaPath))
+        {
+            return $"<!-- Schema file {schemaName}.xsd not found for version {version} -->";
+        }
+
+        try
+        {
+            return await File.ReadAllTextAsync(schemaPath);
+        }
+        catch (Exception ex)
+        {
+            return $"<!-- Error reading schema file: {ex.Message} -->";
+        }
+    }
+
+    private string GetRequestSchemaFromWsdl(string serviceName, string version, string operationName)
+    {
+        try
+        {
+            var wsdlPath = FindWsdlFile(serviceName, version);
+            if (string.IsNullOrEmpty(wsdlPath)) return null;
+
+            var doc = new XmlDocument();
+            doc.Load(wsdlPath);
+
+            var nsManager = new XmlNamespaceManager(doc.NameTable);
+            nsManager.AddNamespace("wsdl", "http://schemas.xmlsoap.org/wsdl/");
+            nsManager.AddNamespace("xsd", "http://www.w3.org/2001/XMLSchema");
+
+            // 1. Find portType operation input message name
+            // <wsdl:portType name="..."> <wsdl:operation name="operationName"> <wsdl:input message="tns:MessageName"/>
+            var inputNode = doc.SelectSingleNode($"//wsdl:portType/wsdl:operation[@name='{operationName}']/wsdl:input", nsManager);
+            if (inputNode == null) return null;
+
+            var messageQName = inputNode.Attributes["message"]?.Value;
+            if (string.IsNullOrEmpty(messageQName)) return null;
+
+            var messageName = messageQName.Contains(":") ? messageQName.Split(':')[1] : messageQName;
+
+            // 2. Find message part element
+            // <wsdl:message name="MessageName"> <wsdl:part name="..." element="tns:ElementName"/>
+            var partNode = doc.SelectSingleNode($"//wsdl:message[@name='{messageName}']/wsdl:part", nsManager);
+            if (partNode == null) return null;
+
+            var elementQName = partNode.Attributes["element"]?.Value;
+            if (string.IsNullOrEmpty(elementQName)) return null;
+
+            var elementName = elementQName.Contains(":") ? elementQName.Split(':')[1] : elementQName;
+            return elementName;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error parsing WSDL for schema name");
+            return null;
+        }
+    }
+
+    private string FindSchemaFile(string schemaName, string version)
+    {
+        var schemasDir = Path.Combine(_docsPath, "Schemas");
+        var files = Directory.GetFiles(schemasDir, $"{schemaName}.xsd", SearchOption.AllDirectories);
+        
+        foreach (var file in files)
+        {
+            // Check if version string is part of the path
+            // Handle "1.0.0" and "v1.0.0"
+            if (file.Contains(Path.DirectorySeparatorChar + version + Path.DirectorySeparatorChar) ||
+                file.Contains(Path.DirectorySeparatorChar + "v" + version + Path.DirectorySeparatorChar))
+            {
+                return file;
+            }
+        }
+
+        // Removed aggressive fallback that was returning wrong versions (e.g. 2.0.0 for 1.2.1)
+        return null;
+    }
+
+    private XmlElement GenerateElement(XmlDocument doc, XmlSchemaElement element, XmlSchemaSet schemaSet)
+    {
+        // Handle Reference
+        if (!element.RefName.IsEmpty)
+        {
+            var globalElement = schemaSet.GlobalElements[element.RefName] as XmlSchemaElement;
+            if (globalElement != null)
+            {
+                return GenerateElement(doc, globalElement, schemaSet);
+            }
+            // If reference not found, create a placeholder
+            var missing = doc.CreateElement(element.RefName.Name, element.RefName.Namespace);
+            missing.InnerText = "<!-- Reference not found -->";
+            return missing;
+        }
+
+        var name = element.Name;
+        var ns = element.QualifiedName.Namespace;
+        
+        var xmlElement = doc.CreateElement(name, ns);
+
+        // Handle complex types
+        var complexType = element.ElementSchemaType as XmlSchemaComplexType;
+        if (complexType != null)
+        {
+            GenerateComplexType(doc, xmlElement, complexType, schemaSet);
+        }
+        else
+        {
+            // Simple type - add sample value
+            xmlElement.InnerText = GetSampleValue(element.ElementSchemaType, name);
+        }
+
+        return xmlElement;
+    }
+
+    private void GenerateComplexType(XmlDocument doc, XmlElement parent, XmlSchemaComplexType complexType, XmlSchemaSet schemaSet)
+    {
+        var particle = complexType.Particle;
+        if (particle != null)
+        {
+            GenerateParticle(doc, parent, particle, schemaSet);
+        }
+        
+        // Handle complex content (inheritance)
+        if (complexType.ContentModel is XmlSchemaComplexContent complexContent)
+        {
+            if (complexContent.Content is XmlSchemaComplexContentExtension extension)
+            {
+                if (extension.Particle != null)
+                {
+                    GenerateParticle(doc, parent, extension.Particle, schemaSet);
+                }
+                // Also handle base type if needed, but usually extension includes base particles in compiled schema? 
+                // Actually, we might need to look up base type. 
+                // For simplicity, let's assume the compiled schema handles this or we just process the extension particle.
+            }
+        }
+    }
+
+    private void GenerateParticle(XmlDocument doc, XmlElement parent, XmlSchemaParticle particle, XmlSchemaSet schemaSet)
+    {
+        if (particle is XmlSchemaSequence sequence)
+        {
+            foreach (XmlSchemaParticle item in sequence.Items)
+            {
+                GenerateParticle(doc, parent, item, schemaSet);
+            }
+        }
+        else if (particle is XmlSchemaChoice choice)
+        {
+            // For choice, just pick the first one for sample
+            if (choice.Items.Count > 0)
+            {
+                GenerateParticle(doc, parent, (XmlSchemaParticle)choice.Items[0], schemaSet);
+            }
+        }
+        else if (particle is XmlSchemaAll all)
+        {
+            foreach (XmlSchemaParticle item in all.Items)
+            {
+                GenerateParticle(doc, parent, item, schemaSet);
+            }
+        }
+        else if (particle is XmlSchemaElement element)
+        {
+            // Check max occurs? For sample, just generate one.
+            var child = GenerateElement(doc, element, schemaSet);
+            parent.AppendChild(child);
+        }
+    }
+
+    private string GetSampleValue(XmlSchemaType type, string elementName)
+    {
+        // Basic heuristics for sample values
+        if (elementName.Contains("id", StringComparison.OrdinalIgnoreCase)) return "test_id";
+        if (elementName.Contains("password", StringComparison.OrdinalIgnoreCase)) return "test_password";
+        if (elementName.Contains("version", StringComparison.OrdinalIgnoreCase)) return "1.0.0";
+        if (elementName.Contains("date", StringComparison.OrdinalIgnoreCase)) return DateTime.Now.ToString("s");
+        if (elementName.Equals("localizationCountry", StringComparison.OrdinalIgnoreCase)) return "US";
+        if (elementName.Equals("localizationLanguage", StringComparison.OrdinalIgnoreCase)) return "en";
+        if (elementName.Equals("currency", StringComparison.OrdinalIgnoreCase)) return "USD";
+        
+        if (type != null && type.Datatype != null)
+        {
+            switch (type.Datatype.TypeCode)
+            {
+                case XmlTypeCode.Boolean: return "true";
+                case XmlTypeCode.DateTime: return DateTime.Now.ToString("s");
+                case XmlTypeCode.Int:
+                case XmlTypeCode.Integer: return "1";
+                case XmlTypeCode.Decimal: return "10.00";
+            }
+        }
+
+        return $"{elementName}_value";
+    }
+
+    private string GetRequestSchemaName(string serviceName, string version, string operationName)
+    {
+        var service = _serviceList?.FirstOrDefault(s => s.ServiceName.Equals(serviceName, StringComparison.OrdinalIgnoreCase));
+        if (service == null) return null;
+
+        var verParts = version.Split('.');
+        if (verParts.Length != 3) return null;
+        if (!int.TryParse(verParts[0], out int major)) return null;
+        if (!int.TryParse(verParts[1], out int minor)) return null;
+        if (!int.TryParse(verParts[2], out int patch)) return null;
+
+        var ver = service.Versions.FirstOrDefault(v => v.Major == major && v.Minor == minor && v.Patch == patch);
+        if (ver == null) return null;
+
+        var op = ver.Operations.FirstOrDefault(o => o.OperationName.Equals(operationName, StringComparison.OrdinalIgnoreCase));
+        return op?.RequestSchema;
+    }
+
+    private string FindWsdlFile(string serviceName, string version)
+    {
+        var schemasDir = Path.Combine(_docsPath, "Schemas");
+        // Look for .wsdl files
+        var files = Directory.GetFiles(schemasDir, "*.wsdl", SearchOption.AllDirectories);
+        
+        foreach (var file in files)
+        {
+            // Check if version string is part of the path
+            // Handle "1.0.0" and "v1.0.0"
+            if (file.Contains(Path.DirectorySeparatorChar + version + Path.DirectorySeparatorChar) ||
+                file.Contains(Path.DirectorySeparatorChar + "v" + version + Path.DirectorySeparatorChar))
+            {
+                // Also check if service name matches (fuzzy match or part of path)
+                // e.g. ...\InventoryService\2.0.0\InventoryService.wsdl
+                if (file.Contains(serviceName, StringComparison.OrdinalIgnoreCase) || 
+                    file.Contains(serviceName.Replace("Service", ""), StringComparison.OrdinalIgnoreCase))
+                {
+                    return file;
+                }
+            }
+        }
+        
+        return null;
+    }
+
     private class OperationInfo
     {
         public string? OperationName { get; set; }
+        public string? RequestSchema { get; set; }
         public string? ResponseSchema { get; set; }
     }
 }
