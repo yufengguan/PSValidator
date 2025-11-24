@@ -120,7 +120,17 @@ sed -e "s/API_DOMAIN_PLACEHOLDER/${API_DOMAIN}/g" \
     "$NGINX_API_TEMPLATE" > "$NGINX_API_CONF"
 
 # Check if certificates exist (use sudo to check root-owned files)
+CERTS_EXIST=true
 if ! sudo test -f "$CERT_PATH"; then
+    echo "Main domain SSL certificate not found."
+    CERTS_EXIST=false
+fi
+if ! sudo test -f "$API_CERT_PATH"; then
+    echo "API domain SSL certificate not found."
+    CERTS_EXIST=false
+fi
+
+if [ "$CERTS_EXIST" = false ]; then
     echo "SSL certificates not found. Starting bootstrap process..."
     
     # 1. Start with HTTP-only config
