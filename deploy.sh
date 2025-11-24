@@ -3,6 +3,15 @@
 # Exit on error
 set -e
 
+# Load configuration
+if [ ! -f "./deploy.config" ]; then
+    echo "Error: deploy.config not found!"
+    echo "Please copy deploy.config.example to deploy.config and update with your values."
+    exit 1
+fi
+
+source ./deploy.config
+
 echo "Starting deployment..."
 
 # 1. Install Docker if not present
@@ -90,10 +99,17 @@ echo "Building and starting containers..."
 NGINX_CONF="./nginx/nginx.conf"
 NGINX_INIT="./nginx/nginx-init.conf"
 NGINX_HTTPS="./nginx/nginx-https.conf"
-CERT_PATH="./certbot/conf/live/demo18.com/fullchain.pem"
+NGINX_HTTPS_TEMPLATE="./nginx/nginx-https.conf.template"
+CERT_PATH="./certbot/conf/live/${DOMAIN}/fullchain.pem"
 
 # Ensure nginx directory exists
 mkdir -p nginx
+
+# Generate nginx-https.conf from template with domain substitution
+echo "Generating nginx configuration with domain: ${DOMAIN}"
+sed -e "s/DOMAIN_PLACEHOLDER/${DOMAIN}/g" \
+    -e "s/WWW_DOMAIN_PLACEHOLDER/${WWW_DOMAIN}/g" \
+    "$NGINX_HTTPS_TEMPLATE" > "$NGINX_HTTPS"
 
 # Check if certificates exist (use sudo to check root-owned files)
 if ! sudo test -f "$CERT_PATH"; then
@@ -118,9 +134,9 @@ if ! sudo test -f "$CERT_PATH"; then
     echo "Requesting SSL certificate..."
     # Added --non-interactive and --keep-until-expiring to prevent prompts if cert exists
     if docker compose version &> /dev/null; then
-        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d demo18.com -d www.demo18.com --email yufeng.guan@gmail.com --agree-tos --no-eff-email --non-interactive --keep-until-expiring
+        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${DOMAIN} -d ${WWW_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring
     else
-        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d demo18.com -d www.demo18.com --email yufeng.guan@gmail.com --agree-tos --no-eff-email --non-interactive --keep-until-expiring
+        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${DOMAIN} -d ${WWW_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring
     fi
     
     # 3. Switch to HTTPS config
@@ -145,4 +161,4 @@ else
     fi
 fi
 
-echo "Deployment complete! App should be running on https://demo18.com"
+echo "Deployment complete! App should be running on https://${DOMAIN}"

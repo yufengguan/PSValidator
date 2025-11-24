@@ -59,7 +59,11 @@ App/pnpm-lock.yaml
 App/tsconfig.tsbuildinfo
 
 
-
-
 # --- Docs ---
+
+# --- Deployment ---
+deploy.config
+*.config.local
+nginx/nginx.conf
+nginx/nginx-https.conf
 

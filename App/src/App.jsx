@@ -209,6 +209,15 @@ function App() {
             <ResponseSchemaPanel schemaContent={responseSchema} />
           </Col>
         </Row>
+
+        <Row className="mt-4 mb-5">
+          <Col className="text-center">
+            <a href="https://github.com/yufengguan/PSValidator" target="_blank" rel="noopener noreferrer" style={{ color: '#6c757d', textDecoration: 'none' }}>
+              <i className="bi bi-github me-2"></i>
+              Please refer to the source code at Github
+            </a>
+          </Col>
+        </Row>
       </Container>
     </>
   );
