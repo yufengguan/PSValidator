@@ -11,8 +11,8 @@ When running locally with `dotnet run`, the API is accessible at:
 
 After deploying with `./deploy.sh`, the API is accessible at:
 
-- **API Base URL**: `https://your-domain.com/api`
-- **Swagger UI**: `https://your-domain.com/api/swagger/index.html`
+- **API Base URL**: `https://api.your-domain.com/api`
+- **Swagger UI**: `https://api.your-domain.com/swagger/index.html`
 
 Replace `your-domain.com` with your actual domain configured in `deploy.config`.
 
