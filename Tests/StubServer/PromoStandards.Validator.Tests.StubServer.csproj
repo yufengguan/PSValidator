@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\..\Docs\PSServiceList.json" Link="Services\PSServiceList.json">
+    <Content Include="..\..\Docs\PSServiceList.json" Link="Services\PSServiceList.json" Condition="Exists('..\..\Docs\PSServiceList.json')">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
