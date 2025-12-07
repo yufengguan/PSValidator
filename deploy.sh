@@ -142,6 +142,13 @@ if ! sudo test -f "$STUBSERVER_CERT_PATH"; then
     CERTS_EXIST=false
 fi
 
+# Pull latest images
+if docker compose version &> /dev/null; then
+    docker compose pull
+else
+    docker-compose pull
+fi
+
 if [ "$CERTS_EXIST" = false ]; then
     echo "SSL certificates not found. Starting bootstrap process..."
     
@@ -155,9 +162,9 @@ if [ "$CERTS_EXIST" = false ]; then
     
     # Start Nginx
     if docker compose version &> /dev/null; then
-        docker compose up -d --build app
+        docker compose up -d app
     else
-        docker-compose up -d --build app
+        docker-compose up -d app
     fi
     
     # Wait for Nginx to start
@@ -206,9 +213,9 @@ else
     cp "$NGINX_HTTPS" "$NGINX_CONF"
     
     if docker compose version &> /dev/null; then
-        docker compose up -d --build
+        docker compose up -d
     else
-        docker-compose up -d --build
+        docker-compose up -d
     fi
 fi
 

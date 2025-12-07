@@ -5,19 +5,72 @@ on:
     branches:
       - main
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lowercase Repo Name
+        run: |
+          echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+
+      - name: Build and push API image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./Api
+          push: true
+          tags: ghcr.io/${{ env.REPO }}-api:latest
+
+      - name: Build and push App image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./App
+          push: true
+          tags: ghcr.io/${{ env.REPO }}-app:latest
+
+      - name: Build and push StubServer image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./Tests/StubServer
+          push: true
+          tags: ghcr.io/${{ env.REPO }}-stubserver:latest
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Server
         uses: appleboy/ssh-action@v1.0.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           timeout: 30m
           command_timeout: 30m
+          envs: GITHUB_TOKEN,GITHUB_ACTOR
           script: |
+            # Login to GHCR on the server
+            echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+            
             cd PSValidator
             git fetch --all
             git reset --hard origin/main
