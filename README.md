@@ -23,3 +23,16 @@ The document can be found in the following link: https://github.com/StarlineSoft
         nano deploy.config
         # Run the deploy script
         ./deploy.sh
+
+
+# Deployment Issue: server freezing
+
+1. Update deploy.yml
+ to:
+Build the Docker images using GitHub's runner.
+Push them to GitHub Container Registry (GHCR) (free and private).
+
+2. Update deploy.sh
+ on the server to:
+docker pull the images from GHCR.
+docker compose up.
