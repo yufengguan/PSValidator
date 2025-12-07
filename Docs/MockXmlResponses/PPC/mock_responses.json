@@ -1,0 +1,65 @@
+{
+  "Service": "PPC",
+  "MockResponses": [
+    {
+      "ErrorCode": "ERR_MISSING_PRODUCTID",
+      "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-1.xml",
+      "ExpectedError": "Configuration element 'productId' is required but missing."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_CURRENCY",
+      "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-2.xml",
+      "ExpectedError": "Configuration element 'currency' is required but missing."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_PRICETYPE",
+      "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-3.xml",
+      "ExpectedError": "Configuration element 'priceType' is required but missing."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_PARTARRAY",
+      "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-4.xml",
+      "ExpectedError": "Configuration element 'PartArray' is required but missing."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_PARTID",
+      "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-5.xml",
+      "ExpectedError": "Part element 'partId' is required but missing."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_PARTGROUP",
+      "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-6.xml",
+      "ExpectedError": "Part element 'partGroup' is required but missing."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_MINQUANTITY",
+      "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-7.xml",
+      "ExpectedError": "PartPrice element 'minQuantity' is required but missing."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_PRICE",
+      "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-8.xml",
+      "ExpectedError": "PartPrice element 'price' is required but missing."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_PRICEUOM",
+      "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-9.xml",
+      "ExpectedError": "PartPrice element 'priceUom' is required but missing."
+    },
+    {
+      "ErrorCode": "ERR_NEGATIVE_PRICE",
+      "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-10.xml",
+      "ExpectedError": "PartPrice element 'price' must be non-negative."
+    },
+    {
+      "ErrorCode": "ERR_INVALID_CURRENCY",
+      "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-11.xml",
+      "ExpectedError": "Configuration element 'currency' is invalid."
+    },
+    {
+      "ErrorCode": "ERR_INVALID_UOM",
+      "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-12.xml",
+      "ExpectedError": "PartPrice element 'priceUom' is invalid."
+    }
+  ]
+}

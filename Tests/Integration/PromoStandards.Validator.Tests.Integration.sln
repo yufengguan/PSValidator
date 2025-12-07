@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15 d18.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromoStandards.Validator.Tests.Integration", "PromoStandards.Validator.Tests.Integration.csproj", "{EFF5B45A-C6E5-19F2-936E-AFDEB716A238}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFF5B45A-C6E5-19F2-936E-AFDEB716A238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFF5B45A-C6E5-19F2-936E-AFDEB716A238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFF5B45A-C6E5-19F2-936E-AFDEB716A238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFF5B45A-C6E5-19F2-936E-AFDEB716A238}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4A6FCD0-AAB8-4660-86B5-47E9C6223B91}
+	EndGlobalSection
+EndGlobal

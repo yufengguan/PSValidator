@@ -1,0 +1,38 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <GetConfigurationAndPricingResponse xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/">
+      <Configuration>
+        <PartArray>
+          <Part>
+            <partId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">PART001</partId>
+            <partDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Test Part</partDescription>
+            <PartPriceArray>
+              <PartPrice>
+                <minQuantity>1</minQuantity>
+                <price>10.00</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+            </PartPriceArray>
+            <partGroup xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</partGroup>
+            <partGroupRequired xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</partGroupRequired>
+            <partGroupDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Main</partGroupDescription>
+            <ratio xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1.0</ratio>
+            <defaultPart xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</defaultPart>
+          </Part>
+        </PartArray>
+        <!-- productId missing -->
+        <currency xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">USD</currency>
+        <FobArray xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">
+             <Fob>
+                 <fobId>FOB1</fobId>
+                 <fobPostalCode>12345</fobPostalCode>
+             </Fob>
+        </FobArray>
+        <priceType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">List</priceType>
+      </Configuration>
+    </GetConfigurationAndPricingResponse>
+  </s:Body>
+</s:Envelope>

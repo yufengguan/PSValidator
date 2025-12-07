@@ -1,0 +1,23 @@
+[
+  {
+    "ContainingType": "PromoStandards.Validator.Tests.StubServer.Controllers.MockController",
+    "Method": "Post",
+    "RelativePath": "{service}/{errorCode}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "service",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "errorCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

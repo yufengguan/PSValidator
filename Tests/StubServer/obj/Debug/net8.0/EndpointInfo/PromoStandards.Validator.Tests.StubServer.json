@@ -1,0 +1,43 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "PromoStandards Validator Tests Stub Server",
+    "description": "Stub Server implementation of PromoStandards services for testing. Returns various XML responses based on 'code' parameter.",
+    "version": "v1"
+  },
+  "paths": {
+    "/{service}/{errorCode}": {
+      "post": {
+        "tags": [
+          "Mock"
+        ],
+        "parameters": [
+          {
+            "name": "service",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "errorCode",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": { }
+}

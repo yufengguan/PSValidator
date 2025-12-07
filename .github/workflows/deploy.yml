@@ -25,6 +25,7 @@ jobs:
             DOMAIN="${{ secrets.DEPLOY_DOMAIN }}"
             WWW_DOMAIN="${{ secrets.DEPLOY_WWW_DOMAIN }}"
             API_DOMAIN="${{ secrets.DEPLOY_API_DOMAIN }}"
+            STUBSERVER_DOMAIN="${{ secrets.DEPLOY_STUBSERVER_DOMAIN }}"
             EMAIL="${{ secrets.DEPLOY_EMAIL }}"
             EOF
             
