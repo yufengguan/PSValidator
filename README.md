@@ -1,41 +1,30 @@
 # PSValidator
-This Application is a demo for PS Validator
-It was build using Antigravity AI according to the requirements provided in the document
-The document can be found in the following link: https://github.com/StarlineSoftware/PSValidator/blob/main/README.md
+This application is a demo for PS Validator.
+It was built using Antigravity AI according to Docs\PS_WebServiceValidator_Requirements_V02.md.
 
-## How to run the application
+## How to Run the Application
 1. Clone the repository
-2. Open the folder in antigravity
-3. App
-        npm install
-        npm run dev
-        Open the browser and navigate to http://localhost:5166/swagger/index.html
-4. Api
-        dotnet restore
-        dotnet build
-        dotnet run
-        Open the browser and navigate to http://localhost:5173
+2. Open the folder in Antigravity
+3. **App**
+   ```bash
+   npm install
+   npm run dev
+   ```
+   Open the browser and navigate to http://localhost:5166/swagger/index.html
+4. **API**
+   ```bash
+   dotnet restore
+   dotnet build
+   dotnet run
+   ```
+   Open the browser and navigate to http://localhost:5173
 
-5. Deploy
-        # Copy the example to create your actual config
-        cp deploy.config.example deploy.config
-        # Edit with your real values
-        nano deploy.config
-        # Run the deploy script
-        ./deploy.sh
-
-
-# Deployment Issue: server freezing
-
-1. Update deploy.yml
- to:
-Build the Docker images using GitHub's runner.
-Push them to GitHub Container Registry (GHCR) (free and private).
-
-2. Update deploy.sh
- on the server to:
-docker pull the images from GHCR.
-docker compose up.
-
-
-
+5. **Deploy**
+   ```bash
+   # Copy the example to create your actual config
+   cp deploy.config.example deploy.config
+   # Edit with your real values
+   nano deploy.config
+   # Run the deploy script
+   ./deploy.sh
+   ```
