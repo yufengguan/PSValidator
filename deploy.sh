@@ -198,7 +198,8 @@ if [ "$CERTS_EXIST" = false ]; then
         "$NGINX_API_TEMPLATE" > "$NGINX_API_CONF"
 
     echo "Restoring StubServer nginx configuration with SSL..."
-    sed -e "s/STUBSERVER_DOMAIN_PLACEHOLDER/${STUBSERVER_DOMAIN}/g" \
+    STUBSERVER_DOMAIN_LOWER=$(echo "$STUBSERVER_DOMAIN" | tr '[:upper:]' '[:lower:]')
+    sed -e "s/STUBSERVER_DOMAIN_PLACEHOLDER/${STUBSERVER_DOMAIN_LOWER}/g" \
         "$NGINX_STUBSERVER_TEMPLATE" > "$NGINX_STUBSERVER_CONF"
     
     # Reload Nginx
