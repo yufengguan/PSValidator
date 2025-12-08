@@ -19,6 +19,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Log in to the Container registry
         uses: docker/login-action@v3
         with:
@@ -34,6 +40,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./Api
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/${{ env.REPO }}-api:latest
 
@@ -41,13 +48,16 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./App
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/${{ env.REPO }}-app:latest
 
       - name: Build and push StubServer image
         uses: docker/build-push-action@v5
         with:
-          context: ./Tests/StubServer
+          context: .
+          file: Tests/StubServer/Dockerfile
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/${{ env.REPO }}-stubserver:latest
 

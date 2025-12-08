@@ -169,7 +169,7 @@ if [ "$CERTS_EXIST" = false ]; then
     
     # Wait for Nginx to start
     echo "Waiting for Nginx to start..."
-    sleep 5
+    sleep 10
     
     # 2. Request Certificates
     echo "Requesting SSL certificates..."
