@@ -36,3 +36,7 @@ Push them to GitHub Container Registry (GHCR) (free and private).
  on the server to:
 docker pull the images from GHCR.
 docker compose up.
+
+
+git commit --allow-empty -m "Trigger deployment with new IP"
+git push origin main

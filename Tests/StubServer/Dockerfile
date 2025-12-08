@@ -1,10 +1,21 @@
 # Build Stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["PromoStandards.Validator.Tests.StubServer.csproj", "./"]
-RUN dotnet restore "PromoStandards.Validator.Tests.StubServer.csproj"
-COPY . .
-RUN dotnet publish "PromoStandards.Validator.Tests.StubServer.csproj" -c Release -o /app/publish
+
+# Copy project file from correct path (context is root)
+COPY ["Tests/StubServer/PromoStandards.Validator.Tests.StubServer.csproj", "Tests/StubServer/"]
+
+# Copy dependent file (optional/conditional in csproj now, but good to have if present)
+COPY ["Docs/PSServiceList.json", "Docs/"]
+
+# Restore
+RUN dotnet restore "Tests/StubServer/PromoStandards.Validator.Tests.StubServer.csproj"
+
+# Copy source code
+COPY ["Tests/StubServer/", "Tests/StubServer/"]
+
+# Publish
+RUN dotnet publish "Tests/StubServer/PromoStandards.Validator.Tests.StubServer.csproj" -c Release -o /app/publish
 
 # Runtime Stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
