@@ -67,4 +67,14 @@ deploy.config
 nginx/nginx.conf
 nginx/nginx-https.conf
 nginx/nginx-api.conf
+nginx/nginx-stubserver.conf
+
+
+# --- Tests ---
+Tests/**/[Bb]in/
+Tests/**/[Oo]bj/
+Tests/**/.vs/
+Tests/**/*.user
+Tests/**/*.suo
+Tests/**/TestResults/
 
