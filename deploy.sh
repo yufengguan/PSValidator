@@ -162,9 +162,9 @@ if [ "$CERTS_EXIST" = false ]; then
     
     # Start Nginx
     if docker compose version &> /dev/null; then
-        docker compose up -d app
+        docker compose up -d
     else
-        docker-compose up -d app
+        docker-compose up -d
     fi
     
     # Wait for Nginx to start
