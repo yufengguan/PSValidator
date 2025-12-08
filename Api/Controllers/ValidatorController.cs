@@ -33,7 +33,7 @@ public class ValidatorController : ControllerBase
     public async Task<IActionResult> GetSampleRequest(string serviceName, string version, string operationName)
     {
         var xml = await _validationService.GenerateSampleRequest(serviceName, version, operationName);
-        return Ok(xml);
+        return Ok(new { xmlContent = xml });
     }
 
     [HttpGet("response-schema")]

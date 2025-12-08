@@ -49,7 +49,7 @@ function App() {
 
       if (newSelection.operation) {
         // Fetch sample request from API
-        fetch(`${API_BASE_URL}/Validator/sample-request?service=${newSelection.service}&version=${newSelection.version}&operation=${newSelection.operation}`)
+        fetch(`${API_BASE_URL}/Validator/sample-request?serviceName=${newSelection.service}&version=${newSelection.version}&operationName=${newSelection.operation}`)
           .then(res => res.json())
           .then(data => {
             if (data.xmlContent) {
