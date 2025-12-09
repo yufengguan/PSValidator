@@ -32,6 +32,7 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
+app.UseRouting(); // Must be first for endpoint routing to work correctly
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {

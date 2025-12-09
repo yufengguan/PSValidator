@@ -11,10 +11,9 @@ namespace PromoStandards.Validator.Tests.StubServer.Controllers;
 
 [ApiController]
 // The stub mimics a SOAP service for a given PromoStandards service.
-// URL pattern: POST /{service}/{ErrorCode}
-//  It was matching requests for static files like swagger-ui.css because {service} would capture "swagger-ui.css". 
-//  This regex constraint ^[^.]+$ ensures that the service parameter matches only strings that do not contain a dot (.).
-[Route("{service:regex(^[[^.]]+$)}/{errorCode?}")]
+// URL pattern: POST /api/{service}/{ErrorCode}
+// Using 'api/' prefix to avoid conflicts with Swagger UI static files
+[Route("api/{service}/{errorCode?}")]
 public class MockController : ControllerBase
 {
     private readonly IMockResponseProvider _provider;
