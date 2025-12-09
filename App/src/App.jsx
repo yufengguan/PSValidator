@@ -173,7 +173,7 @@ function App() {
     <>
       {/* Header with PromoStandards Logo */}
       <header style={{
-        background: 'linear-gradient(90deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%)',
+        background: 'rgb(38, 56, 128)',
         borderBottom: '3px solid #0066cc',
         boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
       }}>
@@ -237,8 +237,8 @@ function App() {
       <footer style={{ marginTop: '4rem' }}>
         {/* Main footer content */}
         <div style={{
-          background: '#2563eb',
-          borderTop: '3px solid #1e40af'
+          background: 'rgb(16, 31, 90)',
+          borderTop: '3px solid rgba(255,255,255,0.1)'
         }}>
           <Container className="py-4">
             <Row className="mb-4">
@@ -287,7 +287,7 @@ function App() {
         </div>
 
         {/* Copyright section with darker background */}
-        <div style={{ background: '#1e40af', padding: '1.5rem 0' }}>
+        <div style={{ background: 'rgb(16, 31, 90)', padding: '1.5rem 0', opacity: 0.9 }}>
           <Container>
             <Row>
               <Col className="text-center">
