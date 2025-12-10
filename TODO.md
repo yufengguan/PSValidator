@@ -4,12 +4,12 @@
 - [ ] Review `Docs\PS_WebServiceValidator_Requirements_V02.md` for any unimplemented features
 - [ ] Known issues:
   - Error handling for edge cases
-  - Implement logging for usage analytics
+  - Implement logging for usage analytics 
   - Performance monitoring and logging [optional]
 
 ### 2. Update Documentation
-- [ ] Document how to add new PromoStandards service or version
 - [ ] Review existing documentation
+- [ ] Document how to add new PromoStandards service or version [optional]
 
 ### 3. Fix Integration Tests
 - [ ] Update `ExpectedError` values in `Docs/MockXmlResponses/PPC/mock_responses.json` to match actual validation error messages
