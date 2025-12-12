@@ -38,11 +38,18 @@ public class MockController : ControllerBase
 
         // --------------------------------------------------------------
         // Look up the response in mock_responses.json
-        var mockJsonPath = Path.Combine(_env.ContentRootPath, "..", "..", "Docs", "MockXMLResponses", service, "mock_responses.json");
+        // Resolve Docs path: check /app/Docs (Docker) first, then fallback to ../../Docs (Local)
+        var docsPath = Path.Combine(_env.ContentRootPath, "Docs");
+        if (!Directory.Exists(docsPath))
+        {
+            docsPath = Path.Combine(_env.ContentRootPath, "..", "..", "Docs");
+        }
+
+        var mockJsonPath = Path.Combine(docsPath, "MockXMLResponses", service, "mock_responses.json");
         
         if (!System.IO.File.Exists(mockJsonPath))
         {
-            return NotFound($"Mock configuration not found for service '{service}'.");
+            return NotFound($"Mock configuration not found for service '{service}'. Searched in: {docsPath}");
         }
 
         try
@@ -61,7 +68,7 @@ public class MockController : ControllerBase
                 return StatusCode(500, "Invalid mock configuration: StubResponseFile is missing.");
             }
 
-            var mockPathFromConfig = Path.Combine(_env.ContentRootPath, "..", "..", "Docs", "MockXMLResponses", service, responseItem.StubResponseFile);
+            var mockPathFromConfig = Path.Combine(docsPath, "MockXMLResponses", service, responseItem.StubResponseFile);
             
             if (!System.IO.File.Exists(mockPathFromConfig))
             {

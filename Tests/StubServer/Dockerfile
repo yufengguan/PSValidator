@@ -21,6 +21,7 @@ RUN dotnet publish "Tests/StubServer/PromoStandards.Validator.Tests.StubServer.c
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
+COPY ["Docs/", "Docs/"]
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 ENTRYPOINT ["dotnet", "PromoStandards.Validator.Tests.StubServer.dll"]
