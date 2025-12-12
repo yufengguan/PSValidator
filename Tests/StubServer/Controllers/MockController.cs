@@ -110,10 +110,25 @@ public class MockController : ControllerBase
             }
 
             var payloadFromConfig = await System.IO.File.ReadAllTextAsync(mockPathFromConfig);
-            string soapEnvelopeFromConfig = $@"<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"">
+            string soapEnvelopeFromConfig;
+
+            // Check if the payload is already a SOAP Envelope
+            // We look for the standard SOAP envelope namespace. 
+            // A robust check would parse XML, but for mocks, a string check is usually sufficient and faster.
+            if (payloadFromConfig.Contains("http://schemas.xmlsoap.org/soap/envelope/") && 
+                (payloadFromConfig.Contains(":Envelope") || payloadFromConfig.Contains("Envelope")))
+            {
+                 _logger.LogInformation("Payload already contains SOAP Envelope. Skipping wrapper.");
+                 soapEnvelopeFromConfig = payloadFromConfig;
+            }
+            else
+            {
+                _logger.LogInformation("Payload is raw body. Wrapping in SOAP Envelope.");
+                soapEnvelopeFromConfig = $@"<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"">
     <soapenv:Header/>
     <soapenv:Body>" + payloadFromConfig + @"</soapenv:Body>
 </soapenv:Envelope>";
+            }
             
             _logger.LogInformation("Successfully generated response for {Service}/{ErrorCode}", service, errorCode);
             return Content(soapEnvelopeFromConfig, "text/xml; charset=utf-8");
