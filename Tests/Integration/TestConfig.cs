@@ -20,8 +20,8 @@ namespace PromoStandards.Validator.Tests.Integration
             _configuration = builder.Build();
         }
 
-        public static string ApiBaseUrl => _configuration["ApiBaseUrl"] ?? "http://localhost:5166";
-        public static string StubServerBaseUrl => _configuration["StubServerBaseUrl"] ?? "http://localhost:5086";
+        public static string ApiBaseUrl => _configuration["ApiBaseUrl"] ?? "https://api.demo18.com";
+        public static string StubServerBaseUrl => _configuration["StubServerBaseUrl"] ?? "https://stubserver.demo18.com";
 
         public static string GetDocsPath()
         {

@@ -49,7 +49,7 @@ public class ValidatorWithMockResponsesTests
         foreach (var responseItem in mockConfig.MockResponses)
         {
             // Construct the endpoint with errorCode
-            var endpoint = $"{_mockServiceBaseUrl}/{service}/{responseItem.ErrorCode}";
+            var endpoint = $"{_mockServiceBaseUrl}/api/{service}/{responseItem.ErrorCode}";
             
             // We assume the operation is GetConfigurationAndPricingResponse based on PPC service context
             // and that the Validator expects this operation.
@@ -57,9 +57,9 @@ public class ValidatorWithMockResponsesTests
             
             var request = new
             {
-                Service = service,
+                Service = "ProductPricingandConfiguration",
                 Version = "1.0.0", 
-                Operation = "GetConfigurationAndPricingResponse", 
+                Operation = "getConfigurationAndPricing", 
                 XmlContent = "<GetConfigurationAndPricingRequest>Dummy Request</GetConfigurationAndPricingRequest>",
                 Endpoint = endpoint
             };
@@ -81,11 +81,24 @@ public class ValidatorWithMockResponsesTests
             Assert.IsNotNull(result, $"Result is null for ErrorCode {responseItem.ErrorCode}");
             
             // The expected error implies the validation should FAIL (IsValid = false)
-            Assert.IsFalse(result.IsValid, $"Expected validation failure for ErrorCode {responseItem.ErrorCode} but got Valid.");
+            // UNLESS ExpectedErrorDetails is empty (meaning the external validator found no error)
+            
+            if (string.IsNullOrWhiteSpace(responseItem.ExpectedErrorDetails))
+            {
+                // Verify it IS valid if we expect no error details
+                Assert.IsTrue(result.IsValid, $"Expected validation SUCCESS for ErrorCode {responseItem.ErrorCode} but got Failure.");
+            }
+            else
+            {
+                Assert.IsFalse(result.IsValid, $"Expected validation failure for ErrorCode {responseItem.ErrorCode} but got Valid.");
 
-            // Assert the expected error message is present
-            bool errorFound = result.ValidationResultMessages.Exists(msg => msg.Contains(responseItem.ExpectedError));
-            Assert.IsTrue(errorFound, $"Expected error '{responseItem.ExpectedError}' not found for ErrorCode {responseItem.ErrorCode}. Found: {string.Join(", ", result.ValidationResultMessages)}");
+                // Assert the expected error message is present
+                // Using Case-Insensitive check or relaxed checking might be safer, but user said "validation result should equal"
+                // The validator returns a list of messages. One of them should match/contain ExpectedErrorDetails.
+                
+                bool errorFound = result.ValidationResultMessages.Exists(msg => msg.Contains(responseItem.ExpectedErrorDetails));
+                Assert.IsTrue(errorFound, $"Expected error '{responseItem.ExpectedErrorDetails}' not found for ErrorCode {responseItem.ErrorCode}. Found: {string.Join(", ", result.ValidationResultMessages)}");
+            }
         }
     }
 }
@@ -102,6 +115,7 @@ public class MockResponseItem
     public string ErrorCode { get; set; }
     public string StubResponseFile { get; set; }
     public string ExpectedError { get; set; }
+    public string ExpectedErrorDetails { get; set; }
 }
 
 public class ValidationResult
