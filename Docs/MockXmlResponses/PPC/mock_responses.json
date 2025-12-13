@@ -5,7 +5,7 @@
       "ErrorCode": "ERR_MISSING_PRODUCTID",
       "StubResponseFile": "PPC-1.0.0-GetConfigurationAndPricingResponse-1.xml",
       "ExpectedError": "Configuration element 'productId' is required but missing.",
-      "ExpectedErrorDetails": "Error: The element 'Configuration' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'currency' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'LocationArray' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' as well as 'productId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. at Line 1, Pos 1381"
+      "ExpectedErrorDetails": "Error: The element 'Configuration' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'currency' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'LocationArray' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' as well as 'productId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. at Line 25, Pos 6"
     },
     {
       "ErrorCode": "ERR_MISSING_CURRENCY",

@@ -119,6 +119,23 @@ public class ValidationService : IValidationService
                 result.ResponseContent = xmlContent;
             }
 
+            // PRETTY PRINT CONTENT
+            // The user wants human-readable line numbers in validation errors.
+            contentToValidate = FormatXml(contentToValidate);
+            // Also update the displayed response content if we haven't already (or overwrite with formatted)
+            // If result.ResponseContent differs from contentToValidate only by SOAP envelope, we might want to format ResponseContent too.
+            // But usually validation errors refer to contentToValidate lines.
+            // Let's format the displayed content too for consistency if it matches.
+            if (result.ResponseContent == xmlContent || result.ResponseContent == contentToValidate) 
+            {
+                 result.ResponseContent = contentToValidate;
+            } 
+            else if (!string.IsNullOrEmpty(result.ResponseContent))
+            {
+                // If it's a SOAP response, try to format that too
+                result.ResponseContent = FormatXml(result.ResponseContent);
+            }
+
             // 1. Find Schema Name from Service List
             var schemaName = GetResponseSchemaName(serviceName, version, operationName);
             if (string.IsNullOrEmpty(schemaName))
@@ -286,6 +303,7 @@ public class ValidationService : IValidationService
         try
         {
             var doc = new XmlDocument();
+            doc.PreserveWhitespace = true; // Preserve original formatting
             doc.LoadXml(soapResponse);
 
             var namespaceManager = new XmlNamespaceManager(doc.NameTable);
@@ -295,10 +313,18 @@ public class ValidationService : IValidationService
             var bodyNode = doc.SelectSingleNode("//*[local-name()='Body']");
             if (bodyNode != null && bodyNode.HasChildNodes)
             {
-                return bodyNode.FirstChild.OuterXml;
+                // With PreserveWhitespace, matching first child might be text/whitespace. 
+                // We want the first ELEMENT.
+                foreach (XmlNode child in bodyNode.ChildNodes)
+                {
+                    if (child.NodeType == XmlNodeType.Element)
+                    {
+                        return child.OuterXml;
+                    }
+                }
             }
             
-            return soapResponse; // Fallback if no body found
+            return soapResponse; // Fallback if no body payload found
         }
         catch
         {
@@ -673,5 +699,21 @@ public class ValidationService : IValidationService
         public string? OperationName { get; set; }
         public string? RequestSchema { get; set; }
         public string? ResponseSchema { get; set; }
+    }
+
+    private string FormatXml(string xml)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(xml)) return xml;
+            
+            var doc = System.Xml.Linq.XDocument.Parse(xml);
+            return doc.ToString(); 
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "FormatXml Failed. Input length: {Length}. Snippet: {Snippet}", xml.Length, xml.Substring(0, Math.Min(xml.Length, 100)));
+            return xml;
+        }
     }
 }

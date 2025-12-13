@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PromoStandards.Validator.Tests.Integration")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+11f39711deec845c58cd673a6eb75bb26df6cf65")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77ed871f1f6db7e5d09487811133680e774c2cee")]
 [assembly: System.Reflection.AssemblyProductAttribute("PromoStandards.Validator.Tests.Integration")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PromoStandards.Validator.Tests.Integration")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
