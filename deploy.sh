@@ -12,6 +12,18 @@ fi
 
 source ./deploy.config
 
+# Check for arguments
+FORCE_CERTS=false
+for arg in "$@"
+do
+    case $arg in
+        --force-certs)
+        FORCE_CERTS=true
+        shift # shift is technically not needed for a single loop over $@ but good practice
+        ;;
+    esac
+done
+
 # Default StubServer domain if not set
 if [ -z "$STUBSERVER_DOMAIN" ]; then
     STUBSERVER_DOMAIN="StubServer.${DOMAIN}"
@@ -27,7 +39,7 @@ if ! command -v docker &> /dev/null; then
     sudo apt-get update
     
     # Install prerequisites
-    sudo apt-get install -y ca-certificates curl gnupg
+    sudo apt-get install -y ca-certificates curl gnupg openssl
     
     # Add Docker's official GPG key
     sudo install -m 0755 -d /etc/apt/keyrings
@@ -129,17 +141,36 @@ sed -e "s/STUBSERVER_DOMAIN_PLACEHOLDER/${STUBSERVER_DOMAIN}/g" \
 
 # Check if certificates exist (use sudo to check root-owned files)
 CERTS_EXIST=true
-if ! sudo test -f "$CERT_PATH"; then
-    echo "Main domain SSL certificate not found."
+
+if [ "$FORCE_CERTS" = true ]; then
+    echo "Forcing certificate renewal/expansion..."
     CERTS_EXIST=false
-fi
-if ! sudo test -f "$API_CERT_PATH"; then
-    echo "API domain SSL certificate not found."
-    CERTS_EXIST=false
-fi
-if ! sudo test -f "$STUBSERVER_CERT_PATH"; then
-    echo "StubServer domain SSL certificate not found."
-    CERTS_EXIST=false
+else
+    if ! sudo test -f "$CERT_PATH"; then
+        echo "Main domain SSL certificate not found."
+        CERTS_EXIST=false
+    fi
+    if ! sudo test -f "$API_CERT_PATH"; then
+        echo "API domain SSL certificate not found."
+        CERTS_EXIST=false
+    fi
+    if ! sudo test -f "$STUBSERVER_CERT_PATH"; then
+        echo "StubServer domain SSL certificate not found."
+        CERTS_EXIST=false
+    fi
+
+    # Smart check: If cert exists but matches strict logic, check if it covers WWW_DOMAIN
+    if [ "$CERTS_EXIST" = true ] && [ ! -z "$WWW_DOMAIN" ]; then
+        echo "Checking if existing certificate covers $WWW_DOMAIN..."
+        # Check if the cert has the www domain as a SAN
+        # We assume common openssl output format "DNS:example.com, DNS:www.example.com"
+        if ! sudo openssl x509 -in "$CERT_PATH" -text -noout | grep -q "DNS:${WWW_DOMAIN}"; then
+             echo "Existing certificate is missing ${WWW_DOMAIN}. Forcing expansion..."
+             CERTS_EXIST=false
+        else
+             echo "Certificate covers ${WWW_DOMAIN}."
+        fi
+    fi
 fi
 
 # Pull latest images
@@ -150,7 +181,7 @@ else
 fi
 
 if [ "$CERTS_EXIST" = false ]; then
-    echo "SSL certificates not found. Starting bootstrap process..."
+    echo "SSL certificates not found or forced renewal. Starting bootstrap process..."
     
     # 1. Start with HTTP-only config
     echo "Using HTTP-only config for validation..."
@@ -175,17 +206,17 @@ if [ "$CERTS_EXIST" = false ]; then
     echo "Requesting SSL certificates..."
     # Request certificate for main domain
     if docker compose version &> /dev/null; then
-        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${DOMAIN} -d ${WWW_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring
+        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${DOMAIN} -d ${WWW_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
         # Request certificate for API domain
-        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${API_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring
+        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${API_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
         # Request certificate for StubServer domain
-        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${STUBSERVER_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring
+        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${STUBSERVER_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
     else
-        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${DOMAIN} -d ${WWW_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring
+        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${DOMAIN} -d ${WWW_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
         # Request certificate for API domain
-        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${API_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring
+        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${API_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
         # Request certificate for StubServer domain
-        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${STUBSERVER_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring
+        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${STUBSERVER_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
     fi
     
     # 3. Switch to HTTPS config
