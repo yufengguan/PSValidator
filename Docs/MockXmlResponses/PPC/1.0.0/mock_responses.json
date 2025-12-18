@@ -1,0 +1,155 @@
+{
+  "Service": "PPC",
+  "MockResponses": [
+    {
+      "ErrorCode": "ERR_MISSING_PRODUCTID",
+      "StubResponseFile": "GetConfigurationAndPricingResponse-1.xml",
+      "ExpectedError": "Configuration element 'productId' is required but missing.",
+      "ExpectedErrorDetails": "The element 'Configuration' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'currency' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'LocationArray' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' as well as 'productId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_CURRENCY",
+      "StubResponseFile": "GetConfigurationAndPricingResponse-2.xml",
+      "ExpectedError": "Configuration element 'currency' is required but missing.",
+      "ExpectedErrorDetails": "The element 'Configuration' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'FobArray' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'currency' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_PRICETYPE",
+      "StubResponseFile": "GetConfigurationAndPricingResponse-3.xml",
+      "ExpectedError": "Configuration element 'priceType' is required but missing.",
+      "ExpectedErrorDetails": "The element 'Configuration' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has incomplete content. List of possible elements expected: 'priceType' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_PARTARRAY",
+      "StubResponseFile": "GetConfigurationAndPricingResponse-4.xml",
+      "ExpectedError": "Configuration element 'PartArray' is required but missing.",
+      "ExpectedErrorDetails": "The element 'Configuration' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'productId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'PartArray' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/'."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_PARTID",
+      "StubResponseFile": "GetConfigurationAndPricingResponse-5.xml",
+      "ExpectedError": "Part element 'partId' is required but missing.",
+      "ExpectedErrorDetails": "The element 'Part' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'partDescription' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'partId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_PARTGROUP",
+      "StubResponseFile": "GetConfigurationAndPricingResponse-6.xml",
+      "ExpectedError": "Part element 'partGroup' is required but missing.",
+      "ExpectedErrorDetails": "The element 'Part' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'partGroupRequired' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'partGroup' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_MINQUANTITY",
+      "StubResponseFile": "GetConfigurationAndPricingResponse-7.xml",
+      "ExpectedError": "PartPrice element 'minQuantity' is required but missing.",
+      "ExpectedErrorDetails": "The element 'PartPrice' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'price' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/'. List of possible elements expected: 'minQuantity' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/'."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_PRICE",
+      "StubResponseFile": "GetConfigurationAndPricingResponse-8.xml",
+      "ExpectedError": "PartPrice element 'price' is required but missing.",
+      "ExpectedErrorDetails": "The element 'PartPrice' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'discountCode' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/'. List of possible elements expected: 'price' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/'."
+    },
+    {
+      "ErrorCode": "ERR_MISSING_PRICEUOM",
+      "StubResponseFile": "GetConfigurationAndPricingResponse-9.xml",
+      "ExpectedError": "PartPrice element 'priceUom' is required but missing.",
+      "ExpectedErrorDetails": "The element 'PartPrice' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'priceEffectiveDate' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/'. List of possible elements expected: 'priceUom' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/'."
+    },
+    {
+      "ErrorCode": "ERR_NEGATIVE_PRICE",
+      "StubResponseFile": "GetConfigurationAndPricingResponse-10.xml",
+      "ExpectedError": "PartPrice element 'price' must be non-negative.",
+      "ExpectedErrorDetails": ""
+    },
+    {
+      "ErrorCode": "ERR_INVALID_CURRENCY",
+      "StubResponseFile": "GetConfigurationAndPricingResponse-11.xml",
+      "ExpectedError": "Configuration element 'currency' is invalid.",
+      "ExpectedErrorDetails": "The 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/:currency' element is invalid - The value 'XXX' is invalid according to its datatype 'http://www.isotc211.org/iso4217/:CurrencyCodeType' - The Enumeration constraint failed."
+    },
+    {
+      "ErrorCode": "ERR_INVALID_UOM",
+      "StubResponseFile": "GetConfigurationAndPricingResponse-12.xml",
+      "ExpectedError": "PartPrice element 'priceUom' is invalid.",
+      "ExpectedErrorDetails": "The 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/:priceUom' element is invalid - The value 'ZZZ' is invalid according to its datatype 'String' - The actual length is greater than the MaxLength value."
+    },
+    {
+      "ErrorCode": "ERR_SOAP_FAULT",
+      "StubResponseFile": "SoapFault.xml",
+      "ExpectedError": "SOAP Fault: Object reference not set to an instance of an object.",
+      "ExpectedErrorDetails": "Object reference not set to an instance of an object."
+    },
+    {
+      "ErrorCode": "ERR_FOB_MISSING_ID",
+      "StubResponseFile": "GetFobPointsResponse-1.xml",
+      "ExpectedError": "FobPoint missing fobId.",
+      "ExpectedErrorDetails": "Error: The element 'FobPoint' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'fobCity' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/'. List of possible elements expected: 'fobId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. "
+    },
+    {
+      "ErrorCode": "ERR_FOB_MISSING_CURRENCY",
+      "StubResponseFile": "GetFobPointsResponse-2.xml",
+      "ExpectedError": "CurrencySupported missing currency.",
+      "ExpectedErrorDetails": "Error: The element 'CurrencySupported' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has incomplete content. List of possible elements expected: 'currency' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. "
+    },
+    {
+      "ErrorCode": "ERR_FOB_MISSING_PRODUCTID",
+      "StubResponseFile": "GetFobPointsResponse-3.xml",
+      "ExpectedError": "Product missing productId.",
+      "ExpectedErrorDetails": "Error: The element 'Product' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has incomplete content. List of possible elements expected: 'productId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. "
+    },
+    {
+      "ErrorCode": "ERR_LOC_MISSING_ID",
+      "StubResponseFile": "GetAvailableLocationsResponse-1.xml",
+      "ExpectedError": "AvailableLocation missing locationId.",
+      "ExpectedErrorDetails": "Error: The element 'AvailableLocation' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'locationName' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'locationId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. "
+    },
+    {
+      "ErrorCode": "ERR_LOC_MISSING_NAME",
+      "StubResponseFile": "GetAvailableLocationsResponse-2.xml",
+      "ExpectedError": "AvailableLocation missing locationName.",
+      "ExpectedErrorDetails": "Error: The element 'AvailableLocation' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has incomplete content. List of possible elements expected: 'locationName' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. "
+    },
+    {
+      "ErrorCode": "ERR_LOC_INVALID_CHILD",
+      "StubResponseFile": "GetAvailableLocationsResponse-3.xml",
+      "ExpectedError": "Invalid child element.",
+      "ExpectedErrorDetails": "Error: The element 'GetAvailableLocationsResponse' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'InvalidChild' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/'. List of possible elements expected: 'AvailableLocationArray' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' as well as 'ErrorMessage' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. "
+    },
+    {
+      "ErrorCode": "ERR_DEC_MISSING_ID",
+      "StubResponseFile": "GetDecorationColorsResponse-1.xml",
+      "ExpectedError": "Color missing colorId.",
+      "ExpectedErrorDetails": "Error: The element 'Color' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'colorName' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'colorId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. "
+    },
+    {
+      "ErrorCode": "ERR_DEC_MISSING_PRODUCTID",
+      "StubResponseFile": "GetDecorationColorsResponse-2.xml",
+      "ExpectedError": "DecorationColors missing productId.",
+      "ExpectedErrorDetails": "Error: The element 'DecorationColors' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'locationId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'productId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. "
+    },
+    {
+      "ErrorCode": "ERR_DEC_MISSING_DECID",
+      "StubResponseFile": "GetDecorationColorsResponse-3.xml",
+      "ExpectedError": "DecorationMethod missing decorationId.",
+      "ExpectedErrorDetails": "Error: The element 'DecorationMethod' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'decorationName' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'decorationId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. "
+    },
+    {
+      "ErrorCode": "ERR_CHG_MISSING_ID",
+      "StubResponseFile": "GetAvailableChargesResponse-1.xml",
+      "ExpectedError": "AvailableCharge missing chargeId.",
+      "ExpectedErrorDetails": "Error: The element 'AvailableCharge' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'chargeName' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'chargeId' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. "
+    },
+    {
+      "ErrorCode": "ERR_CHG_MISSING_NAME",
+      "StubResponseFile": "GetAvailableChargesResponse-2.xml",
+      "ExpectedError": "AvailableCharge missing chargeName.",
+      "ExpectedErrorDetails": "Error: The element 'AvailableCharge' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has invalid child element 'chargeDescription' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. List of possible elements expected: 'chargeName' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. "
+    },
+    {
+      "ErrorCode": "ERR_CHG_MISSING_TYPE",
+      "StubResponseFile": "GetAvailableChargesResponse-3.xml",
+      "ExpectedError": "AvailableCharge missing chargeType.",
+      "ExpectedErrorDetails": "Error: The element 'AvailableCharge' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/' has incomplete content. List of possible elements expected: 'chargeType' in namespace 'http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/'. "
+    }
+  ]
+}

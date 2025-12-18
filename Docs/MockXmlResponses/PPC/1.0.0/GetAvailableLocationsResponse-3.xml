@@ -1,0 +1,8 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <GetAvailableLocationsResponse xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/">
+      <!-- Missing AvailableLocationArray - Assuming it's required or minOccurs=1 for the array itself? Or maybe the wrapper is there but empty? Let's make an invalid child. -->
+      <InvalidChild>Test</InvalidChild>
+    </GetAvailableLocationsResponse>
+  </s:Body>
+</s:Envelope>

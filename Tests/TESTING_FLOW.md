@@ -106,3 +106,5 @@ The tests drive the entire process.
 3.  **Run Tests**: The integration test suite will automatically pick up the new case and execute it.
    dotnet test Tests\Integration\PromoStandards.Validator.Tests.Integration.csproj --no-build > test_output.txt 2>&1
    
+   Run dotnet test --filter PPCTests -> Should pass (regression test).
+   Run dotnet test --filter PDTests -> Should pass (initially 0 tests or 1 placeholder).

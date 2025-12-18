@@ -1,0 +1,25 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <GetFobPointsResponse xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/">
+      <FobPointArray>
+        <FobPoint>
+          <fobId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</fobId>
+          <fobCity>Grand Island</fobCity>
+          <fobState>NY</fobState>
+          <fobPostalCode xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">14072</fobPostalCode>
+          <fobCountry>US</fobCountry>
+          <CurrencySupportedArray>
+            <CurrencySupported>
+              <currency xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">USD</currency>
+            </CurrencySupported>
+          </CurrencySupportedArray>
+          <ProductArray>
+            <Product>
+              <productId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">SL233PR</productId>
+            </Product>
+          </ProductArray>
+        </FobPoint>
+      </FobPointArray>
+    </GetFobPointsResponse>
+  </s:Body>
+</s:Envelope>

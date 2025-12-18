@@ -1,0 +1,74 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <GetAvailableChargesResponse xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/">
+      <AvailableChargeArray>
+        <AvailableCharge>
+          <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">19</chargeId>
+          <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge</chargeName>
+          <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge</chargeDescription>
+          <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+        </AvailableCharge>
+        <AvailableCharge>
+          <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">23</chargeId>
+          <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Laser Mug Running Charge</chargeName>
+          <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Laser Mug Running Charge</chargeDescription>
+          <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+        </AvailableCharge>
+        <AvailableCharge>
+          <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">24</chargeId>
+          <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge: Laser</chargeName>
+          <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge: Laser</chargeDescription>
+          <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+        </AvailableCharge>
+        <AvailableCharge>
+          <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">55</chargeId>
+          <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Color/Location</chargeName>
+          <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Color/Location</chargeDescription>
+          <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+        </AvailableCharge>
+        <AvailableCharge>
+          <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">134</chargeId>
+          <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Set-up TruColor</chargeName>
+          <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Set-up TruColor</chargeDescription>
+          <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+        </AvailableCharge>
+        <AvailableCharge>
+          <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">136</chargeId>
+          <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Running Charge (up to 3 sq in)</chargeName>
+          <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Running Charge (up to 3 sq in)</chargeDescription>
+          <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+        </AvailableCharge>
+        <AvailableCharge>
+          <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">137</chargeId>
+          <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Large Imprint</chargeName>
+          <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Large Imprint</chargeDescription>
+          <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+        </AvailableCharge>
+        <AvailableCharge>
+          <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">363</chargeId>
+          <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TRU.0 Half Wrap Run Charge</chargeName>
+          <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TRU.0 Half Wrap Run Charge</chargeDescription>
+          <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+        </AvailableCharge>
+        <AvailableCharge>
+          <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">376</chargeId>
+          <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1st Line Personalization</chargeName>
+          <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1st Line Personalization</chargeDescription>
+          <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+        </AvailableCharge>
+        <AvailableCharge>
+          <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">377</chargeId>
+          <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Line(s) Personalization</chargeName>
+          <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Line(s) Personalization</chargeDescription>
+          <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+        </AvailableCharge>
+        <AvailableCharge>
+          <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">398</chargeId>
+          <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Set-up Tru.0</chargeName>
+          <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Set-up Tru.0</chargeDescription>
+          <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+        </AvailableCharge>
+      </AvailableChargeArray>
+    </GetAvailableChargesResponse>
+  </s:Body>
+</s:Envelope>

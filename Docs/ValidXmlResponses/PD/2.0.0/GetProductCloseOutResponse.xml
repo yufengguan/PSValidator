@@ -1,0 +1,129 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Header />
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <GetProductCloseOutResponse xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/">
+      <ProductCloseOutArray>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL40</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL40-32-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL248SS</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL248SS-38-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">WK01</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">WK01-32-XS</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">HW54</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">HW54-34-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">NC44</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">NC44-37-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">WK01</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">WK01-32-2X</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL01</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL01-32-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">IH01</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">IH01-32-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">WK01</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">WK01-32-L</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">TR03</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">TR03-35-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL146</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL146-34-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL03</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL03-34-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SG47FK</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SG47FK-34-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL249SS</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL249SS-38-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">WL23</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">WL23-46-L</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">GGRP</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">UB17-36-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">WK01</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">WK01-32-XL</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">NCS11</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">NCS11-47-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL38</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL38-32-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SF03</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SF03-36-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL147</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL147-32-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL12</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL12-34-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL12</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL12-32-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">RCK01</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">RCK01-38-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">VC04</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">VC04-36-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL205</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL205-34-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL14</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL14-34-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL14</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">EL14-32-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SF02</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SF02-36-00</partId>
+        </ProductCloseOut>
+        <ProductCloseOut>
+          <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SF02</productId>
+          <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SF02-45-00</partId>
+        </ProductCloseOut>
+      </ProductCloseOutArray>
+    </GetProductCloseOutResponse>
+  </s:Body>
+</s:Envelope>

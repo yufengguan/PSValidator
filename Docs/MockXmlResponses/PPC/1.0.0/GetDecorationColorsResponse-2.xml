@@ -1,0 +1,16 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <GetDecorationColorsResponse xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/">
+      <DecorationColors>
+        <ColorArray>
+          <Color>
+            <colorId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">0</colorId>
+            <colorName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Laser</colorName>
+          </Color>
+        </ColorArray>
+        <!-- Missing productId -->
+        <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">21</locationId>
+      </DecorationColors>
+    </GetDecorationColorsResponse>
+  </s:Body>
+</s:Envelope>

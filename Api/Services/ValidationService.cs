@@ -89,7 +89,7 @@ public class ValidationService : IValidationService
 
                     if (!response.IsSuccessStatusCode)
                     {
-                        result.ValidationResultMessages.Add($"HTTP Error: {response.StatusCode}");
+                        result.ValidationResultMessages.Add($"HTTP Error: {response.StatusCode} - {responseString}");
                         result.IsValid = false;
                         return result;
                     }
@@ -119,9 +119,27 @@ public class ValidationService : IValidationService
                 result.ResponseContent = xmlContent;
             }
 
-            // PRETTY PRINT CONTENT
-            // The user wants human-readable line numbers in validation errors.
+            // 123. The user wants human-readable line numbers in validation errors.
             contentToValidate = FormatXml(contentToValidate);
+            
+            // Check for SOAP Fault
+            var soapFaultError = ParseSoapFault(contentToValidate);
+            if (!string.IsNullOrEmpty(soapFaultError))
+            {
+                result.IsValid = false;
+                result.ValidationResultMessages.Add(soapFaultError);
+                // Even if it's a fault, we might want to return the formatted content
+                 if (result.ResponseContent == xmlContent || result.ResponseContent == contentToValidate) 
+                {
+                     result.ResponseContent = contentToValidate;
+                } 
+                else if (!string.IsNullOrEmpty(result.ResponseContent))
+                {
+                    result.ResponseContent = FormatXml(result.ResponseContent);
+                }
+                return result;
+            }
+
             // Also update the displayed response content if we haven't already (or overwrite with formatted)
             // If result.ResponseContent differs from contentToValidate only by SOAP envelope, we might want to format ResponseContent too.
             // But usually validation errors refer to contentToValidate lines.
@@ -700,6 +718,51 @@ public class ValidationService : IValidationService
         public string? RequestSchema { get; set; }
         public string? ResponseSchema { get; set; }
     }
+
+    private string ParseSoapFault(string xml)
+    {
+        try
+        {
+            var doc = new XmlDocument();
+            doc.LoadXml(xml);
+
+            var nsManager = new XmlNamespaceManager(doc.NameTable);
+            nsManager.AddNamespace("s", "http://schemas.xmlsoap.org/soap/envelope/");
+            
+            // Look for Fault element. It could be root or inside Body.
+            // 1. Check if root is Fault
+            var faultNode = doc.SelectSingleNode("//*[local-name()='Fault']");
+            
+            if (faultNode != null)
+            {
+                // Extract faultstring
+                var faultString = faultNode.SelectSingleNode("//*[local-name()='faultstring']")?.InnerText;
+                
+                // Extract detailed message if available (e.g. from ExceptionDetail)
+                var detailMessage = faultNode.SelectSingleNode("//*[local-name()='ExceptionDetail']/*[local-name()='Message']")?.InnerText;
+
+                if (!string.IsNullOrWhiteSpace(detailMessage))
+                {
+                    return $"SOAP Fault: {detailMessage}";
+                }
+                
+                if (!string.IsNullOrWhiteSpace(faultString))
+                {
+                     return $"SOAP Fault: {faultString}";
+                }
+                
+                return "SOAP Fault detected but no detail message found.";
+            }
+
+            return null;
+        }
+        catch
+        {
+            // If parsing fails, it's likely not a fault or invalid XML, which normal validation will catch
+            return null;
+        }
+    }
+
 
     private string FormatXml(string xml)
     {

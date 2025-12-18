@@ -1,0 +1,14 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <GetAvailableChargesResponse xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/">
+      <AvailableChargeArray>
+        <AvailableCharge>
+          <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">19</chargeId>
+          <!-- Missing chargeName -->
+          <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge</chargeDescription>
+          <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+        </AvailableCharge>
+      </AvailableChargeArray>
+    </GetAvailableChargesResponse>
+  </s:Body>
+</s:Envelope>

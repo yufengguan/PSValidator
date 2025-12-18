@@ -67,7 +67,7 @@
   {
     "ServiceName": "MediaContent",
     "ServiceId": 30,
-    "Code": "MED",
+    "Code": "MD",
     "Versions": [
       {
         "Major": 1,
@@ -134,7 +134,7 @@
   {
     "ServiceName": "OrderStatus",
     "ServiceId": 50,
-    "Code": "ODRSTAT",
+    "Code": "OS",
     "Versions": [
       {
         "Major": 1,
@@ -180,7 +180,7 @@
   {
     "ServiceName": "ProductCompliance",
     "ServiceId": 60,
-    "Code": "PD",
+    "Code": "PC",
     "Versions": [
       {
         "Major": 1,
@@ -204,7 +204,7 @@
   {
     "ServiceName": "ProductData",
     "ServiceId": 70,
-    "Code": "Product",
+    "Code": "PD",
     "Versions": [
       {
         "Major": 1,

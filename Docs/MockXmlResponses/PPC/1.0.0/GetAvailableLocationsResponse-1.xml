@@ -1,0 +1,12 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <GetAvailableLocationsResponse xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/">
+      <AvailableLocationArray>
+        <AvailableLocation>
+          <!-- Missing locationId -->
+          <locationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Side #1</locationName>
+        </AvailableLocation>
+      </AvailableLocationArray>
+    </GetAvailableLocationsResponse>
+  </s:Body>
+</s:Envelope>

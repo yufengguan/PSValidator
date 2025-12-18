@@ -1,0 +1,24 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <s:Fault>
+      <faultcode xmlns:a="http://schemas.microsoft.com/net/2005/12/windowscommunicationfoundation/dispatcher">a:InternalServiceFault</faultcode>
+      <faultstring xml:lang="en-US">Object reference not set to an instance of an object.</faultstring>
+      <detail>
+        <ExceptionDetail xmlns="http://schemas.datacontract.org/2004/07/System.ServiceModel" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+          <HelpLink i:nil="true"/>
+          <InnerException i:nil="true"/>
+          <Message>Object reference not set to an instance of an object.</Message>
+          <StackTrace>   at ProductPricingAndConfig.WcfService.Processor.GetFobPointsRequestProcessor.Process(GetFobPointsRequest request) in C:\repos\repos\Promo\ppc\src\ProductPricingAndConfig.WcfService\Processor\GetFobPointsRequestProcessor.cs:line 63&#xD;
+   at ProductPricingAndConfig.WcfService.PricingAndConfiguration.getFobPoints(getFobPointsRequest1 request) in C:\repos\repos\Promo\ppc\src\ProductPricingAndConfig.WcfService\PricingAndConfiguration.svc.cs:line 114&#xD;
+   at SyncInvokegetFobPoints(Object , Object[] , Object[] )&#xD;
+   at System.ServiceModel.Dispatcher.SyncMethodInvoker.Invoke(Object instance, Object[] inputs, Object[]&amp; outputs)&#xD;
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc&amp; rpc)&#xD;
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc&amp; rpc)&#xD;
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc&amp; rpc)&#xD;
+   at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)</StackTrace>
+          <Type>System.NullReferenceException</Type>
+        </ExceptionDetail>
+      </detail>
+    </s:Fault>
+  </s:Body>
+</s:Envelope>

@@ -67,19 +67,59 @@ public class MockController : ControllerBase
         var mockJsonPath = Path.Combine(docsPath, "MockXmlResponses", safeService, "mock_responses.json");
         _logger.LogInformation("Looking for mock configuration at: {MockJsonPath}", mockJsonPath);
 
+        // Check if config exists directly in service folder
+        if (!System.IO.File.Exists(mockJsonPath))
+        {
+            _logger.LogInformation("mock_responses.json not found at root {MockJsonPath}. Searching subdirectories...", mockJsonPath);
+            
+            // Search in subdirectories (e.g. 1.0.0, 2.0.0)
+            // We take the FIRST match that contains the requested error code?
+            // Actually, for now, let's just find *any* mock_responses.json in immediate subfolders 
+            // and see if it has the error code. 
+            // A better approach might be to just load ALL of them, or prefer higher versions?
+            // Let's implement a simple search: Look for mock_responses.json in all immediate subdirs.
+            
+            var serviceDir = Path.GetDirectoryName(mockJsonPath);
+            if (Directory.Exists(serviceDir))
+            {
+                var subDirs = Directory.GetDirectories(serviceDir);
+                bool configFound = false;
+
+                foreach (var dir in subDirs)
+                {
+                    var subConfigPath = Path.Combine(dir, "mock_responses.json");
+                    if (System.IO.File.Exists(subConfigPath))
+                    {
+                        // Found a config. Does it have our ErrorCode?
+                        // We need to peek inside.
+                        try 
+                        {
+                            var tempContent = await System.IO.File.ReadAllTextAsync(subConfigPath);
+                            if (tempContent.Contains(errorCode, StringComparison.OrdinalIgnoreCase)) 
+                            {
+                                // Optimization: String check is fast. If it's there, we use this file.
+                                mockJsonPath = subConfigPath;
+                                configFound = true;
+                                _logger.LogInformation("Found potentially matching config at: {MockJsonPath}", mockJsonPath);
+                                break;
+                            }
+                        }
+                        catch { /* ignore read errors, try next */ }
+                    }
+                }
+
+                if (!configFound)
+                {
+                     // If we still haven't found it, stick to original path so the error below triggers correctly
+                     _logger.LogWarning("No matching config found in subdirectories.");
+                }
+            }
+        }
+
         if (!System.IO.File.Exists(mockJsonPath))
         {
             _logger.LogWarning("File not found: {MockJsonPath}", mockJsonPath);
-            
-            // Debugging aid: list directories in MockXmlResponses if possible
-            var parentDir = Path.Combine(docsPath, "MockXmlResponses");
-            if (Directory.Exists(parentDir))
-            {
-               var subDirs = Directory.GetDirectories(parentDir).Select(d => Path.GetFileName(d));
-               _logger.LogInformation("Available service directories: {Dirs}", string.Join(", ", subDirs));
-            }
-
-            return NotFound($"Mock configuration not found for service '{safeService}'. Searched in: {mockJsonPath}");
+            return NotFound($"Mock configuration not found for service '{safeService}'. Searched in: {mockJsonPath} and subdirectories.");
         }
 
         try
@@ -100,7 +140,7 @@ public class MockController : ControllerBase
                 return StatusCode(500, "Invalid mock configuration: StubResponseFile is missing.");
             }
 
-            var mockPathFromConfig = Path.Combine(docsPath, "MockXmlResponses", safeService, responseItem.StubResponseFile);
+            var mockPathFromConfig = Path.Combine(Path.GetDirectoryName(mockJsonPath), responseItem.StubResponseFile);
             _logger.LogInformation("Looking for response file at: {MockPathFromConfig}", mockPathFromConfig);
 
             if (!System.IO.File.Exists(mockPathFromConfig))

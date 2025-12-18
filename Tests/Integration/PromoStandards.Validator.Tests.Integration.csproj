@@ -30,4 +30,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Api\PromoStandards.Validator.Api.csproj" />
+  </ItemGroup>
+
 </Project>

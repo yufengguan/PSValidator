@@ -1,0 +1,1270 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Header />
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <GetConfigurationAndPricingResponse xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/">
+      <Configuration>
+        <PartArray>
+          <Part>
+            <partId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">SL233PR-32-00</partId>
+            <partDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">SL233PR-3in1 COOLR/TBLR, White</partDescription>
+            <PartPriceArray>
+              <PartPrice>
+                <minQuantity>24</minQuantity>
+                <price>21.89</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>48</minQuantity>
+                <price>21.19</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>96</minQuantity>
+                <price>20.49</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>244</minQuantity>
+                <price>19.09</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+            </PartPriceArray>
+            <partGroup xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</partGroup>
+            <partGroupRequired xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</partGroupRequired>
+            <partGroupDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Main Part, SL233PR-3in1 COOLR/TBLR</partGroupDescription>
+            <ratio xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1.0</ratio>
+            <defaultPart xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</defaultPart>
+            <LocationIdArray>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">21</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">26</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">58</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">70</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1039</locationId>
+              </LocationId>
+            </LocationIdArray>
+          </Part>
+          <Part>
+            <partId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">SL233PR-34-00</partId>
+            <partDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">SL233PR-3in1 COOLR/TBLR, Black</partDescription>
+            <PartPriceArray>
+              <PartPrice>
+                <minQuantity>24</minQuantity>
+                <price>21.89</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>48</minQuantity>
+                <price>21.19</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>96</minQuantity>
+                <price>20.49</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>244</minQuantity>
+                <price>19.09</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+            </PartPriceArray>
+            <partGroup xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</partGroup>
+            <partGroupRequired xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</partGroupRequired>
+            <partGroupDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Main Part, SL233PR-3in1 COOLR/TBLR</partGroupDescription>
+            <ratio xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1.0</ratio>
+            <defaultPart xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</defaultPart>
+            <LocationIdArray>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">21</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">26</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">58</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">70</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1039</locationId>
+              </LocationId>
+            </LocationIdArray>
+          </Part>
+          <Part>
+            <partId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">SL233PR-35-00</partId>
+            <partDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">SL233PR-3in1 COOLR/TBLR, Gray</partDescription>
+            <PartPriceArray>
+              <PartPrice>
+                <minQuantity>24</minQuantity>
+                <price>21.89</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>48</minQuantity>
+                <price>21.19</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>96</minQuantity>
+                <price>20.49</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>244</minQuantity>
+                <price>19.09</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+            </PartPriceArray>
+            <partGroup xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</partGroup>
+            <partGroupRequired xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</partGroupRequired>
+            <partGroupDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Main Part, SL233PR-3in1 COOLR/TBLR</partGroupDescription>
+            <ratio xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1.0</ratio>
+            <defaultPart xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</defaultPart>
+            <LocationIdArray>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">21</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">26</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">58</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">70</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1039</locationId>
+              </LocationId>
+            </LocationIdArray>
+          </Part>
+          <Part>
+            <partId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">SL233PR-59-00</partId>
+            <partDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">SL233PR-3in1 COOLR/TBLR, Dark Gray</partDescription>
+            <PartPriceArray>
+              <PartPrice>
+                <minQuantity>24</minQuantity>
+                <price>21.89</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>48</minQuantity>
+                <price>21.19</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>96</minQuantity>
+                <price>20.49</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>244</minQuantity>
+                <price>19.09</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+            </PartPriceArray>
+            <partGroup xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</partGroup>
+            <partGroupRequired xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</partGroupRequired>
+            <partGroupDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Main Part, SL233PR-3in1 COOLR/TBLR</partGroupDescription>
+            <ratio xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1.0</ratio>
+            <defaultPart xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</defaultPart>
+            <LocationIdArray>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">21</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">26</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">58</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">70</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1039</locationId>
+              </LocationId>
+            </LocationIdArray>
+          </Part>
+          <Part>
+            <partId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">SL233PR-77-00</partId>
+            <partDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">SL233PR-3in1 COOLR/TBLR, Navy Blue</partDescription>
+            <PartPriceArray>
+              <PartPrice>
+                <minQuantity>24</minQuantity>
+                <price>21.89</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>48</minQuantity>
+                <price>21.19</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>96</minQuantity>
+                <price>20.49</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+              <PartPrice>
+                <minQuantity>244</minQuantity>
+                <price>19.09</price>
+                <discountCode>C</discountCode>
+                <priceUom>EA</priceUom>
+                <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+              </PartPrice>
+            </PartPriceArray>
+            <partGroup xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</partGroup>
+            <partGroupRequired xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</partGroupRequired>
+            <partGroupDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Main Part, SL233PR-3in1 COOLR/TBLR</partGroupDescription>
+            <ratio xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1.0</ratio>
+            <defaultPart xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</defaultPart>
+            <LocationIdArray>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">21</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">26</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">58</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">70</locationId>
+              </LocationId>
+              <LocationId>
+                <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1039</locationId>
+              </LocationId>
+            </LocationIdArray>
+          </Part>
+        </PartArray>
+        <LocationArray>
+          <Location>
+            <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">21</locationId>
+            <locationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Side #1</locationName>
+            <DecorationArray>
+              <Decoration>
+                <decorationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">3</decorationId>
+                <decorationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Laser</decorationName>
+                <decorationGeometry xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">RECTANGLE</decorationGeometry>
+                <decorationHeight xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">2.0000</decorationHeight>
+                <decorationWidth xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">2.5000</decorationWidth>
+                <decorationDiameter xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">0</decorationDiameter>
+                <decorationUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Inches</decorationUom>
+                <allowSubForDefaultLocation>true</allowSubForDefaultLocation>
+                <allowSubForDefaultMethod>true</allowSubForDefaultMethod>
+                <itemPartQuantityLTM>12</itemPartQuantityLTM>
+                <ChargeArray>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">23</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Laser Mug Running Charge</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Laser Mug Running Charge</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Locations</yUom>
+                        <price>1.20</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">24</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge: Laser</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge: Laser</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Locations</yUom>
+                        <price>60.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">376</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1st Line Personalization</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1st Line Personalization</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>0</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">377</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Line(s) Personalization</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Line(s) Personalization</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>1.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>1.00</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                </ChargeArray>
+                <decorationUnitsIncluded>1</decorationUnitsIncluded>
+                <decorationUnitsIncludedUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Other</decorationUnitsIncludedUom>
+                <decorationUnitsMax xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">4</decorationUnitsMax>
+                <defaultDecoration>false</defaultDecoration>
+                <leadTime>3</leadTime>
+                <rushLeadTime>1</rushLeadTime>
+              </Decoration>
+              <Decoration>
+                <decorationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">15</decorationId>
+                <decorationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Silkscreen - Drinkware</decorationName>
+                <decorationGeometry xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">RECTANGLE</decorationGeometry>
+                <decorationHeight xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1.7500</decorationHeight>
+                <decorationWidth xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">2.0000</decorationWidth>
+                <decorationDiameter xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">0</decorationDiameter>
+                <decorationUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Inches</decorationUom>
+                <allowSubForDefaultLocation>true</allowSubForDefaultLocation>
+                <allowSubForDefaultMethod>true</allowSubForDefaultMethod>
+                <itemPartQuantityLTM>12</itemPartQuantityLTM>
+                <ChargeArray>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">19</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>60.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">55</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Color/Location</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Color/Location</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>0.50</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0.50</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                </ChargeArray>
+                <decorationUnitsIncluded>1</decorationUnitsIncluded>
+                <decorationUnitsIncludedUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Colors</decorationUnitsIncludedUom>
+                <decorationUnitsMax xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">4</decorationUnitsMax>
+                <defaultDecoration>false</defaultDecoration>
+                <leadTime>3</leadTime>
+                <rushLeadTime>1</rushLeadTime>
+              </Decoration>
+              <Decoration>
+                <decorationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">20</decorationId>
+                <decorationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor</decorationName>
+                <decorationGeometry xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">RECTANGLE</decorationGeometry>
+                <decorationHeight xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">2.0000</decorationHeight>
+                <decorationWidth xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1.5000</decorationWidth>
+                <decorationDiameter xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">0</decorationDiameter>
+                <decorationUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Inches</decorationUom>
+                <allowSubForDefaultLocation>true</allowSubForDefaultLocation>
+                <allowSubForDefaultMethod>true</allowSubForDefaultMethod>
+                <itemPartQuantityLTM>12</itemPartQuantityLTM>
+                <ChargeArray>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">134</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Set-up TruColor</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Set-up TruColor</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Locations</yUom>
+                        <price>60.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">136</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Running Charge (up to 3 sq in)</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Running Charge (up to 3 sq in)</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Locations</yUom>
+                        <price>1.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>1.00</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">137</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Large Imprint</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Large Imprint</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Inches</yUom>
+                        <price>0.24</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0.24</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">376</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1st Line Personalization</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1st Line Personalization</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>0</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">377</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Line(s) Personalization</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Line(s) Personalization</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>1.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>1.00</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                </ChargeArray>
+                <decorationUnitsIncluded>3</decorationUnitsIncluded>
+                <decorationUnitsIncludedUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Colors</decorationUnitsIncludedUom>
+                <decorationUnitsMax xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">3</decorationUnitsMax>
+                <defaultDecoration>true</defaultDecoration>
+                <leadTime>3</leadTime>
+                <rushLeadTime>1</rushLeadTime>
+              </Decoration>
+            </DecorationArray>
+            <decorationsIncluded xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</decorationsIncluded>
+            <defaultLocation xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</defaultLocation>
+            <maxDecoration xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</maxDecoration>
+            <minDecoration xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</minDecoration>
+            <locationRank xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</locationRank>
+          </Location>
+          <Location>
+            <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">26</locationId>
+            <locationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Side #2</locationName>
+            <DecorationArray>
+              <Decoration>
+                <decorationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">3</decorationId>
+                <decorationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Laser</decorationName>
+                <decorationGeometry xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">RECTANGLE</decorationGeometry>
+                <decorationHeight xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">2.0000</decorationHeight>
+                <decorationWidth xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">2.5000</decorationWidth>
+                <decorationDiameter xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">0</decorationDiameter>
+                <decorationUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Inches</decorationUom>
+                <allowSubForDefaultLocation>true</allowSubForDefaultLocation>
+                <allowSubForDefaultMethod>true</allowSubForDefaultMethod>
+                <itemPartQuantityLTM>12</itemPartQuantityLTM>
+                <ChargeArray>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">23</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Laser Mug Running Charge</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Laser Mug Running Charge</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Locations</yUom>
+                        <price>1.20</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">24</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge: Laser</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge: Laser</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Locations</yUom>
+                        <price>60.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">376</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1st Line Personalization</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1st Line Personalization</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>0</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">377</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Line(s) Personalization</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Line(s) Personalization</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>1.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>1.00</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                </ChargeArray>
+                <decorationUnitsIncluded>1</decorationUnitsIncluded>
+                <decorationUnitsIncludedUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Other</decorationUnitsIncludedUom>
+                <decorationUnitsMax xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">4</decorationUnitsMax>
+                <defaultDecoration>false</defaultDecoration>
+                <leadTime>3</leadTime>
+                <rushLeadTime>1</rushLeadTime>
+              </Decoration>
+              <Decoration>
+                <decorationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">15</decorationId>
+                <decorationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Silkscreen - Drinkware</decorationName>
+                <decorationGeometry xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">RECTANGLE</decorationGeometry>
+                <decorationHeight xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1.7500</decorationHeight>
+                <decorationWidth xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">2.0000</decorationWidth>
+                <decorationDiameter xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">0</decorationDiameter>
+                <decorationUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Inches</decorationUom>
+                <allowSubForDefaultLocation>true</allowSubForDefaultLocation>
+                <allowSubForDefaultMethod>true</allowSubForDefaultMethod>
+                <itemPartQuantityLTM>12</itemPartQuantityLTM>
+                <ChargeArray>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">19</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>60.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">55</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Color/Location</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Color/Location</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>0.50</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0.50</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                </ChargeArray>
+                <decorationUnitsIncluded>1</decorationUnitsIncluded>
+                <decorationUnitsIncludedUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Colors</decorationUnitsIncludedUom>
+                <decorationUnitsMax xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">4</decorationUnitsMax>
+                <defaultDecoration>false</defaultDecoration>
+                <leadTime>3</leadTime>
+                <rushLeadTime>1</rushLeadTime>
+              </Decoration>
+              <Decoration>
+                <decorationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">20</decorationId>
+                <decorationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor</decorationName>
+                <decorationGeometry xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">RECTANGLE</decorationGeometry>
+                <decorationHeight xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">2.0000</decorationHeight>
+                <decorationWidth xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1.5000</decorationWidth>
+                <decorationDiameter xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">0</decorationDiameter>
+                <decorationUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Inches</decorationUom>
+                <allowSubForDefaultLocation>true</allowSubForDefaultLocation>
+                <allowSubForDefaultMethod>true</allowSubForDefaultMethod>
+                <itemPartQuantityLTM>12</itemPartQuantityLTM>
+                <ChargeArray>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">134</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Set-up TruColor</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Set-up TruColor</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Locations</yUom>
+                        <price>60.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">136</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Running Charge (up to 3 sq in)</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Running Charge (up to 3 sq in)</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Locations</yUom>
+                        <price>1.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>1.00</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">137</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Large Imprint</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Large Imprint</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Inches</yUom>
+                        <price>0.24</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0.24</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">376</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1st Line Personalization</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1st Line Personalization</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>0</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">377</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Line(s) Personalization</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Line(s) Personalization</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>1.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>1.00</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                </ChargeArray>
+                <decorationUnitsIncluded>3</decorationUnitsIncluded>
+                <decorationUnitsIncludedUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Colors</decorationUnitsIncludedUom>
+                <decorationUnitsMax xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">3</decorationUnitsMax>
+                <defaultDecoration>true</defaultDecoration>
+                <leadTime>3</leadTime>
+                <rushLeadTime>1</rushLeadTime>
+              </Decoration>
+            </DecorationArray>
+            <decorationsIncluded xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</decorationsIncluded>
+            <defaultLocation xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">false</defaultLocation>
+            <maxDecoration xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</maxDecoration>
+            <minDecoration xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</minDecoration>
+            <locationRank xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">2</locationRank>
+          </Location>
+          <Location>
+            <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">58</locationId>
+            <locationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Wrap (Single Color)</locationName>
+            <DecorationArray>
+              <Decoration>
+                <decorationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">15</decorationId>
+                <decorationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Silkscreen - Drinkware</decorationName>
+                <decorationGeometry xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">RECTANGLE</decorationGeometry>
+                <decorationHeight xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1.7500</decorationHeight>
+                <decorationWidth xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">9.5000</decorationWidth>
+                <decorationDiameter xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">0</decorationDiameter>
+                <decorationUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Inches</decorationUom>
+                <allowSubForDefaultLocation>true</allowSubForDefaultLocation>
+                <allowSubForDefaultMethod>true</allowSubForDefaultMethod>
+                <itemPartQuantityLTM>12</itemPartQuantityLTM>
+                <ChargeArray>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">19</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup Charge</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>60.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">55</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Color/Location</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Color/Location</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>0.50</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0.50</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                </ChargeArray>
+                <decorationUnitsIncluded>1</decorationUnitsIncluded>
+                <decorationUnitsIncludedUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Colors</decorationUnitsIncludedUom>
+                <decorationUnitsMax xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">4</decorationUnitsMax>
+                <defaultDecoration>false</defaultDecoration>
+                <leadTime>3</leadTime>
+                <rushLeadTime>1</rushLeadTime>
+              </Decoration>
+            </DecorationArray>
+            <decorationsIncluded xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</decorationsIncluded>
+            <defaultLocation xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">false</defaultLocation>
+            <maxDecoration xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</maxDecoration>
+            <minDecoration xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</minDecoration>
+            <locationRank xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">3</locationRank>
+          </Location>
+          <Location>
+            <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">70</locationId>
+            <locationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Wrap</locationName>
+            <DecorationArray>
+              <Decoration>
+                <decorationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">20</decorationId>
+                <decorationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor</decorationName>
+                <decorationGeometry xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">RECTANGLE</decorationGeometry>
+                <decorationHeight xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">2.0000</decorationHeight>
+                <decorationWidth xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">10.3750</decorationWidth>
+                <decorationDiameter xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">0</decorationDiameter>
+                <decorationUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Inches</decorationUom>
+                <allowSubForDefaultLocation>true</allowSubForDefaultLocation>
+                <allowSubForDefaultMethod>true</allowSubForDefaultMethod>
+                <itemPartQuantityLTM>12</itemPartQuantityLTM>
+                <ChargeArray>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">134</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Set-up TruColor</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Set-up TruColor</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Locations</yUom>
+                        <price>60.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">136</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Running Charge (up to 3 sq in)</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Running Charge (up to 3 sq in)</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Locations</yUom>
+                        <price>1.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>1.00</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">137</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Large Imprint</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TruColor Large Imprint</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Inches</yUom>
+                        <price>0.24</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0.24</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">376</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1st Line Personalization</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1st Line Personalization</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>0</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>0</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">377</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Line(s) Personalization</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Additional Line(s) Personalization</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>1.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>1.00</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                </ChargeArray>
+                <decorationUnitsIncluded>3</decorationUnitsIncluded>
+                <decorationUnitsIncludedUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Colors</decorationUnitsIncludedUom>
+                <decorationUnitsMax xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">21</decorationUnitsMax>
+                <defaultDecoration>true</defaultDecoration>
+                <leadTime>3</leadTime>
+                <rushLeadTime>1</rushLeadTime>
+              </Decoration>
+            </DecorationArray>
+            <decorationsIncluded xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</decorationsIncluded>
+            <defaultLocation xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">false</defaultLocation>
+            <maxDecoration xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</maxDecoration>
+            <minDecoration xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</minDecoration>
+            <locationRank xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">3</locationRank>
+          </Location>
+          <Location>
+            <locationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1039</locationId>
+            <locationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Half Wrap</locationName>
+            <DecorationArray>
+              <Decoration>
+                <decorationId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">33</decorationId>
+                <decorationName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Tru.0</decorationName>
+                <decorationGeometry xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">RECTANGLE</decorationGeometry>
+                <decorationHeight xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">2.5000</decorationHeight>
+                <decorationWidth xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">10.2500</decorationWidth>
+                <decorationDiameter xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">0</decorationDiameter>
+                <decorationUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Inches</decorationUom>
+                <allowSubForDefaultLocation>true</allowSubForDefaultLocation>
+                <allowSubForDefaultMethod>true</allowSubForDefaultMethod>
+                <itemPartQuantityLTM>12</itemPartQuantityLTM>
+                <ChargeArray>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">363</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TRU.0 Half Wrap Run Charge</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">TRU.0 Half Wrap Run Charge</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Run</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Other</yUom>
+                        <price>3.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>3.00</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                  <Charge>
+                    <chargeId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">398</chargeId>
+                    <chargeName xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Set-up Tru.0</chargeName>
+                    <chargeDescription xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Set-up Tru.0</chargeDescription>
+                    <chargeType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Setup</chargeType>
+                    <ChargePriceArray>
+                      <ChargePrice>
+                        <xMinQty>1</xMinQty>
+                        <xUom>EA</xUom>
+                        <yMinQty>1</yMinQty>
+                        <yUom>Locations</yUom>
+                        <price>60.00</price>
+                        <discountCode>G</discountCode>
+                        <repeatPrice>60.00</repeatPrice>
+                        <repeatDiscountCode>G</repeatDiscountCode>
+                        <priceEffectiveDate>2025-01-01T00:00:00</priceEffectiveDate>
+                        <priceExpiryDate>2025-12-31T00:00:00</priceExpiryDate>
+                      </ChargePrice>
+                    </ChargePriceArray>
+                    <chargesAppliesLTM>false</chargesAppliesLTM>
+                    <chargesPerLocation>0</chargesPerLocation>
+                    <chargesPerColor>0</chargesPerColor>
+                  </Charge>
+                </ChargeArray>
+                <decorationUnitsIncluded>1</decorationUnitsIncluded>
+                <decorationUnitsIncludedUom xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">Colors</decorationUnitsIncludedUom>
+                <decorationUnitsMax xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">4</decorationUnitsMax>
+                <defaultDecoration>false</defaultDecoration>
+                <leadTime>3</leadTime>
+                <rushLeadTime>1</rushLeadTime>
+              </Decoration>
+            </DecorationArray>
+            <decorationsIncluded xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</decorationsIncluded>
+            <defaultLocation xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">true</defaultLocation>
+            <maxDecoration xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</maxDecoration>
+            <minDecoration xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</minDecoration>
+            <locationRank xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">1</locationRank>
+          </Location>
+        </LocationArray>
+        <productId xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">SL233PR</productId>
+        <currency xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">USD</currency>
+        <FobArray xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">
+          <Fob>
+            <fobId>1</fobId>
+            <fobPostalCode>14072</fobPostalCode>
+          </Fob>
+        </FobArray>
+        <priceType xmlns="http://www.promostandards.org/WSDL/PricingAndConfiguration/1.0.0/SharedObjects/">List</priceType>
+      </Configuration>
+    </GetConfigurationAndPricingResponse>
+  </s:Body>
+</s:Envelope>

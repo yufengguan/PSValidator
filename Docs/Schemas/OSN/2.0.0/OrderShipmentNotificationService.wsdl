@@ -42,7 +42,7 @@
   </wsdl:binding>
   <wsdl:service name="OrderShipmentNotificationService">
     <wsdl:port name="OrderShipmentNotificationServiceBinding" binding="tns:OrderShipmentNotificationServiceBinding">
-      <soap:address location="https://services.starline.com/OrderShipmentNotificationService/CustomerOrderShipmentNotificationServiceV2.svc"/>
+      <soap:address location="[Endpoint URL]"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

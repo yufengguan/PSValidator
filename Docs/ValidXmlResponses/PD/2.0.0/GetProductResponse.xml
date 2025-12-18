@@ -1,0 +1,509 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Header />
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <GetProductResponse xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/">
+      <Product>
+        <productId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL238PR</productId>
+        <productName xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">12 oz Urban Peak® 3-in-1 Trail Tumbler</productName>
+        <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">Copper lined, vacuum-insulated deep draw liner maintains optimal drinking temperatures and provides 8X heat retention</description>
+        <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">Stainless Steel dual-walled construction</description>
+        <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">Lead-free vacuum seal</description>
+        <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">Includes 2 attachments: Black can/bottle ring, and spill-proof flip-top AS plastic lid featuring unique Tritan snap-locking closure</description>
+        <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">Twist top rubberized ring to hold a standard 12 oz. can or bottle</description>
+        <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">Transitions between poured drink insulated tumbler, 12 oz can cooler, and 12 oz beer bottle cooler</description>
+        <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">Sweat-free design</description>
+        <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">Durable powder-coated finish</description>
+        <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">Fits in most corporate and personal coffee machines</description>
+        <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">1-year limited warranty</description>
+        <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">Patented</description>
+        <priceExpiresDate xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">2025-12-31T16:59:59Z</priceExpiresDate>
+        <ProductMarketingPointArray>
+          <ProductMarketingPoint xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <pointType>Material</pointType>
+            <pointCopy>Stainless Steel</pointCopy>
+          </ProductMarketingPoint>
+          <ProductMarketingPoint xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <pointType>NOTE</pointType>
+            <pointCopy>Hand Wash only</pointCopy>
+          </ProductMarketingPoint>
+          <ProductMarketingPoint xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <pointType>Price</pointType>
+            <pointCopy>Includes One Standard Color or Laser Engraving on one location. TruColor™ standard imprint area (3 sq in), additional locations, larger or wrap logos available for minimal additional running charges.</pointCopy>
+          </ProductMarketingPoint>
+          <ProductMarketingPoint xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <pointType>Production Time</pointType>
+            <pointCopy>5-7 days</pointCopy>
+          </ProductMarketingPoint>
+          <ProductMarketingPoint xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <pointType>Packaging</pointType>
+            <pointCopy>Drawstring pouch</pointCopy>
+          </ProductMarketingPoint>
+          <ProductMarketingPoint xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <pointType>Insulation Type</pointType>
+            <pointCopy>Double walled vacuum insulated</pointCopy>
+          </ProductMarketingPoint>
+        </ProductMarketingPointArray>
+        <ProductKeywordArray>
+          <ProductKeyword xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <keyword>stainless steel</keyword>
+          </ProductKeyword>
+          <ProductKeyword xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <keyword>urban peak</keyword>
+          </ProductKeyword>
+          <ProductKeyword xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <keyword>sweat free</keyword>
+          </ProductKeyword>
+          <ProductKeyword xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <keyword>trail tumbler</keyword>
+          </ProductKeyword>
+          <ProductKeyword xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <keyword>vacuum insulated</keyword>
+          </ProductKeyword>
+          <ProductKeyword xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <keyword>sl238pr</keyword>
+          </ProductKeyword>
+          <ProductKeyword xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <keyword>33510</keyword>
+          </ProductKeyword>
+          <ProductKeyword xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <keyword>copper lined</keyword>
+          </ProductKeyword>
+          <ProductKeyword xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <keyword>powder coated</keyword>
+          </ProductKeyword>
+          <ProductKeyword xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <keyword>drinkware</keyword>
+          </ProductKeyword>
+          <ProductKeyword xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <keyword>multi use</keyword>
+          </ProductKeyword>
+          <ProductKeyword xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <keyword>patented</keyword>
+          </ProductKeyword>
+        </ProductKeywordArray>
+        <productBrand xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">Urban Peak</productBrand>
+        <export>true</export>
+        <ProductCategoryArray>
+          <ProductCategory xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <category>Brands</category>
+            <subCategory>Urban Peak</subCategory>
+          </ProductCategory>
+          <ProductCategory xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <category>Drinkware</category>
+            <subCategory>TRU.0</subCategory>
+          </ProductCategory>
+          <ProductCategory xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <category>Drinkware</category>
+            <subCategory>Can/Bottle Insulators</subCategory>
+          </ProductCategory>
+          <ProductCategory xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <category>Drinkware</category>
+            <subCategory>Lead-Free</subCategory>
+          </ProductCategory>
+          <ProductCategory xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <category>Drinkware</category>
+            <subCategory>Vacuum Tumblers</subCategory>
+          </ProductCategory>
+          <ProductCategory xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <category>Drinkware</category>
+            <subCategory>Urban Peak</subCategory>
+          </ProductCategory>
+          <ProductCategory xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <category>Drinkware</category>
+            <subCategory>Powder Coated</subCategory>
+          </ProductCategory>
+          <ProductCategory xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <category>Deep Inventory</category>
+            <subCategory>Deep Inventory Drinkware</subCategory>
+          </ProductCategory>
+        </ProductCategoryArray>
+        <RelatedProductArray>
+          <RelatedProduct xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <relationType>Substitute</relationType>
+            <productId>SL238SS</productId>
+          </RelatedProduct>
+          <RelatedProduct xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <relationType>Substitute</relationType>
+            <productId>UPK18</productId>
+          </RelatedProduct>
+          <RelatedProduct xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <relationType>Substitute</relationType>
+            <productId>SL260PR</productId>
+          </RelatedProduct>
+          <RelatedProduct xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <relationType>Substitute</relationType>
+            <productId>SL233PR</productId>
+          </RelatedProduct>
+          <RelatedProduct xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <relationType>Substitute</relationType>
+            <productId>FB49</productId>
+          </RelatedProduct>
+          <RelatedProduct xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <relationType>Substitute</relationType>
+            <productId>SL182PR</productId>
+          </RelatedProduct>
+          <RelatedProduct xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <relationType>Companion Sell</relationType>
+            <productId>CB167</productId>
+          </RelatedProduct>
+        </RelatedProductArray>
+        <ProductPriceGroupArray>
+          <ProductPriceGroup xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <ProductPriceArray>
+              <ProductPrice>
+                <quantityMin>24</quantityMin>
+                <quantityMax>47</quantityMax>
+                <price>21.69</price>
+                <discountCode>C</discountCode>
+              </ProductPrice>
+              <ProductPrice>
+                <quantityMin>48</quantityMin>
+                <quantityMax>95</quantityMax>
+                <price>20.99</price>
+                <discountCode>C</discountCode>
+              </ProductPrice>
+              <ProductPrice>
+                <quantityMin>96</quantityMin>
+                <quantityMax>243</quantityMax>
+                <price>20.29</price>
+                <discountCode>C</discountCode>
+              </ProductPrice>
+              <ProductPrice>
+                <quantityMin>244</quantityMin>
+                <quantityMax>499</quantityMax>
+                <price>18.89</price>
+                <discountCode>C</discountCode>
+              </ProductPrice>
+            </ProductPriceArray>
+            <groupName>Standard Price</groupName>
+            <currency>USD</currency>
+            <description>Includes One Standard Color or Laser Engraving on one location. TruColor™ standard imprint area (3 sq in), additional locations, larger or wrap logos available for minimal additional running charges.</description>
+          </ProductPriceGroup>
+          <ProductPriceGroup xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+            <ProductPriceArray>
+              <ProductPrice>
+                <quantityMin>4</quantityMin>
+                <quantityMax>23</quantityMax>
+                <price>20.38</price>
+                <discountCode>C</discountCode>
+              </ProductPrice>
+              <ProductPrice>
+                <quantityMin>24</quantityMin>
+                <quantityMax>47</quantityMax>
+                <price>19.07</price>
+                <discountCode>C</discountCode>
+              </ProductPrice>
+              <ProductPrice>
+                <quantityMin>48</quantityMin>
+                <quantityMax>95</quantityMax>
+                <price>18.45</price>
+                <discountCode>C</discountCode>
+              </ProductPrice>
+              <ProductPrice>
+                <quantityMin>96</quantityMin>
+                <quantityMax>243</quantityMax>
+                <price>17.84</price>
+                <discountCode>C</discountCode>
+              </ProductPrice>
+              <ProductPrice>
+                <quantityMin>244</quantityMin>
+                <quantityMax>499</quantityMax>
+                <price>16.61</price>
+                <discountCode>C</discountCode>
+              </ProductPrice>
+            </ProductPriceArray>
+            <groupName>Blank Price</groupName>
+            <currency>USD</currency>
+            <description>blank product</description>
+          </ProductPriceGroup>
+        </ProductPriceGroupArray>
+        <complianceInfoAvailable xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+        <LocationDecorationArray xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+          <LocationDecoration>
+            <locationName>Side #1</locationName>
+            <maxImprintColors>21</maxImprintColors>
+            <decorationName>TruColor</decorationName>
+            <locationDecorationComboDefault>true</locationDecorationComboDefault>
+            <priceIncludes>true</priceIncludes>
+          </LocationDecoration>
+          <LocationDecoration>
+            <locationName>Side #2</locationName>
+            <maxImprintColors>3</maxImprintColors>
+            <decorationName>TruColor</decorationName>
+            <locationDecorationComboDefault>false</locationDecorationComboDefault>
+            <priceIncludes>true</priceIncludes>
+          </LocationDecoration>
+          <LocationDecoration>
+            <locationName>Wrap</locationName>
+            <maxImprintColors>21</maxImprintColors>
+            <decorationName>TruColor</decorationName>
+            <locationDecorationComboDefault>false</locationDecorationComboDefault>
+            <priceIncludes>true</priceIncludes>
+          </LocationDecoration>
+          <LocationDecoration>
+            <locationName>Half Wrap</locationName>
+            <maxImprintColors>4</maxImprintColors>
+            <decorationName>Tru.0</decorationName>
+            <locationDecorationComboDefault>false</locationDecorationComboDefault>
+            <priceIncludes>true</priceIncludes>
+          </LocationDecoration>
+          <LocationDecoration>
+            <locationName>Side #2</locationName>
+            <maxImprintColors>4</maxImprintColors>
+            <decorationName>Silkscreen</decorationName>
+            <locationDecorationComboDefault>false</locationDecorationComboDefault>
+            <priceIncludes>true</priceIncludes>
+          </LocationDecoration>
+          <LocationDecoration>
+            <locationName>Side #1</locationName>
+            <maxImprintColors>4</maxImprintColors>
+            <decorationName>Silkscreen</decorationName>
+            <locationDecorationComboDefault>false</locationDecorationComboDefault>
+            <priceIncludes>true</priceIncludes>
+          </LocationDecoration>
+          <LocationDecoration>
+            <locationName>Wrap (Single Color)</locationName>
+            <maxImprintColors>4</maxImprintColors>
+            <decorationName>Silkscreen</decorationName>
+            <locationDecorationComboDefault>false</locationDecorationComboDefault>
+            <priceIncludes>true</priceIncludes>
+          </LocationDecoration>
+          <LocationDecoration>
+            <locationName>Side #2</locationName>
+            <maxImprintColors>2</maxImprintColors>
+            <decorationName>Laser Engraving</decorationName>
+            <locationDecorationComboDefault>false</locationDecorationComboDefault>
+            <priceIncludes>false</priceIncludes>
+          </LocationDecoration>
+          <LocationDecoration>
+            <locationName>Side #1</locationName>
+            <maxImprintColors>2</maxImprintColors>
+            <decorationName>Laser Engraving</decorationName>
+            <locationDecorationComboDefault>false</locationDecorationComboDefault>
+            <priceIncludes>false</priceIncludes>
+          </LocationDecoration>
+        </LocationDecorationArray>
+        <ProductPartArray>
+          <ProductPart>
+            <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL238PR-59-00</partId>
+            <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL238PR-12ozPR SS TMBLR</description>
+            <countryOfOrigin xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">CN</countryOfOrigin>
+            <ColorArray>
+              <Color xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+                <standardColorName>Dark Gray</standardColorName>
+                <colorName>Dark Gray</colorName>
+              </Color>
+            </ColorArray>
+            <Dimension xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+              <dimensionUom>IN</dimensionUom>
+              <depth>3.250</depth>
+              <height>6.000</height>
+              <width>3.250</width>
+              <weightUom>LB</weightUom>
+              <weight>0.7500</weight>
+            </Dimension>
+            <leadTime>3</leadTime>
+            <isRushService xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">true</isRushService>
+            <ShippingPackageArray>
+              <ShippingPackage xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+                <packageType>Case</packageType>
+                <quantity>24</quantity>
+                <dimensionUom>IN</dimensionUom>
+                <depth>22.0000</depth>
+                <height>8.0000</height>
+                <width>15.0000</width>
+                <weightUom>LB</weightUom>
+                <weight>18.0000</weight>
+              </ShippingPackage>
+            </ShippingPackageArray>
+            <endDate xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <effectiveDate xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">2019-05-01T14:12:56.58</effectiveDate>
+            <isCloseout xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">false</isCloseout>
+            <isCaution xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <nmfcCode xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">0</nmfcCode>
+            <isOnDemand xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <isHazmat xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">false</isHazmat>
+          </ProductPart>
+          <ProductPart>
+            <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL238PR-32-00</partId>
+            <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL238PR-12ozPR SS TMBLR</description>
+            <countryOfOrigin xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">CN</countryOfOrigin>
+            <ColorArray>
+              <Color xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+                <standardColorName>White</standardColorName>
+                <colorName>White</colorName>
+              </Color>
+            </ColorArray>
+            <Dimension xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+              <dimensionUom>IN</dimensionUom>
+              <depth>3.250</depth>
+              <height>6.000</height>
+              <width>3.250</width>
+              <weightUom>LB</weightUom>
+              <weight>0.7500</weight>
+            </Dimension>
+            <leadTime>3</leadTime>
+            <isRushService xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">true</isRushService>
+            <ShippingPackageArray>
+              <ShippingPackage xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+                <packageType>Case</packageType>
+                <quantity>24</quantity>
+                <dimensionUom>IN</dimensionUom>
+                <depth>22.0000</depth>
+                <height>8.0000</height>
+                <width>15.0000</width>
+                <weightUom>LB</weightUom>
+                <weight>18.0000</weight>
+              </ShippingPackage>
+            </ShippingPackageArray>
+            <endDate xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <effectiveDate xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">2019-05-01T14:12:56.58</effectiveDate>
+            <isCloseout xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">false</isCloseout>
+            <isCaution xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <nmfcCode xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">0</nmfcCode>
+            <isOnDemand xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <isHazmat xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">false</isHazmat>
+          </ProductPart>
+          <ProductPart>
+            <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL238PR-34-00</partId>
+            <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL238PR-12ozPR SS TMBLR</description>
+            <countryOfOrigin xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">CN</countryOfOrigin>
+            <ColorArray>
+              <Color xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+                <standardColorName>Black</standardColorName>
+                <colorName>Black</colorName>
+              </Color>
+            </ColorArray>
+            <Dimension xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+              <dimensionUom>IN</dimensionUom>
+              <depth>3.250</depth>
+              <height>6.000</height>
+              <width>3.250</width>
+              <weightUom>LB</weightUom>
+              <weight>0.7500</weight>
+            </Dimension>
+            <leadTime>3</leadTime>
+            <isRushService xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">true</isRushService>
+            <ShippingPackageArray>
+              <ShippingPackage xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+                <packageType>Case</packageType>
+                <quantity>24</quantity>
+                <dimensionUom>IN</dimensionUom>
+                <depth>22.0000</depth>
+                <height>8.0000</height>
+                <width>15.0000</width>
+                <weightUom>LB</weightUom>
+                <weight>18.0000</weight>
+              </ShippingPackage>
+            </ShippingPackageArray>
+            <endDate xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <effectiveDate xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">2019-05-01T14:12:56.58</effectiveDate>
+            <isCloseout xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">false</isCloseout>
+            <isCaution xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <nmfcCode xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">0</nmfcCode>
+            <isOnDemand xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <isHazmat xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">false</isHazmat>
+          </ProductPart>
+          <ProductPart>
+            <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL238PR-37-00</partId>
+            <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL238PR-12ozPR SS TMBLR</description>
+            <countryOfOrigin xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">CN</countryOfOrigin>
+            <ColorArray>
+              <Color xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+                <standardColorName>Blue</standardColorName>
+                <colorName>Blue</colorName>
+              </Color>
+            </ColorArray>
+            <Dimension xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+              <dimensionUom>IN</dimensionUom>
+              <depth>3.250</depth>
+              <height>6.000</height>
+              <width>3.250</width>
+              <weightUom>LB</weightUom>
+              <weight>0.7500</weight>
+            </Dimension>
+            <leadTime>3</leadTime>
+            <isRushService xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">true</isRushService>
+            <ShippingPackageArray>
+              <ShippingPackage xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+                <packageType>Case</packageType>
+                <quantity>24</quantity>
+                <dimensionUom>IN</dimensionUom>
+                <depth>22.0000</depth>
+                <height>8.0000</height>
+                <width>15.0000</width>
+                <weightUom>LB</weightUom>
+                <weight>18.0000</weight>
+              </ShippingPackage>
+            </ShippingPackageArray>
+            <endDate xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <effectiveDate xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">2019-05-01T14:12:56.58</effectiveDate>
+            <isCloseout xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">false</isCloseout>
+            <isCaution xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <nmfcCode xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">0</nmfcCode>
+            <isOnDemand xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <isHazmat xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">false</isHazmat>
+          </ProductPart>
+          <ProductPart>
+            <partId xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL238PR-35-00</partId>
+            <description xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">SL238PR-12ozPR SS TMBLR</description>
+            <countryOfOrigin xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">CN</countryOfOrigin>
+            <ColorArray>
+              <Color xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+                <standardColorName>Gray</standardColorName>
+                <colorName>Gray</colorName>
+              </Color>
+            </ColorArray>
+            <Dimension xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+              <dimensionUom>IN</dimensionUom>
+              <depth>3.250</depth>
+              <height>6.000</height>
+              <width>3.250</width>
+              <weightUom>LB</weightUom>
+              <weight>0.7500</weight>
+            </Dimension>
+            <leadTime>3</leadTime>
+            <isRushService xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">true</isRushService>
+            <ShippingPackageArray>
+              <ShippingPackage xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+                <packageType>Case</packageType>
+                <quantity>24</quantity>
+                <dimensionUom>IN</dimensionUom>
+                <depth>22.0000</depth>
+                <height>8.0000</height>
+                <width>15.0000</width>
+                <weightUom>LB</weightUom>
+                <weight>18.0000</weight>
+              </ShippingPackage>
+            </ShippingPackageArray>
+            <endDate xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <effectiveDate xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">2019-05-01T14:12:56.58</effectiveDate>
+            <isCloseout xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">false</isCloseout>
+            <isCaution xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <nmfcCode xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">0</nmfcCode>
+            <isOnDemand xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+            <isHazmat xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">false</isHazmat>
+          </ProductPart>
+        </ProductPartArray>
+        <lastChangeDate>2025-12-17T06:30:29.993Z</lastChangeDate>
+        <creationDate>2019-05-01T18:12:56.58Z</creationDate>
+        <endDate xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">2025-12-31T00:00:00</endDate>
+        <effectiveDate xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">2019-05-01T18:12:56.58Z</effectiveDate>
+        <isCaution xsi:nil="true" xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/" />
+        <isCloseout xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">false</isCloseout>
+        <lineName xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">Starline</lineName>
+        <defaultSetupCharge xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">TruColor Set-up (per location): $60.00(G) Per Location</defaultSetupCharge>
+        <imprintSize xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">2"h x 1.5"w (Side #1) </imprintSize>
+        <FobPointArray xmlns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+          <FobPoint>
+            <fobId>1</fobId>
+            <fobCity>Grand Island</fobCity>
+            <fobState>NY</fobState>
+            <fobPostalCode>14072</fobPostalCode>
+            <fobCountry>US</fobCountry>
+          </FobPoint>
+        </FobPointArray>
+      </Product>
+    </GetProductResponse>
+  </s:Body>
+</s:Envelope>
