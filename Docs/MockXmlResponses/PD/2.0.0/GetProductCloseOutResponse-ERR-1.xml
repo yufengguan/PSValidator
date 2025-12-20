@@ -1,0 +1,14 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/" xmlns:shar="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:GetProductCloseOutResponse>
+         <ns:ProductCloseOutArray>
+            <ns:ProductCloseOut>
+               <shar:productId>PRODUCT_CO_ERR1</shar:productId>
+               <shar:partId>PART1</shar:partId>
+               <!-- Missing isCloseout -->
+            </ns:ProductCloseOut>
+         </ns:ProductCloseOutArray>
+      </ns:GetProductCloseOutResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

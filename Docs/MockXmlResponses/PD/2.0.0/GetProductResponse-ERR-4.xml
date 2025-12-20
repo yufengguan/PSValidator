@@ -1,0 +1,14 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/" xmlns:shar="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:GetProductResponse>
+         <ns:Product>
+            <shar:productId>PRODUCT_ERR_TYPE</shar:productId>
+            <shar:productName>Invalid Type Product</shar:productName>
+            <shar:description>Invalid Type</shar:description>
+            <ns:lastChangeDate>NOT_A_DATE</ns:lastChangeDate> <!-- Invalid Date -->
+            <ns:creationDate>2023-01-01T00:00:00</ns:creationDate>
+         </ns:Product>
+      </ns:GetProductResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

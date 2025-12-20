@@ -1,0 +1,15 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/" xmlns:shar="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:GetProductResponse>
+         <ns:Product>
+             <!-- Wrong Order: description before productName -->
+            <shar:productId>PRODUCT_ERR_ORDER</shar:productId>
+            <shar:description>Wrong Order</shar:description>
+            <shar:productName>Wrong Order Product</shar:productName>
+            <ns:lastChangeDate>2023-01-01T00:00:00</ns:lastChangeDate>
+            <ns:creationDate>2023-01-01T00:00:00</ns:creationDate>
+         </ns:Product>
+      </ns:GetProductResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

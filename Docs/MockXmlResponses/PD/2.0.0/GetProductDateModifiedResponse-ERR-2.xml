@@ -1,0 +1,14 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/" xmlns:shar="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:GetProductDateModifiedResponse>
+         <ns:ProductDateModifiedArray>
+            <ns:ProductDateModified>
+               <shar:productId>PRODUCT_DM_ERR2</shar:productId>
+               <shar:partId>PART1</shar:partId>
+               <!-- Missing changeTimeStamp -->
+            </ns:ProductDateModified>
+         </ns:ProductDateModifiedArray>
+      </ns:GetProductDateModifiedResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

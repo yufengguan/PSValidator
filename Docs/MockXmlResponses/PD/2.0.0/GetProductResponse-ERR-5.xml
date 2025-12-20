@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/" xmlns:shar="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:GetProductResponse>
+          <!-- Missing Product Element wrapper? Or just missing required children inside? Let's treat this as missing required ns:Product entirely but having content? No, let's make it missing a core field like ServiceMessage? No, let's play with wsVersion or just missing the whole body content. -->
+          <!-- Actually, let's simulate a ServiceMessage error response structure returned for GetProduct -->
+          <ns:ServiceMessage>
+              <shar:code>ERR001</shar:code>
+              <shar:description>Some Error</shar:description>
+          </ns:ServiceMessage>
+      </ns:GetProductResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
