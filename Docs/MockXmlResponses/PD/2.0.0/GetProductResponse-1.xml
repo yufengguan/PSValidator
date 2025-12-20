@@ -1,0 +1,28 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/" xmlns:shar="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:GetProductResponse>
+         <ns:Product>
+            <shar:productId>PRODUCT001</shar:productId>
+            <shar:productName>Mock Product</shar:productName>
+            <shar:description>Mock Product Description</shar:description>
+            <shar:complianceInfoAvailable>false</shar:complianceInfoAvailable>
+            <ns:lastChangeDate>2023-01-01T00:00:00</ns:lastChangeDate>
+            <ns:creationDate>2023-01-01T00:00:00</ns:creationDate>
+            <shar:endDate>2025-12-31T00:00:00</shar:endDate>
+            <shar:effectiveDate>2023-01-01T00:00:00</shar:effectiveDate>
+            <shar:isCaution>false</shar:isCaution>
+            <shar:isCloseout>false</shar:isCloseout>
+            <shar:FobPointArray>
+               <shar:FobPoint>
+                  <shar:fobId>FOB1</shar:fobId>
+                  <shar:fobCity>City</shar:fobCity>
+                  <shar:fobState>State</shar:fobState>
+                  <shar:fobPostalCode>12345</shar:fobPostalCode>
+                  <shar:fobCountry>US</shar:fobCountry>
+               </shar:FobPoint>
+            </shar:FobPointArray>
+         </ns:Product>
+      </ns:GetProductResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

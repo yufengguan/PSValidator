@@ -14,7 +14,7 @@ public class PDTests : ServiceTestBase
     public async Task Validate_PD_MockResponses_ShouldMatchExpectations()
     {
         var service = "PD";
-        var mockJsonPath = Path.Combine(_projectRoot, "Docs", "MockXMLResponses", service, "mock_responses.json");
+        var mockJsonPath = Path.Combine(_projectRoot, "Docs", "MockXMLResponses", service, "2.0.0", "mock_responses.json");
         
         if (!File.Exists(mockJsonPath))
         {
@@ -35,7 +35,7 @@ public class PDTests : ServiceTestBase
             var endpoint = $"{_mockServiceBaseUrl}/api/{service}/{responseItem.ErrorCode}";
             
             // Determine operation based on filename
-            // Names are like "PD-1.0.0-{Operation}Response-{Index}.xml"
+            // Names are like "PD-1.0.0-{Operation}Response-{Index}.xml" or just "{Operation}Response-{Index}.xml"
             // Default to getProduct if pattern doesn't match
             var operation = "getProduct"; 
             var requestRoot = "GetProductRequest";
@@ -60,7 +60,7 @@ public class PDTests : ServiceTestBase
             var request = new
             {
                 Service = "ProductData",
-                Version = "1.0.0", 
+                Version = "2.0.0", 
                 Operation = operation, 
                 XmlContent = $"<{requestRoot}>Dummy Request</{requestRoot}>",
                 Endpoint = endpoint

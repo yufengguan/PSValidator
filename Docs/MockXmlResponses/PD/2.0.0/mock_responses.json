@@ -1,0 +1,35 @@
+{
+    "Service": "PD",
+    "MockResponses": [
+        {
+            "ErrorCode": "ERR_MISSING_ID",
+            "StubResponseFile": "GetProductResponse-2.xml",
+            "ExpectedError": "Product missing productId.",
+            "ExpectedErrorDetails": "The element 'Product' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'productName' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'. List of possible elements expected: 'productId' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'."
+        },
+        {
+            "ErrorCode": "SUCCESS",
+            "StubResponseFile": "GetProductResponse-1.xml",
+            "ExpectedError": "",
+            "ExpectedErrorDetails": ""
+        },
+        {
+            "ErrorCode": "SUCCESS_DATE_MODIFIED",
+            "StubResponseFile": "GetProductDateModifiedResponse-1.xml",
+            "ExpectedError": "",
+            "ExpectedErrorDetails": ""
+        },
+        {
+            "ErrorCode": "SUCCESS_CLOSE_OUT",
+            "StubResponseFile": "GetProductCloseOutResponse-1.xml",
+            "ExpectedError": "",
+            "ExpectedErrorDetails": ""
+        },
+        {
+            "ErrorCode": "SUCCESS_SELLABLE",
+            "StubResponseFile": "GetProductSellableResponse-1.xml",
+            "ExpectedError": "",
+            "ExpectedErrorDetails": ""
+        }
+    ]
+}
