@@ -205,14 +205,20 @@ if [ "$CERTS_EXIST" = false ]; then
     # 2. Request Certificates
     echo "Requesting SSL certificates..."
     # Request certificate for main domain
+    # Construct domain arguments
+    DOMAIN_ARGS="-d ${DOMAIN}"
+    if [ ! -z "$WWW_DOMAIN" ]; then
+        DOMAIN_ARGS="${DOMAIN_ARGS} -d ${WWW_DOMAIN}"
+    fi
+
     if docker compose version &> /dev/null; then
-        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${DOMAIN} -d ${WWW_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
+        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot $DOMAIN_ARGS --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
         # Request certificate for API domain
         docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${API_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
         # Request certificate for StubServer domain
         docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${STUBSERVER_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
     else
-        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${DOMAIN} -d ${WWW_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
+        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot $DOMAIN_ARGS --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
         # Request certificate for API domain
         docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${API_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
         # Request certificate for StubServer domain
