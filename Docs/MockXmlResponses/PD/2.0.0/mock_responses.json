@@ -35,67 +35,67 @@
             "ErrorCode": "SUCCESS_VAR1",
             "StubResponseFile": "GetProductResponse-3.xml",
             "ExpectedError": "",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 10, Position: 14 \"The element 'Product' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'lastChangeDate' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/'. List of possible elements expected: 'description, priceExpiresDate' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/' as well as 'ProductMarketingPointArray, ProductKeywordArray' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' as well as 'productBrand' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/' as well as 'export' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/'.\""
         },
         {
             "ErrorCode": "SUCCESS_VAR2",
             "StubResponseFile": "GetProductResponse-4.xml",
             "ExpectedError": "",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 9, Position: 14 \"The element 'Product' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'lastChangeDate' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/'. List of possible elements expected: 'description, priceExpiresDate' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/' as well as 'ProductMarketingPointArray, ProductKeywordArray' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' as well as 'productBrand' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/' as well as 'export' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/'.\""
         },
         {
             "ErrorCode": "ERR_MISSING_ID_2",
             "StubResponseFile": "GetProductResponse-ERR-1.xml",
             "ExpectedError": "Missing Product ID",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 7, Position: 14 \"The element 'Product' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'productName' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'. List of possible elements expected: 'productId' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'.\""
         },
         {
             "ErrorCode": "ERR_INVALID_NS",
             "StubResponseFile": "GetProductResponse-ERR-2.xml",
             "ExpectedError": "Invalid Namespace",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 6, Position: 14 \"The element 'Product' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'productId' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/1.0.0/SharedObjects/'. List of possible elements expected: 'productId' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'.\""
         },
         {
             "ErrorCode": "ERR_WRONG_ORDER",
             "StubResponseFile": "GetProductResponse-ERR-3.xml",
             "ExpectedError": "Wrong Field Order",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 8, Position: 14 \"The element 'Product' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'description' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'. List of possible elements expected: 'productName' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'.\""
         },
         {
             "ErrorCode": "ERR_INVALID_TYPE",
             "StubResponseFile": "GetProductResponse-ERR-4.xml",
             "ExpectedError": "Invalid Data Type",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 6, Position: 6 \"The element 'Product' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'lastChangeDate' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/'. List of possible elements expected: 'description, priceExpiresDate' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/' as well as 'ProductMarketingPointArray, ProductKeywordArray' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' as well as 'productBrand' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/' as well as 'export' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/'.\""
         },
         {
             "ErrorCode": "ERR_MISSING_BODY",
             "StubResponseFile": "GetProductResponse-ERR-5.xml",
             "ExpectedError": "Missing Product Element",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 7, Position: 12 \"The element 'GetProductResponse' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'ServiceMessage' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/'. List of possible elements expected: 'Product' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' as well as 'ServiceMessageArray' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'.\""
         },
         {
             "ErrorCode": "ERR_EXTRA_ELEMENT",
             "StubResponseFile": "GetProductResponse-ERR-6.xml",
             "ExpectedError": "Extra Unknown Element",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 8, Position: 14 \"The element 'Product' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'UNKNOWN_ELEMENT' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'. List of possible elements expected: 'description' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'.\""
         },
         {
             "ErrorCode": "ERR_EMPTY_PRODUCT",
             "StubResponseFile": "GetProductResponse-ERR-7.xml",
             "ExpectedError": "Empty Product",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 7, Position: 12 \"The element 'Product' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has incomplete content. List of possible elements expected: 'productId' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'.\""
         },
         {
             "ErrorCode": "ERR_MALFORMED_XML",
             "StubResponseFile": "GetProductResponse-ERR-8.xml",
             "ExpectedError": "Malformed XML",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "The 'shar:description' start tag on line 9 position 14 does not match the end tag of 'ns:Product'. Line 12, position 12."
         },
         {
             "ErrorCode": "ERR_DM_FORMAT",
             "StubResponseFile": "GetProductDateModifiedResponse-ERR-1.xml",
             "ExpectedError": "Invalid Date Format",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 10, Position: 17 \"The element 'ProductDateModified' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'changeTimeStamp' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/'.\""
         },
         {
             "ErrorCode": "ERR_DM_MISSING_TS",
@@ -107,7 +107,7 @@
             "ErrorCode": "ERR_DM_EXTRA",
             "StubResponseFile": "GetProductDateModifiedResponse-ERR-3.xml",
             "ExpectedError": "Extra Invalid Element",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 9, Position: 17 \"The element 'ProductDateModified' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'changeTimeStamp' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/'.\""
         },
         {
             "ErrorCode": "ERR_CO_MISSING_STATUS",
@@ -119,19 +119,19 @@
             "ErrorCode": "ERR_CO_INVALID_BOOL",
             "StubResponseFile": "GetProductCloseOutResponse-ERR-2.xml",
             "ExpectedError": "Invalid Boolean",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 10, Position: 17 \"The element 'ProductCloseOut' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'isCloseout' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'.\""
         },
         {
             "ErrorCode": "ERR_CO_EMPTY",
             "StubResponseFile": "GetProductCloseOutResponse-ERR-3.xml",
             "ExpectedError": "Empty Array",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 7, Position: 12 \"The element 'ProductCloseOutArray' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has incomplete content. List of possible elements expected: 'ProductCloseOut' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/'.\""
         },
         {
             "ErrorCode": "ERR_SEL_INVALID_BOOL",
             "StubResponseFile": "GetProductSellableResponse-ERR-1.xml",
             "ExpectedError": "Invalid Boolean",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 10, Position: 17 \"The element 'ProductSellable' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'isSellable' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'. List of possible elements expected: 'culturePoint' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'.\""
         },
         {
             "ErrorCode": "ERR_SEL_MISSING_STATUS",
@@ -143,7 +143,7 @@
             "ErrorCode": "ERR_SEL_WRONG_NS",
             "StubResponseFile": "GetProductSellableResponse-ERR-3.xml",
             "ExpectedError": "Wrong Namespace",
-            "ExpectedErrorDetails": ""
+            "ExpectedErrorDetails": "Line: 10, Position: 18 \"The element 'ProductSellable' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/' has invalid child element 'isSellable' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/'. List of possible elements expected: 'culturePoint' in namespace 'http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/'.\""
         }
     ]
 }
