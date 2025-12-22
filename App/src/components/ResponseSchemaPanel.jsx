@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form, Card } from 'react-bootstrap';
 
-const ResponseSchemaPanel = ({ schemaContent }) => {
+const ResponseSchemaPanel = ({ schemaContent, title }) => {
     return (
         <Card className="mb-3">
-            <Card.Header>Testing -- Response Schema</Card.Header>
+            <Card.Header>{title || 'Response Schema'}</Card.Header>
             <Card.Body style={{ padding: 0 }}>
                 <Form.Control
                     as="textarea"

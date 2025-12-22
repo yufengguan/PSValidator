@@ -2,9 +2,11 @@ import React from 'react';
 import { Card, Alert } from 'react-bootstrap';
 
 const ValidationPanel = ({ result }) => {
+    const title = result?.type ? `${result.type} Validation Results` : "Validation Results";
+
     return (
         <Card className="mb-3">
-            <Card.Header>Validation Result</Card.Header>
+            <Card.Header><strong>{title}</strong></Card.Header>
             <Card.Body style={{ maxHeight: '300px', overflowY: 'auto' }}>
                 {!result ? (
                     <div className="text-muted">No validation performed yet.</div>

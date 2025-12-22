@@ -9,7 +9,9 @@ builder.Services.AddSwaggerGen();
 
 // Register ValidationService
 builder.Services.AddHttpClient();
-builder.Services.AddScoped<IValidationService, ValidationService>();
+// Register Validation Services
+builder.Services.AddScoped<IValidationRequestService, ValidationRequestService>();
+builder.Services.AddScoped<IValidationResponseService, ValidationResponseService>();
 
 var app = builder.Build();
 

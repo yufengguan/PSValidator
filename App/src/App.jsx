@@ -16,7 +16,9 @@ function App() {
   const [endpoint, setEndpoint] = useState('');
   const [requestXml, setRequestXml] = useState('');
   const [responseXml, setResponseXml] = useState('');
+  const [requestSchema, setRequestSchema] = useState('');
   const [responseSchema, setResponseSchema] = useState('');
+  const [activeSchema, setActiveSchema] = useState('request'); // 'request' or 'response'
   const [showAboutModal, setShowAboutModal] = useState(false);
   const [validationResult, setValidationResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -37,7 +39,9 @@ function App() {
       setEndpoint('');
       setRequestXml('');
       setResponseXml('');
+      setRequestSchema('');
       setResponseSchema('');
+      setActiveSchema('none'); // Clear panel
       setValidationResult(null);
       return;
     }
@@ -46,6 +50,7 @@ function App() {
     // 3.6.2: When Operation changes, automatically generate and display a sample XML request
     if (newSelection.operation !== selection.operation) {
       setSelection(newSelection);
+      setActiveSchema('request'); // Show request schema by default
 
       if (newSelection.operation) {
         // Fetch sample request from API
@@ -72,9 +77,22 @@ function App() {
             setResponseSchema(`<!-- Error fetching schema: ${err.message} -->`);
           });
 
+        // Fetch request schema from API
+        fetch(`${API_BASE_URL}/Validator/request-schema?serviceName=${newSelection.service}&version=${newSelection.version}&operationName=${newSelection.operation}`)
+          .then(res => res.text()) // It returns string
+          .then(data => {
+            setRequestSchema(data);
+          })
+          .catch(err => {
+            console.error('Error fetching request schema:', err);
+            setRequestSchema(`<!-- Error fetching schema: ${err.message} -->`);
+          });
+
       } else {
         setRequestXml('');
+        setRequestSchema('');
         setResponseSchema('');
+        setActiveSchema('none');
       }
 
       setResponseXml('');
@@ -86,12 +104,12 @@ function App() {
     setSelection(newSelection);
   };
 
-  const handleValidate = async () => {
+  const handleValidateResponse = async () => {
     setLoading(true);
     setValidationResult(null);
 
     try {
-      const res = await fetch(`${API_BASE_URL}/Validator/validate`, {
+      const res = await fetch(`${API_BASE_URL}/Validator/validate-response`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -102,15 +120,74 @@ function App() {
           endpoint: endpoint
         })
       });
-      const result = await res.json();
-      setValidationResult(result);
 
-      if (result.responseContent) {
-        setResponseXml(result.responseContent);
+      let result;
+      const contentType = res.headers.get("content-type");
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        result = await res.json();
+      } else {
+        const text = await res.text();
+        result = { isValid: false, validationResultMessages: [`Server Error: ${res.status} ${res.statusText}`, text] };
+      }
+
+      if (!res.ok) {
+        // Handle 400/500 errors that might return ProblemDetails or plain text
+        const messages = result.validationResultMessages || [];
+        if (result.title) messages.push(`Error: ${result.title}`); // ASP.NET Core ProblemDetails
+        if (messages.length === 0) messages.push(`HTTP Error: ${res.status}`);
+        setValidationResult({ type: 'Response', isValid: false, validationResultMessages: messages });
+      } else {
+        setValidationResult({ ...result, type: 'Response' });
+        if (result.responseContent) {
+          setResponseXml(result.responseContent);
+        }
+        setActiveSchema('response');
+      }
+
+    } catch (err) {
+      console.error('Validation error:', err);
+      setValidationResult({ type: 'Response', isValid: false, validationResultMessages: [`Network Error: ${err.message}`] });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleValidateRequest = async () => {
+    setLoading(true);
+    setValidationResult(null);
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/Validator/validate-request`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service: selection.service,
+          version: selection.version,
+          operation: selection.operation,
+          xmlContent: requestXml
+        })
+      });
+
+      let result;
+      const contentType = res.headers.get("content-type");
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        result = await res.json();
+      } else {
+        const text = await res.text();
+        result = { isValid: false, validationResultMessages: [`Server Error: ${res.status} ${res.statusText}`, text] };
+      }
+
+      if (!res.ok) {
+        const messages = result.validationResultMessages || [];
+        if (result.title) messages.push(`Error: ${result.title}`);
+        if (messages.length === 0) messages.push(`HTTP Error: ${res.status}`);
+        setValidationResult({ type: 'Request', isValid: false, validationResultMessages: messages });
+      } else {
+        setValidationResult({ ...result, type: 'Request' });
       }
     } catch (err) {
       console.error('Validation error:', err);
-      setValidationResult({ isValid: false, validationResultMessages: ['Network or Server Error'] });
+      setValidationResult({ type: 'Request', isValid: false, validationResultMessages: [`Network Error: ${err.message}`] });
     } finally {
       setLoading(false);
     }
@@ -163,11 +240,14 @@ function App() {
 
   const filteredValidationResult = validationResult ? {
     ...validationResult,
-    validationResultMessages: validationResult.validationResultMessages.filter(m => !m.startsWith('HTTP Error') && !m.startsWith('Network Error'))
+    validationResultMessages: (validationResult.validationResultMessages || []).filter(m => !m.startsWith('HTTP Error') && !m.startsWith('Network Error'))
   } : null;
 
-  // Only valid if fields are filled AND have no errors
-  const isFormValid = selection.operation && endpoint && !urlError && requestXml && !xmlError;
+  // Request Validation: Needs Operation + XML
+  const isRequestValid = selection.operation && requestXml && !xmlError;
+
+  // Response Validation: Needs Request Valid + Endpoint
+  const isResponseValid = isRequestValid && endpoint && !urlError;
 
   return (
     <>
@@ -202,9 +282,12 @@ function App() {
 
         <RequestPanel xmlContent={requestXml} onChange={setRequestXml} error={xmlError} />
 
-        <div className="d-grid gap-2 mb-3">
-          <Button variant="primary" size="lg" onClick={handleValidate} disabled={!isFormValid || loading}>
-            {loading ? <Spinner animation="border" size="sm" /> : 'Validate'}
+        <div className="d-flex gap-2 mb-3">
+          <Button variant="primary" size="lg" onClick={handleValidateRequest} disabled={!isRequestValid || loading} className="flex-grow-1">
+            {loading ? <Spinner animation="border" size="sm" /> : 'Validate Request'}
+          </Button>
+          <Button variant="success" size="lg" onClick={handleValidateResponse} disabled={!isResponseValid || loading} className="flex-grow-1">
+            {loading ? <Spinner animation="border" size="sm" /> : 'Validate Response'}
           </Button>
         </div>
 
@@ -216,7 +299,7 @@ function App() {
 
         <Row>
           <Col md={12}>
-            <ResponsePanel xmlContent={responseXml} />
+            {validationResult?.type === 'Response' && <ResponsePanel xmlContent={responseXml} />}
           </Col>
         </Row>
         <Row>
@@ -227,7 +310,10 @@ function App() {
 
         <Row>
           <Col md={12}>
-            <ResponseSchemaPanel schemaContent={responseSchema} />
+            <ResponseSchemaPanel
+              schemaContent={activeSchema === 'request' ? requestSchema : (activeSchema === 'response' ? responseSchema : '')}
+              title={activeSchema === 'request' ? 'Request Schema' : (activeSchema === 'response' ? 'Response Schema' : 'Schema')}
+            />
           </Col>
         </Row>
 
