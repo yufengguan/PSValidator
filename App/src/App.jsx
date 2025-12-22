@@ -5,7 +5,6 @@ import EndpointInput from './components/EndpointInput';
 import RequestPanel from './components/RequestPanel';
 import ResponsePanel from './components/ResponsePanel';
 import ValidationPanel from './components/ValidationPanel';
-import ResponseSchemaPanel from './components/ResponseSchemaPanel';
 import AboutModal from './components/AboutModal';
 import logo from './assets/logo.png';
 import './App.css';
@@ -16,9 +15,7 @@ function App() {
   const [endpoint, setEndpoint] = useState('');
   const [requestXml, setRequestXml] = useState('');
   const [responseXml, setResponseXml] = useState('');
-  const [requestSchema, setRequestSchema] = useState('');
-  const [responseSchema, setResponseSchema] = useState('');
-  const [activeSchema, setActiveSchema] = useState('request'); // 'request' or 'response'
+
   const [showAboutModal, setShowAboutModal] = useState(false);
   const [validationResult, setValidationResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -39,6 +36,7 @@ function App() {
 
   const handleSelectionChange = (newSelection) => {
     setOperationError(''); // Clear error on change
+    setRequestError('');
 
     // 3.3.2: When Service changes, clear all panels and Endpoint
     if (newSelection.service !== selection.service) {
@@ -46,7 +44,6 @@ function App() {
       setEndpoint('');
       setEndpointError('');
       setRequestXml('');
-      setRequestError('');
       setResponseXml('');
       setRequestSchema('');
       setResponseSchema('');
@@ -59,7 +56,6 @@ function App() {
     // 3.6.2: When Operation changes, automatically generate and display a sample XML request
     if (newSelection.operation !== selection.operation) {
       setSelection(newSelection);
-      setActiveSchema('request'); // Show request schema by default
 
       if (newSelection.operation) {
         // Fetch sample request from API
@@ -68,41 +64,14 @@ function App() {
           .then(data => {
             if (data.xmlContent) {
               setRequestXml(data.xmlContent);
-              setRequestError('');
             }
           })
           .catch(err => {
             console.error('Error fetching sample request:', err);
             setRequestXml(`<!-- Error generating sample: ${err.message} -->`);
           });
-
-        // Fetch response schema from API
-        fetch(`${API_BASE_URL}/Validator/response-schema?serviceName=${newSelection.service}&version=${newSelection.version}&operationName=${newSelection.operation}`)
-          .then(res => res.text()) // It returns string
-          .then(data => {
-            setResponseSchema(data);
-          })
-          .catch(err => {
-            console.error('Error fetching response schema:', err);
-            setResponseSchema(`<!-- Error fetching schema: ${err.message} -->`);
-          });
-
-        // Fetch request schema from API
-        fetch(`${API_BASE_URL}/Validator/request-schema?serviceName=${newSelection.service}&version=${newSelection.version}&operationName=${newSelection.operation}`)
-          .then(res => res.text()) // It returns string
-          .then(data => {
-            setRequestSchema(data);
-          })
-          .catch(err => {
-            console.error('Error fetching request schema:', err);
-            setRequestSchema(`<!-- Error fetching schema: ${err.message} -->`);
-          });
-
       } else {
         setRequestXml('');
-        setRequestSchema('');
-        setResponseSchema('');
-        setActiveSchema('none');
       }
 
       setResponseXml('');
@@ -137,7 +106,7 @@ function App() {
       setRequestError("Request Body cannot be empty.");
       hasError = true;
     } else if (xmlError) {
-      // Keep showing xmlError via derived state, but we stop submission
+      setRequestError(`Invalid Request XML: ${getXmlError(requestXml)}`);
       hasError = true;
     }
 
@@ -207,7 +176,7 @@ function App() {
       setRequestError("Request Body cannot be empty.");
       hasError = true;
     } else if (xmlError) {
-      // Keep showing xmlError via derived state
+      setRequestError(`Invalid Request XML: ${getXmlError(requestXml)}`);
       hasError = true;
     }
 
@@ -345,10 +314,10 @@ function App() {
         <RequestPanel xmlContent={requestXml} onChange={(val) => { setRequestXml(val); setRequestError(''); }} error={xmlError || requestError} />
 
         <div className="d-flex gap-2 mb-3">
-          <Button variant="primary" size="lg" onClick={handleValidateRequest} disabled={loading} className="flex-grow-1">
+          <Button variant="outline-primary" size="lg" onClick={handleValidateRequest} disabled={loading} className="flex-grow-1 btn-outline-custom">
             {loading ? <Spinner animation="border" size="sm" /> : 'Validate Request'}
           </Button>
-          <Button variant="success" size="lg" onClick={handleValidateResponse} disabled={loading} className="flex-grow-1">
+          <Button variant="primary" size="lg" onClick={handleValidateResponse} disabled={loading} className="flex-grow-1 btn-primary-custom">
             {loading ? <Spinner animation="border" size="sm" /> : 'Validate Response'}
           </Button>
         </div>
@@ -370,14 +339,7 @@ function App() {
           </Col>
         </Row>
 
-        <Row>
-          <Col md={12}>
-            <ResponseSchemaPanel
-              schemaContent={activeSchema === 'request' ? requestSchema : (activeSchema === 'response' ? responseSchema : '')}
-              title={activeSchema === 'request' ? 'Request Schema' : (activeSchema === 'response' ? 'Response Schema' : 'Schema')}
-            />
-          </Col>
-        </Row>
+
 
       </Container>
 

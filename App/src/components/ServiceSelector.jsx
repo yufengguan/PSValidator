@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Row, Col } from 'react-bootstrap';
+import { Form, Row, Col, InputGroup } from 'react-bootstrap';
 
 const ServiceSelector = ({ services, onSelectionChange, error }) => {
     const [selectedService, setSelectedService] = useState('');
@@ -36,31 +36,31 @@ const ServiceSelector = ({ services, onSelectionChange, error }) => {
 
     return (
         <Row className="mb-3">
-            <Col md={4}>
-                <Form.Group>
-                    <Form.Label>Web Service</Form.Label>
+            <Col md={3}>
+                <InputGroup>
+                    <InputGroup.Text>Service</InputGroup.Text>
                     <Form.Select value={selectedService} onChange={handleServiceChange}>
-                        <option value="">Select Service...</option>
+                        <option value="">Select...</option>
                         {services.map(s => (
                             <option key={s.ServiceId} value={s.ServiceName}>{s.ServiceName}</option>
                         ))}
                     </Form.Select>
-                </Form.Group>
+                </InputGroup>
             </Col>
-            <Col md={4}>
-                <Form.Group>
-                    <Form.Label>Version</Form.Label>
+            <Col md={2}>
+                <InputGroup>
+                    <InputGroup.Text>Version</InputGroup.Text>
                     <Form.Select value={selectedVersion} onChange={handleVersionChange} disabled={!selectedService}>
-                        <option value="">Select Version...</option>
+                        <option value="">...</option>
                         {currentService?.Versions.map((v, idx) => (
                             <option key={idx} value={getVersionString(v)}>{getVersionString(v)}</option>
                         ))}
                     </Form.Select>
-                </Form.Group>
+                </InputGroup>
             </Col>
-            <Col md={4}>
-                <Form.Group>
-                    <Form.Label>Operation</Form.Label>
+            <Col md={7}>
+                <InputGroup hasValidation>
+                    <InputGroup.Text>Operation</InputGroup.Text>
                     <Form.Select
                         value={selectedOperation}
                         onChange={handleOperationChange}
@@ -75,7 +75,7 @@ const ServiceSelector = ({ services, onSelectionChange, error }) => {
                     <Form.Control.Feedback type="invalid">
                         {error}
                     </Form.Control.Feedback>
-                </Form.Group>
+                </InputGroup>
             </Col>
         </Row>
     );

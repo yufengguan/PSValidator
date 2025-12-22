@@ -1,5 +1,79 @@
 [
   {
+    "ServiceName": "CompanyData",
+    "ServiceId": 120,
+    "Code": "CD",
+    "Versions": [
+      {
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0,
+        "Operations": [
+          {
+            "OperationName": "getAvailablePromoStandardsServices",
+            "RequestSchema": "RequestMethod",
+            "ResponseSchema": "GetAvailablePromoStandardsServicesResponse"
+          },
+          {
+            "OperationName": "getBusinessCharacteristics",
+            "RequestSchema": "RequestMethod",
+            "ResponseSchema": "GetBusinessCharacteristicsResponse"
+          },
+          {
+            "OperationName": "getCertifications",
+            "RequestSchema": "RequestMethod",
+            "ResponseSchema": "GetCertificationsResponse"
+          },
+          {
+            "OperationName": "getCompanyData",
+            "RequestSchema": "RequestMethod",
+            "ResponseSchema": "GetCompanyDataResponse"
+          },
+          {
+            "OperationName": "getContacts",
+            "RequestSchema": "RequestMethod",
+            "ResponseSchema": "GetContactsResponse"
+          },
+          {
+            "OperationName": "getPaymentMethods",
+            "RequestSchema": "RequestMethod",
+            "ResponseSchema": "GetPaymentMethodsResponse"
+          },
+          {
+            "OperationName": "getPaymentTerms",
+            "RequestSchema": "RequestMethod",
+            "ResponseSchema": "GetPaymentTermsResponse"
+          },
+          {
+            "OperationName": "getPhysicalLocations",
+            "RequestSchema": "RequestMethod",
+            "ResponseSchema": "GetPhysicalLocationsResponse"
+          },
+          {
+            "OperationName": "getPolicies",
+            "RequestSchema": "RequestMethod",
+            "ResponseSchema": "GetPoliciesResponse"
+          },
+          {
+            "OperationName": "getPromoStandardsServiceDetails",
+            "RequestSchema": "RequestMethod",
+            "ResponseSchema": "GetPromoStandardsServiceDetailsResponse"
+          },
+          {
+            "OperationName": "getServiceMethods",
+            "RequestSchema": "RequestMethod",
+            "ResponseSchema": "GetServiceMethodsResponse"
+          },
+          {
+            "OperationName": "getShippingMethods",
+            "RequestSchema": "RequestMethod",
+            "ResponseSchema": "GetShippingMethodsResponse"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "ServiceName": "Inventory",
     "ServiceId": 10,
     "Code": "INV",
@@ -354,80 +428,6 @@
             "OperationName": "getServiceMethods",
             "RequestSchema": "GetServiceMethodsRequest",
             "ResponseSchema": "GetServiceMethodsResponse"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "ServiceName": "CompanyData",
-    "ServiceId": 120,
-    "Code": "CD",
-    "Versions": [
-      {
-        "Major": 1,
-        "Minor": 0,
-        "Patch": 0,
-        "Operations": [
-          {
-            "OperationName": "getAvailablePromoStandardsServices",
-            "RequestSchema": "RequestMethod",
-            "ResponseSchema": "GetAvailablePromoStandardsServicesResponse"
-          },
-          {
-            "OperationName": "getBusinessCharacteristics",
-            "RequestSchema": "RequestMethod",
-            "ResponseSchema": "GetBusinessCharacteristicsResponse"
-          },
-          {
-            "OperationName": "getCertifications",
-            "RequestSchema": "RequestMethod",
-            "ResponseSchema": "GetCertificationsResponse"
-          },
-          {
-            "OperationName": "getCompanyData",
-            "RequestSchema": "RequestMethod",
-            "ResponseSchema": "GetCompanyDataResponse"
-          },
-          {
-            "OperationName": "getContacts",
-            "RequestSchema": "RequestMethod",
-            "ResponseSchema": "GetContactsResponse"
-          },
-          {
-            "OperationName": "getPaymentMethods",
-            "RequestSchema": "RequestMethod",
-            "ResponseSchema": "GetPaymentMethodsResponse"
-          },
-          {
-            "OperationName": "getPaymentTerms",
-            "RequestSchema": "RequestMethod",
-            "ResponseSchema": "GetPaymentTermsResponse"
-          },
-          {
-            "OperationName": "getPhysicalLocations",
-            "RequestSchema": "RequestMethod",
-            "ResponseSchema": "GetPhysicalLocationsResponse"
-          },
-          {
-            "OperationName": "getPolicies",
-            "RequestSchema": "RequestMethod",
-            "ResponseSchema": "GetPoliciesResponse"
-          },
-          {
-            "OperationName": "getPromoStandardsServiceDetails",
-            "RequestSchema": "RequestMethod",
-            "ResponseSchema": "GetPromoStandardsServiceDetailsResponse"
-          },
-          {
-            "OperationName": "getServiceMethods",
-            "RequestSchema": "RequestMethod",
-            "ResponseSchema": "GetServiceMethodsResponse"
-          },
-          {
-            "OperationName": "getShippingMethods",
-            "RequestSchema": "RequestMethod",
-            "ResponseSchema": "GetShippingMethodsResponse"
           }
         ]
       }

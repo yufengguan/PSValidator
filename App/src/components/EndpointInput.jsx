@@ -1,12 +1,12 @@
 import React from 'react';
-import { Form, Row, Col } from 'react-bootstrap';
+import { Form, Row, Col, InputGroup } from 'react-bootstrap';
 
 const EndpointInput = ({ endpoint, onChange, error }) => {
     return (
         <Row className="mb-3">
             <Col>
-                <Form.Group>
-                    <Form.Label>Endpoint URL</Form.Label>
+                <InputGroup hasValidation>
+                    <InputGroup.Text>Endpoint URL</InputGroup.Text>
                     <Form.Control
                         type="text"
                         placeholder="https://..."
@@ -17,7 +17,7 @@ const EndpointInput = ({ endpoint, onChange, error }) => {
                     <Form.Control.Feedback type="invalid">
                         {error}
                     </Form.Control.Feedback>
-                </Form.Group>
+                </InputGroup>
             </Col>
         </Row>
     );
