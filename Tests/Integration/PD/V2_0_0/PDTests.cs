@@ -96,7 +96,7 @@ public class PDTests : ServiceTestBase
             Encoding.UTF8,
             "application/json");
 
-        var response = await _client.PostAsync("/api/Validator/validate", content);
+        var response = await _client.PostAsync("/api/Validator/validate-response", content);
         
         if (response.StatusCode != HttpStatusCode.OK)
         {
