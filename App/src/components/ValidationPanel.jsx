@@ -2,6 +2,9 @@ import React from 'react';
 import { Card, Alert } from 'react-bootstrap';
 
 const ValidationPanel = ({ result }) => {
+    // Debug log
+    console.log("ValidationPanel Result:", result);
+
     const getTitle = () => {
         if (!result) return "Validation Results";
         const baseTitle = result.type ? `${result.type} Validation Results` : "Validation Results";

@@ -1,6 +1,11 @@
 using PromoStandards.Validator.Api.Services;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure Serilog
+builder.Host.UseSerilog((context, services, configuration) => configuration
+    .ReadFrom.Configuration(context.Configuration));
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -25,6 +30,8 @@ app.UseSwaggerUI(c =>
 
 
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+app.UseSerilogRequestLogging();
 
 app.UseAuthorization();
 

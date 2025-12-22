@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Card } from 'react-bootstrap';
 
-const ResponsePanel = ({ xmlContent }) => {
+const ResponsePanel = ({ xmlContent, className = "mb-3" }) => {
     const formatXml = (xml) => {
         if (!xml) return '';
         try {
@@ -38,7 +38,7 @@ const ResponsePanel = ({ xmlContent }) => {
     };
 
     return (
-        <Card className="mb-3">
+        <Card className={className}>
             <Card.Header>Response Body</Card.Header>
             <Card.Body style={{ padding: 0 }}>
                 <Form.Control

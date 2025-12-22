@@ -15,6 +15,9 @@ function App() {
   const [endpoint, setEndpoint] = useState('');
   const [requestXml, setRequestXml] = useState('');
   const [responseXml, setResponseXml] = useState('');
+  const [requestSchema, setRequestSchema] = useState('');
+  const [responseSchema, setResponseSchema] = useState('');
+  const [activeSchema, setActiveSchema] = useState('none');
 
   const [showAboutModal, setShowAboutModal] = useState(false);
   const [validationResult, setValidationResult] = useState(null);
@@ -330,9 +333,29 @@ function App() {
 
         <Row>
           <Col md={12}>
-            {validationResult?.type === 'Response' && <ResponsePanel xmlContent={responseXml} />}
+            {validationResult?.type === 'Response' && <ResponsePanel xmlContent={responseXml} className="mb-0" />}
           </Col>
         </Row>
+
+        {validationResult?.responseTimeMs > 0 && (
+          <Row className="mb-3">
+            <Col md={12}>
+              <div className="d-flex justify-content-between align-items-center px-2 py-1"
+                style={{
+                  background: '#f8f9fa',
+                  border: '1px solid #dee2e6',
+                  borderTop: 'none',
+                  borderBottomLeftRadius: '0.25rem',
+                  borderBottomRightRadius: '0.25rem',
+                  fontSize: '0.85rem'
+                }}>
+                <strong>Performance Metrics</strong>
+                <span>Time: <strong>{validationResult.responseTimeMs.toFixed(0)} ms</strong></span>
+              </div>
+            </Col>
+          </Row>
+        )}
+
         <Row>
           <Col md={12}>
             <ValidationPanel result={filteredValidationResult} />

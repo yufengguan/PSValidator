@@ -11,7 +11,21 @@ services:
       - DocsPath=/app/Docs
     volumes:
       - ./Docs:/app/Docs
+    depends_on:
+      - seq
     restart: always
+
+  seq:
+    image: datalust/seq:latest
+    container_name: psvalidator-seq
+    environment:
+      - ACCEPT_EULA=Y
+      - BASE_URI=/seq/
+    ports:
+      - "5341:80"
+    restart: unless-stopped
+    volumes:
+      - ./seq-data:/data
 
   app:
     image: ghcr.io/yufengguan/psvalidator-app:latest

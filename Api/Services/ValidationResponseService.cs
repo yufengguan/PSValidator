@@ -1,5 +1,6 @@
 using PromoStandards.Validator.Api.Models;
 using System.Xml;
+using System.Diagnostics;
 
 namespace PromoStandards.Validator.Api.Services;
 
@@ -21,6 +22,7 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
 
     public async Task<ValidationResult> ValidateResponse(string xmlContent, string serviceName, string version, string operationName, string endpoint)
     {
+        var sw = Stopwatch.StartNew();
         var result = new ValidationResult();
         string contentToValidate = xmlContent;
 
@@ -121,13 +123,24 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
             result.IsValid = validationResult.IsValid;
             result.ValidationResultMessages = validationResult.ValidationResultMessages;
             
+            sw.Stop();
+            result.ResponseTimeMs = sw.Elapsed.TotalMilliseconds;
+            
+            if (!result.IsValid)
+            {
+               _logger.LogWarning("Response Validation Failed for {Service} {Version} {Operation} Endpoint: {Endpoint}. Errors: {Errors}", serviceName, version, operationName, endpoint, string.Join("; ", result.ValidationResultMessages));
+            }
+            
             return result;
 
         }
         catch (Exception ex)
         {
+            sw.Stop();
+            result.ResponseTimeMs = sw.Elapsed.TotalMilliseconds;
             result.IsValid = false;
             result.ValidationResultMessages.Add($"System Error: {ex.Message}");
+            _logger.LogError(ex, "System Error during validation for {Service} {Version} {Operation} Endpoint: {Endpoint}", serviceName, version, operationName, endpoint);
             return result;
         }
     }

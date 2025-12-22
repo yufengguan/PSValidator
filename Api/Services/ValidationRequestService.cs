@@ -1,6 +1,7 @@
 using PromoStandards.Validator.Api.Models;
 using System.Xml.Schema;
 using System.Xml;
+using System.Diagnostics;
 
 namespace PromoStandards.Validator.Api.Services;
 
@@ -20,6 +21,7 @@ public class ValidationRequestService : BaseValidationService, IValidationReques
 
     public Task<ValidationResult> ValidateRequest(string xmlContent, string serviceName, string version, string operationName)
     {
+        var sw = Stopwatch.StartNew();
         var result = new ValidationResult();
         
         // Format XML for line numbers in errors
@@ -53,6 +55,14 @@ public class ValidationRequestService : BaseValidationService, IValidationReques
         result.IsValid = validationResult.IsValid;
         result.ValidationResultMessages = validationResult.ValidationResultMessages;
         
+        sw.Stop();
+        result.ResponseTimeMs = sw.Elapsed.TotalMilliseconds;
+        
+        if (!result.IsValid)
+        {
+            _logger.LogWarning("Request Validation Failed for {Service} {Version} {Operation}. Errors: {Errors}", serviceName, version, operationName, string.Join("; ", result.ValidationResultMessages));
+        }
+
         return Task.FromResult(result);
     }
     
