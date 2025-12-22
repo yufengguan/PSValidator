@@ -37,11 +37,13 @@ const ValidationPanel = ({ result }) => {
                                 <li key={idx}>{cleanMessage(msg)}</li>
                             ))}
                         </ul>
-                        <div style={{ fontSize: '0.9rem', borderTop: '1px solid #f5c6cb', paddingTop: '0.5rem', marginTop: '0.5rem' }}>
-                            <small>
-                                <strong>Note:</strong> Some structural errors may prevent further validation. If you still have issues after fixing the above, please re-validate to uncover deeper errors.
-                            </small>
-                        </div>
+                        {result.validationResultMessages.some(msg => msg !== "Request Body cannot be empty.") && (
+                            <div style={{ fontSize: '0.9rem', borderTop: '1px solid #f5c6cb', paddingTop: '0.5rem', marginTop: '0.5rem' }}>
+                                <small>
+                                    <strong>Note:</strong> Some structural errors may prevent further validation. If you still have issues after fixing the above, please re-validate to uncover deeper errors.
+                                </small>
+                            </div>
+                        )}
                     </Alert>
                 )}
             </Card.Body>

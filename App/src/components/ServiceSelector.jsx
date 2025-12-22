@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 
-const ServiceSelector = ({ services, onSelectionChange }) => {
+const ServiceSelector = ({ services, onSelectionChange, error }) => {
     const [selectedService, setSelectedService] = useState('');
     const [selectedVersion, setSelectedVersion] = useState('');
     const [selectedOperation, setSelectedOperation] = useState('');
@@ -61,12 +61,20 @@ const ServiceSelector = ({ services, onSelectionChange }) => {
             <Col md={4}>
                 <Form.Group>
                     <Form.Label>Operation</Form.Label>
-                    <Form.Select value={selectedOperation} onChange={handleOperationChange} disabled={!selectedVersion}>
+                    <Form.Select
+                        value={selectedOperation}
+                        onChange={handleOperationChange}
+                        disabled={!selectedVersion}
+                        isInvalid={!!error}
+                    >
                         <option value="">Select Operation...</option>
                         {currentVersion?.Operations.map((op, idx) => (
                             <option key={idx} value={op.OperationName}>{op.OperationName}</option>
                         ))}
                     </Form.Select>
+                    <Form.Control.Feedback type="invalid">
+                        {error}
+                    </Form.Control.Feedback>
                 </Form.Group>
             </Col>
         </Row>

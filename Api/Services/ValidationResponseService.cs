@@ -159,32 +159,7 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
         return null;
     }
 
-    private string ExtractSoapBody(string soapResponse)
-    {
-        try
-        {
-            var doc = new XmlDocument();
-            doc.PreserveWhitespace = true; 
-            doc.LoadXml(soapResponse);
-            
-            var bodyNode = doc.SelectSingleNode("//*[local-name()='Body']");
-            if (bodyNode != null && bodyNode.HasChildNodes)
-            {
-                foreach (XmlNode child in bodyNode.ChildNodes)
-                {
-                    if (child.NodeType == XmlNodeType.Element)
-                    {
-                        return child.OuterXml;
-                    }
-                }
-            }
-            return soapResponse; 
-        }
-        catch
-        {
-            return soapResponse; 
-        }
-    }
+
 
     private string ParseSoapFault(string xml)
     {

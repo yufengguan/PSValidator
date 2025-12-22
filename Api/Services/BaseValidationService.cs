@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Xml;
 using System.Xml.Schema;
+using System.Xml.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PromoStandards.Validator.Api.Models;
@@ -71,21 +72,15 @@ public abstract class BaseValidationService
     {
         var result = new ValidationResult { IsValid = true };
         
-        var settings = new XmlReaderSettings();
-        settings.ValidationType = ValidationType.Schema;
-        settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessInlineSchema;
-        settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessSchemaLocation;
-        // Don't report warnings, only errors
-        
         var resolver = new XmlUrlResolver();
         var schemaDirectory = Path.GetDirectoryName(schemaPath);
         var directoryUri = new Uri(Path.GetFullPath(schemaDirectory) + Path.DirectorySeparatorChar);
-        settings.XmlResolver = resolver;
+
+        var schemaSet = new XmlSchemaSet();
+        schemaSet.XmlResolver = resolver;
 
         try
         {
-            var schemaSet = new XmlSchemaSet();
-            schemaSet.XmlResolver = resolver;
             using (var schemaReader = XmlReader.Create(schemaPath, new XmlReaderSettings { XmlResolver = resolver }))
             {
                 var schema = XmlSchema.Read(schemaReader, null);
@@ -93,7 +88,6 @@ public abstract class BaseValidationService
                 schemaSet.Add(schema);
             }
             schemaSet.Compile();
-            settings.Schemas = schemaSet;
         }
         catch (Exception ex)
         {
@@ -101,28 +95,33 @@ public abstract class BaseValidationService
             result.ValidationResultMessages.Add($"Error loading schema: {ex.Message}");
             return result;
         }
-        
-        settings.ValidationEventHandler += (sender, args) =>
-        {
-            if (args.Severity == XmlSeverityType.Error)
-            {
-                result.IsValid = false;
-                result.ValidationResultMessages.Add($"{args.Severity}: {args.Message} at Line {args.Exception.LineNumber}, Pos {args.Exception.LinePosition}");
-            }
-        };
 
         try
         {
-            using (var stringReader = new StringReader(xmlContent))
-            using (var xmlReader = XmlReader.Create(stringReader, settings))
+            // Use XDocument for validation to avoid double-validation and retain DOM context
+            // LoadOptions.SetLineInfo allows us to report line numbers during DOM validation
+            var doc = System.Xml.Linq.XDocument.Parse(xmlContent, System.Xml.Linq.LoadOptions.SetLineInfo);
+            
+            // XDocument.Validate extension method
+            doc.Validate(schemaSet, (sender, args) =>
             {
-                while (xmlReader.Read()) { }
-            }
+                // Capture both Errors and Warnings
+                if (args.Severity == XmlSeverityType.Error)
+                {
+                    result.IsValid = false;
+                }
+                result.ValidationResultMessages.Add($"{args.Severity}: {args.Message} at Line {args.Exception.LineNumber}, Pos {args.Exception.LinePosition}");
+            });
         }
-        catch (XmlException ex)
+        catch (System.Xml.XmlException ex)
         {
             result.IsValid = false;
             result.ValidationResultMessages.Add($"XML Parsing Error: {ex.Message} at Line {ex.LineNumber}, Pos {ex.LinePosition}");
+        }
+        catch (Exception ex)
+        {
+            result.IsValid = false;
+            result.ValidationResultMessages.Add($"Validation Error: {ex.Message}");
         }
 
         return result;
@@ -170,6 +169,39 @@ public abstract class BaseValidationService
         {
             _logger.LogError(ex, "FormatXml Failed");
             return xml;
+        }
+    }
+
+    protected string ExtractSoapBody(string soapXml)
+    {
+        try
+        {
+            // Simple check to avoid parsing if it doesn't look like SOAP
+            if (string.IsNullOrWhiteSpace(soapXml) || !soapXml.Contains(":Envelope") || !soapXml.Contains(":Body"))
+            {
+                return soapXml;
+            }
+
+            var doc = new XmlDocument();
+            doc.PreserveWhitespace = true; // Important to keep formatting
+            doc.LoadXml(soapXml);
+            
+            var bodyNode = doc.SelectSingleNode("//*[local-name()='Body']");
+            if (bodyNode != null && bodyNode.HasChildNodes)
+            {
+                foreach (XmlNode child in bodyNode.ChildNodes)
+                {
+                    if (child.NodeType == XmlNodeType.Element)
+                    {
+                        return child.OuterXml;
+                    }
+                }
+            }
+            return soapXml; 
+        }
+        catch
+        {
+            return soapXml; 
         }
     }
 

@@ -24,7 +24,11 @@ public class ValidationRequestService : BaseValidationService, IValidationReques
         
         // Format XML for line numbers in errors
         string contentToValidate = FormatXml(xmlContent);
-        result.ResponseContent = contentToValidate; // Use formatted XML as the content to return/display
+        
+        // Extract SOAP Body if present to avoid schema warnings
+        contentToValidate = ExtractSoapBody(contentToValidate);
+        
+        result.ResponseContent = contentToValidate; // Use formatted/extracted XML as the content to return/display
 
         // 1. Find Schema Name
         var schemaName = GetRequestSchemaName(serviceName, version, operationName);

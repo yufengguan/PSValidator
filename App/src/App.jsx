@@ -23,6 +23,11 @@ function App() {
   const [validationResult, setValidationResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // New error states for inline validation
+  const [operationError, setOperationError] = useState('');
+  const [endpointError, setEndpointError] = useState('');
+  const [requestError, setRequestError] = useState('');
+
   const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
   useEffect(() => {
@@ -33,11 +38,15 @@ function App() {
   }, []);
 
   const handleSelectionChange = (newSelection) => {
+    setOperationError(''); // Clear error on change
+
     // 3.3.2: When Service changes, clear all panels and Endpoint
     if (newSelection.service !== selection.service) {
       setSelection(newSelection);
       setEndpoint('');
+      setEndpointError('');
       setRequestXml('');
+      setRequestError('');
       setResponseXml('');
       setRequestSchema('');
       setResponseSchema('');
@@ -59,6 +68,7 @@ function App() {
           .then(data => {
             if (data.xmlContent) {
               setRequestXml(data.xmlContent);
+              setRequestError('');
             }
           })
           .catch(err => {
@@ -105,6 +115,36 @@ function App() {
   };
 
   const handleValidateResponse = async () => {
+    // Reset inline errors
+    setOperationError('');
+    setEndpointError('');
+    setRequestError('');
+
+    let hasError = false;
+
+    // Validation checks
+    if (!selection.operation) {
+      setOperationError("Please select a Service Operation first.");
+      hasError = true;
+    }
+    if (!endpoint) {
+      setEndpointError("Please enter an Endpoint URL.");
+      hasError = true;
+    }
+
+    // Check validation blocks
+    if (!requestXml) {
+      setRequestError("Request Body cannot be empty.");
+      hasError = true;
+    } else if (xmlError) {
+      // Keep showing xmlError via derived state, but we stop submission
+      hasError = true;
+    }
+
+    // If inline errors exists, we stop here. 
+    // If requestXml errors exists, validationResult is set, so we also stop.
+    if (hasError) return;
+
     setLoading(true);
     setValidationResult(null);
 
@@ -153,6 +193,26 @@ function App() {
   };
 
   const handleValidateRequest = async () => {
+    setOperationError('');
+    setRequestError('');
+    let hasError = false;
+
+    // Validation checks
+    if (!selection.operation) {
+      setOperationError("Please select a Service Operation first.");
+      hasError = true;
+    }
+
+    if (!requestXml) {
+      setRequestError("Request Body cannot be empty.");
+      hasError = true;
+    } else if (xmlError) {
+      // Keep showing xmlError via derived state
+      hasError = true;
+    }
+
+    if (hasError) return;
+
     setLoading(true);
     setValidationResult(null);
 
@@ -243,12 +303,6 @@ function App() {
     validationResultMessages: (validationResult.validationResultMessages || []).filter(m => !m.startsWith('HTTP Error') && !m.startsWith('Network Error'))
   } : null;
 
-  // Request Validation: Needs Operation + XML
-  const isRequestValid = selection.operation && requestXml && !xmlError;
-
-  // Response Validation: Needs Request Valid + Endpoint
-  const isResponseValid = isRequestValid && endpoint && !urlError;
-
   return (
     <>
       {/* Header with PromoStandards Logo */}
@@ -276,17 +330,25 @@ function App() {
       </header>
 
       <Container fluid style={{ paddingLeft: '2rem', paddingRight: '2rem', marginTop: '2rem' }}>
-        <ServiceSelector services={services} onSelectionChange={handleSelectionChange} />
+        <ServiceSelector
+          services={services}
+          onSelectionChange={handleSelectionChange}
+          error={operationError} // Pass error to selector
+        />
 
-        <EndpointInput endpoint={endpoint} onChange={setEndpoint} error={urlError} />
+        <EndpointInput
+          endpoint={endpoint}
+          onChange={(val) => { setEndpoint(val); setEndpointError(''); }} // Clear error on input
+          error={urlError || endpointError} // Prefer urlError derived check, then required check
+        />
 
-        <RequestPanel xmlContent={requestXml} onChange={setRequestXml} error={xmlError} />
+        <RequestPanel xmlContent={requestXml} onChange={(val) => { setRequestXml(val); setRequestError(''); }} error={xmlError || requestError} />
 
         <div className="d-flex gap-2 mb-3">
-          <Button variant="primary" size="lg" onClick={handleValidateRequest} disabled={!isRequestValid || loading} className="flex-grow-1">
+          <Button variant="primary" size="lg" onClick={handleValidateRequest} disabled={loading} className="flex-grow-1">
             {loading ? <Spinner animation="border" size="sm" /> : 'Validate Request'}
           </Button>
-          <Button variant="success" size="lg" onClick={handleValidateResponse} disabled={!isResponseValid || loading} className="flex-grow-1">
+          <Button variant="success" size="lg" onClick={handleValidateResponse} disabled={loading} className="flex-grow-1">
             {loading ? <Spinner animation="border" size="sm" /> : 'Validate Response'}
           </Button>
         </div>
