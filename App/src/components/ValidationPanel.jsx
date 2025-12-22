@@ -2,11 +2,29 @@ import React from 'react';
 import { Card, Alert } from 'react-bootstrap';
 
 const ValidationPanel = ({ result }) => {
-    const title = result?.type ? `${result.type} Validation Results` : "Validation Results";
+    const getTitle = () => {
+        if (!result) return "Validation Results";
+        const baseTitle = result.type ? `${result.type} Validation Results` : "Validation Results";
+        const status = result.isValid ? "Success" : "Failed";
+        return `${baseTitle}: ${status}`;
+    };
+
+    const cleanMessage = (msg) => {
+        if (!msg) return "";
+        // Remove "Error:" prefix if present
+        return msg.replace(/^Error:\s*/i, '');
+    };
+
+    const getHeaderClass = () => {
+        if (!result) return "";
+        return result.isValid ? "bg-success text-white" : "bg-danger text-white";
+    };
 
     return (
         <Card className="mb-3">
-            <Card.Header><strong>{title}</strong></Card.Header>
+            <Card.Header className={getHeaderClass()}>
+                <strong>{getTitle()}</strong>
+            </Card.Header>
             <Card.Body style={{ maxHeight: '300px', overflowY: 'auto' }}>
                 {!result ? (
                     <div className="text-muted">No validation performed yet.</div>
@@ -14,12 +32,16 @@ const ValidationPanel = ({ result }) => {
                     <Alert variant="success">Validation Successful</Alert>
                 ) : (
                     <Alert variant="danger">
-                        <Alert.Heading>Validation Failed</Alert.Heading>
-                        <ul style={{ marginBottom: 0 }}>
+                        <ul style={{ marginBottom: '1rem', paddingLeft: '1.2rem' }}>
                             {result.validationResultMessages.map((msg, idx) => (
-                                <li key={idx}>{msg}</li>
+                                <li key={idx}>{cleanMessage(msg)}</li>
                             ))}
                         </ul>
+                        <div style={{ fontSize: '0.9rem', borderTop: '1px solid #f5c6cb', paddingTop: '0.5rem', marginTop: '0.5rem' }}>
+                            <small>
+                                <strong>Note:</strong> Some structural errors may prevent further validation. If you still have issues after fixing the above, please re-validate to uncover deeper errors.
+                            </small>
+                        </div>
                     </Alert>
                 )}
             </Card.Body>
