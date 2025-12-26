@@ -26,6 +26,7 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
         var sw = Stopwatch.StartNew();
         var result = new ValidationResult();
         string contentToValidate = xmlContent;
+        double externalDurationMs = -1; // Default -1 indicates no external call was made
 
         try
         {
@@ -57,7 +58,12 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
                         client.DefaultRequestHeaders.Add("SOAPAction", $"\"{operationName}\"");
                     }
                     
+                    // Track External Call Duration
+                    var externalSw = Stopwatch.StartNew();
                     var response = await client.PostAsync(endpoint, content);
+                    externalSw.Stop();
+                    externalDurationMs = externalSw.Elapsed.TotalMilliseconds;
+
                     var responseString = await response.Content.ReadAsStringAsync();
                     
                     result.ResponseContent = responseString;
@@ -67,6 +73,10 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
                     {
                         result.ValidationResultMessages.Add($"HTTP Error: {response.StatusCode} - {responseString}");
                         result.IsValid = false;
+                        
+                        _logger.LogInformation("ValidationCompleted: {Service} {Version} {Operation} IsValid:{IsValid} Errors:{ErrorCount} DurationMs:{DurationMs} ExternalDurationMs:{ExternalDurationMs}", 
+                            serviceName, version, operationName, result.IsValid, result.ValidationResultMessages.Count, sw.Elapsed.TotalMilliseconds, externalDurationMs);
+                        
                         return result;
                     }
                 }
@@ -74,6 +84,10 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
                 {
                     result.IsValid = false;
                     result.ValidationResultMessages.Add($"Error calling endpoint: {ex.Message}");
+                    
+                    _logger.LogInformation("ValidationCompleted: {Service} {Version} {Operation} IsValid:{IsValid} Errors:{ErrorCount} DurationMs:{DurationMs} ExternalDurationMs:{ExternalDurationMs}", 
+                        serviceName, version, operationName, result.IsValid, result.ValidationResultMessages.Count, sw.Elapsed.TotalMilliseconds, externalDurationMs);
+                        
                     return result;
                 }
             }
@@ -176,8 +190,8 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
                _logger.LogWarning("Response Validation Failed for {Service} {Version} {Operation} Endpoint: {Endpoint}. Errors: {Errors}", serviceName, version, operationName, endpoint, string.Join("; ", result.ValidationResultMessages));
             }
             
-            _logger.LogInformation("ValidationCompleted: {Service} {Version} {Operation} IsValid:{IsValid} Errors:{ErrorCount} DurationMs:{DurationMs}", 
-                serviceName, version, operationName, result.IsValid, result.ValidationResultMessages.Count, result.ResponseTimeMs);
+            _logger.LogInformation("ValidationCompleted: {Service} {Version} {Operation} IsValid:{IsValid} Errors:{ErrorCount} DurationMs:{DurationMs} ExternalDurationMs:{ExternalDurationMs}", 
+                serviceName, version, operationName, result.IsValid, result.ValidationResultMessages.Count, result.ResponseTimeMs, externalDurationMs);
             
             return result;
 

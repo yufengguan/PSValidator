@@ -51,3 +51,14 @@ select mean(DurationMs) as AvgDurationMs
 from stream
 where EventType = 'ValidationCompleted'
 ```
+
+## 6. External Helper Response Time
+**Chart Type:** Timeseries
+**Explanation:** Time spent waiting for the external endpoint (e.g. your application) to respond.
+**Query:**
+```sql
+select mean(ExternalDurationMs) as AvgExternalDurationMs
+from stream
+where EventType = 'ValidationCompleted' and ExternalDurationMs > -1
+group by time(1h)
+```
