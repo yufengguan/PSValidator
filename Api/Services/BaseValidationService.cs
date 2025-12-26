@@ -167,7 +167,7 @@ public abstract class BaseValidationService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "FormatXml Failed");
+            _logger.LogWarning(ex, "FormatXml Failed for XML: {XmlContent}", xml.Length > 1000 ? xml.Substring(0, 1000) : xml);
             return xml;
         }
     }

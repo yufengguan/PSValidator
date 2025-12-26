@@ -1,31 +1,41 @@
-## TODO
+# Project Roadmap & Todo
 
-### 1. Complete Missing Features from Requirements
-- [ ] Review `Docs\PS_WebServiceValidator_Requirements_V02.md` for any unimplemented features
-- [ ] Known issues:
-  - Error handling for edge cases
-  - Implement logging for usage analytics 
-  - Performance monitoring and logging [optional]
+## 🚀 Current Focus (v1.0 Release Candidate)
 
-### 2. Update Documentation
-- [ ] Review existing documentation
-- [ ] Document how to add new PromoStandards service or version [optional]
+### Integration & Reliability
+- [x] **Fix Integration Tests (PPC)**
+  - [x] Update `ExpectedError` values in `Docs/MockXmlResponses/PPC/mock_responses.json`
+  - [x] Verify all PPC test cases pass with correct error matching
+- [ ] **Expand Test Coverage**
+  - [ ] Add invalid mock response cases for other services (Inventory, OrderStatus, etc.)
+  - [ ] Verify validation logic for all new services
 
-### 3. Fix Integration Tests
-- [ ] Update `ExpectedError` values in `Docs/MockXmlResponses/PPC/mock_responses.json` to match actual validation error messages
-- [ ] Verify all PPC test cases pass with correct error matching
-- [ ] Expand test coverage for other services
+### Deployment & DevOps
+- [ ] **Automated Deployment**
+  - [ ] Configure CI/CD pipeline in Bitbucket
+  - [ ] Finalize deployment scripts for PromoStandards.org environment
+- [x] **StubServer Configuration**
+  - [x] Ensure correct version routing (`api/{Service}/{Version}/{ErrorCode}`)
+  - [x] Secure sensitive configuration (gitignore)
 
-### 4. Update App Unit Tests [optional]
+## 📋 Backlog (Future Enhancements)
 
-### 5. Refactor [optional]
-- [ ] Review and optimize Docker images
-- [ ] Set up automated testing in CI/CD pipeline
+### Documentation
+- [ ] Review and update `Docs/` to reflect latest architecture
+- [ ] Create guide: "How to add a new PromoStandards Service/Version"
 
-### 6. Security [optional]
-- [ ] Add access limits to API
-- [ ] Add rate limiting to API
+### Application Features
+- [ ] **Error Handling**: Improve user-facing error messages for edge cases
+- [ ] **Analytics**: Implement logging for usage tracking (optional)
+- [ ] **Performance**: Add response time monitoring and alerting (optional)
 
-### 7. Deployment
-- [ ] Deploy to PromoStandards.org environment
-- [ ] Set up automated deployment in CI/CD pipeline in Bitbucket
+### Security & Optimization
+- [ ] Review and optimize Docker image sizes
+- [ ] Implement API rate limiting
+- [ ] Add access control/authentication layers if public
+
+## ✅ Completed
+- [x] **Core Validation Logic**: Validates XML against XSD schemas
+- [x] **StubServer**: Functional mock server for local testing
+- [x] **Robustness Tests**: Handling of malformed XML, invalid types, and empty bodies
+- [x] **Project Structure**: Organized Tests, Docs, and Source code

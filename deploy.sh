@@ -29,6 +29,11 @@ if [ -z "$STUBSERVER_DOMAIN" ]; then
     STUBSERVER_DOMAIN="StubServer.${DOMAIN}"
 fi
 
+# Default Seq domain if not set
+if [ -z "$SEQ_DOMAIN" ]; then
+    SEQ_DOMAIN="Logs.${DOMAIN}"
+fi
+
 echo "Starting deployment..."
 
 # 1. Install Docker if not present
@@ -121,9 +126,12 @@ NGINX_API_CONF="./nginx/nginx-api.conf"
 NGINX_API_TEMPLATE="./nginx/nginx-api.conf.template"
 NGINX_STUBSERVER_CONF="./nginx/nginx-stubserver.conf"
 NGINX_STUBSERVER_TEMPLATE="./nginx/nginx-stubserver.conf.template"
+NGINX_SEQ_CONF="./nginx/nginx-seq.conf"
+NGINX_SEQ_TEMPLATE="./nginx/nginx-seq.conf.template"
 CERT_PATH="./certbot/conf/live/${DOMAIN}/fullchain.pem"
 API_CERT_PATH="./certbot/conf/live/${API_DOMAIN}/fullchain.pem"
 STUBSERVER_CERT_PATH="./certbot/conf/live/${STUBSERVER_DOMAIN}/fullchain.pem"
+SEQ_CERT_PATH="./certbot/conf/live/${SEQ_DOMAIN}/fullchain.pem"
 
 # Ensure nginx directory exists
 mkdir -p nginx
@@ -135,9 +143,12 @@ sed -e "s/DOMAIN_PLACEHOLDER/${DOMAIN}/g" \
     "$NGINX_HTTPS_TEMPLATE" > "$NGINX_HTTPS"
 
 # Generate nginx-stubserver.conf from template
-echo "Generating StubServer nginx configuration with domain: ${STUBSERVER_DOMAIN}"
-sed -e "s/STUBSERVER_DOMAIN_PLACEHOLDER/${STUBSERVER_DOMAIN}/g" \
     "$NGINX_STUBSERVER_TEMPLATE" > "$NGINX_STUBSERVER_CONF"
+
+# Generate nginx-seq.conf from template
+echo "Generating Seq nginx configuration with domain: ${SEQ_DOMAIN}"
+sed -e "s/SEQ_DOMAIN_PLACEHOLDER/${SEQ_DOMAIN}/g" \
+    "$NGINX_SEQ_TEMPLATE" > "$NGINX_SEQ_CONF"
 
 # Check if certificates exist (use sudo to check root-owned files)
 CERTS_EXIST=true
@@ -154,8 +165,11 @@ else
         echo "API domain SSL certificate not found."
         CERTS_EXIST=false
     fi
-    if ! sudo test -f "$STUBSERVER_CERT_PATH"; then
         echo "StubServer domain SSL certificate not found."
+        CERTS_EXIST=false
+    fi
+    if ! sudo test -f "$SEQ_CERT_PATH"; then
+        echo "Seq domain SSL certificate not found."
         CERTS_EXIST=false
     fi
 
@@ -190,6 +204,7 @@ if [ "$CERTS_EXIST" = false ]; then
     # Disable API and StubServer config temporarily to prevent Nginx crash due to missing certs
     echo "# Temporary empty config for bootstrap" > "$NGINX_API_CONF"
     echo "# Temporary empty config for bootstrap" > "$NGINX_STUBSERVER_CONF"
+    echo "# Temporary empty config for bootstrap" > "$NGINX_SEQ_CONF"
     
     # Start Nginx
     if docker compose version &> /dev/null; then
@@ -217,12 +232,16 @@ if [ "$CERTS_EXIST" = false ]; then
         docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${API_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
         # Request certificate for StubServer domain
         docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${STUBSERVER_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
+        # Request certificate for Seq domain
+        docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${SEQ_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
     else
         docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot $DOMAIN_ARGS --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
         # Request certificate for API domain
         docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${API_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
         # Request certificate for StubServer domain
         docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${STUBSERVER_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
+        # Request certificate for Seq domain
+        docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot -d ${SEQ_DOMAIN} --email ${EMAIL} --agree-tos --no-eff-email --non-interactive --keep-until-expiring --expand
     fi
     
     # 3. Switch to HTTPS config
@@ -238,6 +257,10 @@ if [ "$CERTS_EXIST" = false ]; then
     STUBSERVER_DOMAIN_LOWER=$(echo "$STUBSERVER_DOMAIN" | tr '[:upper:]' '[:lower:]')
     sed -e "s/STUBSERVER_DOMAIN_PLACEHOLDER/${STUBSERVER_DOMAIN_LOWER}/g" \
         "$NGINX_STUBSERVER_TEMPLATE" > "$NGINX_STUBSERVER_CONF"
+
+    echo "Restoring Seq nginx configuration with SSL..."
+    sed -e "s/SEQ_DOMAIN_PLACEHOLDER/${SEQ_DOMAIN}/g" \
+        "$NGINX_SEQ_TEMPLATE" > "$NGINX_SEQ_CONF"
     
     # Reload Nginx
     if docker compose version &> /dev/null; then
@@ -259,3 +282,4 @@ fi
 
 echo "Deployment complete! App should be running on https://${DOMAIN}"
 echo "StubServer should be running on https://${STUBSERVER_DOMAIN}"
+echo "Seq should be running on https://${SEQ_DOMAIN}"

@@ -20,7 +20,7 @@ Api/.vs/
 Api/*.user
 Api/*.suo
 Api/*.userprefs
-Api/appsettings.Development.json
+**/appsettings.Development.json
 Api/appsettings.*.json.local
 Api/*.db
 Api/*.pdb
@@ -61,6 +61,7 @@ App/tsconfig.tsbuildinfo
 
 # --- Docs ---
 Docs/ValidXmlResponses/
+Docs/Guides/
 
 # --- Deployment ---
 deploy.config
@@ -70,6 +71,9 @@ nginx/nginx-https.conf
 nginx/nginx-api.conf
 nginx/nginx-stubserver.conf
 
+# --- Seq ---
+seq-data/
+
 
 # --- Tests ---
 Tests/**/[Bb]in/
@@ -78,4 +82,5 @@ Tests/**/.vs/
 Tests/**/*.user
 Tests/**/*.suo
 Tests/**/TestResults/
+Tests/Integration/*.txt
 

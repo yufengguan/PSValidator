@@ -179,7 +179,7 @@ public class ValidationService : IValidationService
             settingsWithHandler.ValidationType = ValidationType.Schema;
             settingsWithHandler.ValidationFlags |= XmlSchemaValidationFlags.ProcessInlineSchema;
             settingsWithHandler.ValidationFlags |= XmlSchemaValidationFlags.ProcessSchemaLocation;
-            // Don't report warnings - only errors. This allows optional fields to be missing.
+            // Don't report warnings - only errors.
             // settingsWithHandler.ValidationFlags |= XmlSchemaValidationFlags.ReportValidationWarnings;
             
             // CRITICAL: Set the XmlResolver with the base URI to resolve relative schema imports
@@ -189,6 +189,8 @@ public class ValidationService : IValidationService
             var directoryUri = new Uri(Path.GetFullPath(schemaDirectory) + Path.DirectorySeparatorChar);
             settingsWithHandler.XmlResolver = resolver;
             
+            string targetNamespace = null;
+
             // Load the schema with the base URI so imports can be resolved
             try
             {
@@ -199,6 +201,7 @@ public class ValidationService : IValidationService
                     var schema = XmlSchema.Read(schemaReader, null);
                     schema.SourceUri = directoryUri.ToString();
                     schemaSet.Add(schema);
+                    targetNamespace = schema.TargetNamespace;
                 }
                 schemaSet.Compile();
                 settingsWithHandler.Schemas = schemaSet;
@@ -210,6 +213,9 @@ public class ValidationService : IValidationService
                 return result;
             }
             
+            // 4. Verify Root Element Namespace matches Schema TargetNamespace implementation removed as unused
+            // It is handled in ValidationResponseService
+
             settingsWithHandler.ValidationEventHandler += (sender, args) =>
             {
                 // Only report errors, not warnings

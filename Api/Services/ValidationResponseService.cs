@@ -1,5 +1,6 @@
 using PromoStandards.Validator.Api.Models;
 using System.Xml;
+using System.Xml.Schema;
 using System.Diagnostics;
 
 namespace PromoStandards.Validator.Api.Services;
@@ -109,7 +110,7 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
                 return result;
             }
 
-            // 2. Find Schema File
+            // 112. Find Schema File
             var schemaPath = FindSchemaFile(schemaName, version, serviceName);
             if (string.IsNullOrEmpty(schemaPath))
             {
@@ -117,6 +118,50 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
                 result.ValidationResultMessages.Add($"Schema file {schemaName}.xsd not found for version {version}");
                 return result;
             }
+
+            // --- FIX: Verify Root Element Namespace matches Schema TargetNamespace ---
+            // This prevents passing validation when the XML uses a completely different namespace (e.g. 2.0.0 vs 1.0.0)
+            try 
+            {
+                // We need to get the TargetNamespace from the schema first
+                string targetNamespace = null;
+                using (var schemaReader = XmlReader.Create(schemaPath, new XmlReaderSettings { XmlResolver = new XmlUrlResolver() }))
+                {
+                    var schema = XmlSchema.Read(schemaReader, null);
+                    targetNamespace = schema.TargetNamespace;
+                }
+
+                if (!string.IsNullOrEmpty(targetNamespace))
+                {
+                     using (var tempReader = XmlReader.Create(new StringReader(contentToValidate)))
+                     {
+                         if (tempReader.MoveToContent() == XmlNodeType.Element)
+                         {
+                             var actualNamespace = tempReader.NamespaceURI;
+                             if (!string.Equals(actualNamespace, targetNamespace, StringComparison.OrdinalIgnoreCase))
+                             {
+                                 // Tolerance for SOAP Envelopes:
+                                 // If the content is still a SOAP Envelope (meaning extraction failed or wasn't needed),
+                                 // and likely the body is malformed, we shouldn't report "Namespace Mismatch" against the Service Schema
+                                 // because that hides the real "Malformed XML" error that will be caught by ValidateAgainstSchema later.
+                                 if (!string.Equals(actualNamespace, "http://schemas.xmlsoap.org/soap/envelope/", StringComparison.OrdinalIgnoreCase))
+                                 {
+                                     result.IsValid = false;
+                                     result.ValidationResultMessages.Add($"Namespace Mismatch: Expected '{targetNamespace}', but found '{actualNamespace}'. Please check that your XML version matches the selected Service Version.");
+                                     return result;
+                                 }
+                             }
+                         }
+                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                 result.IsValid = false;
+                 result.ValidationResultMessages.Add($"XML Parsing Error during namespace check: {ex.Message}");
+                 return result;
+            }
+            // --- END FIX ---
 
             // 3. Validate
             var validationResult = ValidateAgainstSchema(contentToValidate, schemaPath);

@@ -58,8 +58,9 @@ public class PDTests : ServiceTestBase
     public async Task Validate_PD_MockResponse(string errorCode, string stubFile, string expectedError, string expectedDetails)
     {
         var service = "PD";
+        var version = "2.0.0";
         // Construct the endpoint with errorCode
-        var endpoint = $"{_mockServiceBaseUrl}/api/{service}/{errorCode}";
+        var endpoint = $"{_mockServiceBaseUrl}/api/{service}/{version}/{errorCode}";
         
         // Determine operation based on filename logic
         var operation = "getProduct"; 

@@ -54,8 +54,9 @@ public class PPCTests : ServiceTestBase
     public async Task Validate_PPC_MockResponse(string errorCode, string stubFile, string expectedError, string expectedDetails)
     {
         var service = "PPC";
+        var version = "1.0.0";
         // Construct the endpoint with errorCode
-        var endpoint = $"{_mockServiceBaseUrl}/api/{service}/{errorCode}";
+        var endpoint = $"{_mockServiceBaseUrl}/api/{service}/{version}/{errorCode}";
         
         // Determine operation based on filename
         // Default to getConfigurationAndPricing if pattern doesn't match

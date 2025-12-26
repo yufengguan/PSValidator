@@ -147,8 +147,10 @@ function App() {
         const messages = result.validationResultMessages || [];
         if (result.title) messages.push(`Error: ${result.title}`); // ASP.NET Core ProblemDetails
         if (messages.length === 0) messages.push(`HTTP Error: ${res.status}`);
+        console.log("Validation Failed (HTTP Error):", result);
         setValidationResult({ type: 'Response', isValid: false, validationResultMessages: messages });
       } else {
+        console.log("Validation API Response (Success):", result);
         setValidationResult({ ...result, type: 'Response' });
         if (result.responseContent) {
           setResponseXml(result.responseContent);

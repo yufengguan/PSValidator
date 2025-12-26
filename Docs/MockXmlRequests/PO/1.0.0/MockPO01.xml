@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-16"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://www.promostandards.org/WSDL/PO/1.0.0/SharedObjects/" xmlns:ns2="http://www.promostandards.org/WSDL/PO/1.0.0/">
+  <s:Header xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+    <To s:mustUnderstand="1" xmlns="http://schemas.microsoft.com/ws/2005/05/addressing/none">https://services.starline.com/po/PurchaseOrderService.svc</To>
+    <Action s:mustUnderstand="1" xmlns="http://schemas.microsoft.com/ws/2005/05/addressing/none">sendPO</Action>
+  </s:Header>
+  <SOAP-ENV:Body>
+    <ns2:SendPORequest>
+      <ns1:wsVersion>1.0.0</ns1:wsVersion>
+      <ns1:id>MOCK_USER_ID</ns1:id>
+      <ns1:password>MOCK_PASSWORD</ns1:password>
+      <ns2:PO>
+        <ns2:orderType>Configured</ns2:orderType>
+        <ns2:orderNumber>216196</ns2:orderNumber>
+        <ns2:orderDate>2025-12-08T09:29:02</ns2:orderDate>
+        <ns2:totalAmount>306.0000</ns2:totalAmount>
+        <ns2:rush>false</ns2:rush>
+        <ns1:currency>USD</ns1:currency>
+        <ns1:DigitalProof>
+          <ns1:DigitalProofAddressArray>
+            <ns1:DigitalProofAddress>
+              <ns1:type>Email</ns1:type>
+              <ns1:email>mock@example.com</ns1:email>
+              <ns1:lineItemGroupingId>1</ns1:lineItemGroupingId>
+            </ns1:DigitalProofAddress>
+          </ns1:DigitalProofAddressArray>
+          <ns1:required>true</ns1:required>
+        </ns1:DigitalProof>
+        <ns2:OrderContactArray>
+          <ns1:Contact>
+            <ns1:accountName>Mock Account</ns1:accountName>
+            <ns1:accountNumber>999999</ns1:accountNumber>
+            <ns1:contactType>Bill</ns1:contactType>
+            <ns1:ContactDetails>
+              <ns1:attentionTo>Mock User</ns1:attentionTo>
+              <ns1:companyName>Mock Company Inc.</ns1:companyName>
+              <ns1:address1>123 Mock Lane</ns1:address1>
+              <ns1:city>Mock City</ns1:city>
+              <ns1:region>NC</ns1:region>
+              <ns1:postalCode>12345</ns1:postalCode>
+              <ns1:country>US</ns1:country>
+              <ns1:email>mock@example.com</ns1:email>
+            </ns1:ContactDetails>
+          </ns1:Contact>
+          <ns1:Contact>
+            <ns1:contactType>Order</ns1:contactType>
+            <ns1:ContactDetails>
+              <ns1:attentionTo>Mock User</ns1:attentionTo>
+              <ns1:email>mock@example.com</ns1:email>
+            </ns1:ContactDetails>
+          </ns1:Contact>
+        </ns2:OrderContactArray>
+        <ns2:ShipmentArray>
+          <ns1:Shipment>
+            <ns1:allowConsolidation>true</ns1:allowConsolidation>
+            <ns1:blindShip>true</ns1:blindShip>
+            <ns1:packingListRequired>true</ns1:packingListRequired>
+            <ns1:FreightDetails>
+              <ns1:carrier>USPS</ns1:carrier>
+              <ns1:service>FIRST CLASS MAIL</ns1:service>
+            </ns1:FreightDetails>
+            <ns1:ShipTo>
+              <ns1:customerPickup>false</ns1:customerPickup>
+              <ns1:ContactDetails>
+                <ns1:attentionTo>Mock User</ns1:attentionTo>
+                <ns1:companyName>Mock Company Inc.</ns1:companyName>
+                <ns1:address1>123 Mock Lane</ns1:address1>
+                <ns1:city>Mock City</ns1:city>
+                <ns1:region>NC</ns1:region>
+                <ns1:postalCode>12345</ns1:postalCode>
+                <ns1:country>US</ns1:country>
+                <ns1:email>mock@example.com</ns1:email>
+              </ns1:ContactDetails>
+              <ns1:shipmentId>1</ns1:shipmentId>
+            </ns1:ShipTo>
+          </ns1:Shipment>
+        </ns2:ShipmentArray>
+        <ns2:LineItemArray>
+          <ns2:LineItem>
+            <ns2:lineNumber>1</ns2:lineNumber>
+            <ns1:description>Urban Peak® 25oz Portage Flip Straw Water Bottle - With Personalization (Monsterat Font)</ns1:description>
+            <ns2:lineType>New</ns2:lineType>
+            <ns1:Quantity>
+              <ns1:uom>EA</ns1:uom>
+              <ns1:value>24</ns1:value>
+            </ns1:Quantity>
+            <ns1:fobId>1</ns1:fobId>
+            <ns1:ToleranceDetails>
+              <ns1:tolerance>ExactOnly</ns1:tolerance>
+            </ns1:ToleranceDetails>
+            <ns2:allowPartialShipments>true</ns2:allowPartialShipments>
+            <ns2:lineItemTotal>306.0000</ns2:lineItemTotal>
+            <ns2:requestedInHandsDate>2025-12-18T00:00:00</ns2:requestedInHandsDate>
+            <ns1:productId>SL170PR</ns1:productId>
+            <ns1:lineItemGroupingId>1</ns1:lineItemGroupingId>
+            <ns2:PartArray>
+              <ns1:Part>
+                <ns1:partGroup>1</ns1:partGroup>
+                <ns1:partId>SL170PR-32-00</ns1:partId>
+                <ns1:customerPartId>SL170PR-32-00</ns1:customerPartId>
+                <ns1:customerSupplied>false</ns1:customerSupplied>
+                <ns1:Quantity>
+                  <ns1:uom>EA</ns1:uom>
+                  <ns1:value>24.0000</ns1:value>
+                </ns1:Quantity>
+                <ns1:unitPrice>11.7900</ns1:unitPrice>
+                <ns1:ShipmentLinkArray>
+                  <ns1:ShipmentLink>
+                    <ns1:Quantity>
+                      <ns1:uom>EA</ns1:uom>
+                      <ns1:value>24.0000</ns1:value>
+                    </ns1:Quantity>
+                    <ns1:shipmentId>1</ns1:shipmentId>
+                  </ns1:ShipmentLink>
+                </ns1:ShipmentLinkArray>
+              </ns1:Part>
+            </ns2:PartArray>
+            <ns1:Configuration>
+              <ns1:ChargeArray>
+                <ns1:Charge>
+                  <ns1:chargeName>Personalization</ns1:chargeName>
+                  <ns1:extendedPrice>23.04</ns1:extendedPrice>
+                  <ns1:unitPrice>0.9600</ns1:unitPrice>
+                  <ns1:chargeId>-1</ns1:chargeId>
+                  <ns1:chargeType>Run</ns1:chargeType>
+                  <ns1:Quantity>
+                    <ns1:uom>EA</ns1:uom>
+                    <ns1:value>24.0000</ns1:value>
+                  </ns1:Quantity>
+                </ns1:Charge>
+              </ns1:ChargeArray>
+              <ns1:LocationArray>
+                <ns1:Location>
+                  <ns1:locationName>Vertical Logo</ns1:locationName>
+                  <ns1:DecorationArray>
+                    <ns1:Decoration>
+                      <ns1:decorationName>Laser</ns1:decorationName>
+                      <ns1:Artwork>
+                        <ns1:instructions>
+                            Same As PO# 123456
+                            Logo Name: TT logo vertical
+                            Logo Colors: Lasered
+                            Logo Size: Max
+                        </ns1:instructions>
+                        <ns1:ArtworkFileArray>
+                          <ns1:ArtworkFile>
+                            <ns1:artworkType>ProductionReady</ns1:artworkType>
+                            <ns1:fileLocation>https://files.MockDistributor01.com/12345678-f706-4964-9409-18826cbd656d</ns1:fileLocation>
+                            <ns1:fileName>12345678-f706-4964-9409-18826cbd656d</ns1:fileName>
+                            <ns1:transportMechanism>Url</ns1:transportMechanism>
+                          </ns1:ArtworkFile>
+                        </ns1:ArtworkFileArray>
+                      </ns1:Artwork>
+                      <ns1:decorationId>3</ns1:decorationId>
+                    </ns1:Decoration>
+                  </ns1:DecorationArray>
+                  <ns1:locationLinkId>1</ns1:locationLinkId>
+                  <ns1:locationId>23</ns1:locationId>
+                </ns1:Location>
+                <ns1:Location>
+                  <ns1:locationName>Side #1</ns1:locationName>
+                  <ns1:DecorationArray>
+                    <ns1:Decoration>
+                      <ns1:decorationName>Laser</ns1:decorationName>
+                      <ns1:Artwork>
+                        <ns1:instructions>
+                            Please do all names in Monsterat font.
+                            Laser new names in same location as PO# 123456
+                            Logo Name: Personlization in Monsterat Font
+                            Logo Colors: Lasered
+                            Logo Size: Standard
+                        </ns1:instructions>
+                        <ns1:ArtworkFileArray>
+                          <ns1:ArtworkFile>
+                            <ns1:artworkType>ProductionReady</ns1:artworkType>
+                            <ns1:fileLocation>https://files.MockDistributor.com/12345678-2677-40e9-9dd6-069d1b9a4787</ns1:fileLocation>
+                            <ns1:fileName>12345678-2677-40e9-9dd6-069d1b9a4787</ns1:fileName>
+                            <ns1:transportMechanism>Url</ns1:transportMechanism>
+                          </ns1:ArtworkFile>
+                        </ns1:ArtworkFileArray>
+                      </ns1:Artwork>
+                      <ns1:decorationId>3</ns1:decorationId>
+                    </ns1:Decoration>
+                  </ns1:DecorationArray>
+                  <ns1:locationLinkId>2</ns1:locationLinkId>
+                  <ns1:locationId>21</ns1:locationId>
+                </ns1:Location>
+              </ns1:LocationArray>
+              <ns1:preProductionProof>false</ns1:preProductionProof>
+            </ns1:Configuration>
+          </ns2:LineItem>
+        </ns2:LineItemArray>
+        <ns2:termsAndConditions>Conditions</ns2:termsAndConditions>
+      </ns2:PO>
+    </ns2:SendPORequest>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

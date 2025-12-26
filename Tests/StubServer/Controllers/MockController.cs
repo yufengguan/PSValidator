@@ -13,7 +13,8 @@ namespace PromoStandards.Validator.Tests.StubServer.Controllers;
 // The stub mimics a SOAP service for a given PromoStandards service.
 // URL pattern: POST /api/{service}/{ErrorCode}
 // Using 'api/' prefix to avoid conflicts with Swagger UI static files
-[Route("api/{service}/{errorCode?}")]
+// [Route("api/{service}/{errorCode?}")] -- OLD
+[Route("api/{service}/{version}/{errorCode?}")]
 public class MockController : ControllerBase
 {
     private readonly IMockResponseProvider _provider;
@@ -27,18 +28,18 @@ public class MockController : ControllerBase
         _logger = logger;
     }
 
-    // POST {service}/{ErrorCode}
+    // POST {service}/{version}/{ErrorCode}
     [HttpPost]
-    public async Task<IActionResult> Post(string service, string errorCode)
+    public async Task<IActionResult> Post(string service, string version, string errorCode)
     {
-        _logger.LogInformation("Received request for Service: {Service}, ErrorCode: {ErrorCode}", service, errorCode);
+        _logger.LogInformation("Received request for Service: {Service}, Version: {Version}, ErrorCode: {ErrorCode}", service, version, errorCode);
 
         // --------------------------------------------------------------
         // Validate inputs
-        if (string.IsNullOrWhiteSpace(service) || string.IsNullOrWhiteSpace(errorCode))
+        if (string.IsNullOrWhiteSpace(service) || string.IsNullOrWhiteSpace(version) || string.IsNullOrWhiteSpace(errorCode))
         {
-            _logger.LogWarning("Validation failed: Service or ErrorCode is empty.");
-            return BadRequest("Service and ErrorCode are required.");
+            _logger.LogWarning("Validation failed: Service, Version or ErrorCode is empty.");
+            return BadRequest("Service, Version, and ErrorCode are required. usage: api/{service}/{version}/{errorCode}");
         }
 
         // --------------------------------------------------------------
@@ -63,63 +64,52 @@ public class MockController : ControllerBase
         // 1. Folder is "MockXmlResponses" (CamelCase XML), not "MockXMLResponses".
         // 2. Service folder is likely Uppercase (e.g. "PPC"), but URL might be "ppc".
         var safeService = service.ToUpperInvariant(); 
-
-        var mockJsonPath = Path.Combine(docsPath, "MockXmlResponses", safeService, "mock_responses.json");
+        // 3. Version is likely exact match (1.0.0), but we should probably use it as is or sanitize.
+        
+        // Construct Path: Docs/MockXmlResponses/{Service}/{Version}/mock_responses.json
+        var mockJsonPath = Path.Combine(docsPath, "MockXmlResponses", safeService, version, "mock_responses.json");
         _logger.LogInformation("Looking for mock configuration at: {MockJsonPath}", mockJsonPath);
 
-        // Check if config exists directly in service folder
         if (!System.IO.File.Exists(mockJsonPath))
         {
-            _logger.LogInformation("mock_responses.json not found at root {MockJsonPath}. Searching subdirectories...", mockJsonPath);
-            
-            // Search in subdirectories (e.g. 1.0.0, 2.0.0)
-            // We take the FIRST match that contains the requested error code?
-            // Actually, for now, let's just find *any* mock_responses.json in immediate subfolders 
-            // and see if it has the error code. 
-            // A better approach might be to just load ALL of them, or prefer higher versions?
-            // Let's implement a simple search: Look for mock_responses.json in all immediate subdirs.
-            
-            var serviceDir = Path.GetDirectoryName(mockJsonPath);
-            if (Directory.Exists(serviceDir))
-            {
-                var subDirs = Directory.GetDirectories(serviceDir);
-                bool configFound = false;
+            _logger.LogWarning("File not found: {MockJsonPath}. Attempting to resolve Service Code from PSServiceList.json...", mockJsonPath);
 
-                foreach (var dir in subDirs)
+            // Attempt to resolve Service Name (ProductData) to Code (PD)
+            var serviceListPath = Path.Combine(docsPath, "PSServiceList.json");
+            bool resolvedFromList = false;
+
+            if (System.IO.File.Exists(serviceListPath))
+            {
+                try 
                 {
-                    var subConfigPath = Path.Combine(dir, "mock_responses.json");
-                    if (System.IO.File.Exists(subConfigPath))
+                    var serviceListJson = await System.IO.File.ReadAllTextAsync(serviceListPath);
+                    var serviceList = JsonSerializer.Deserialize<List<ServiceInfo>>(serviceListJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    
+                    var serviceInfo = serviceList?.FirstOrDefault(s => s.ServiceName.Equals(service, StringComparison.OrdinalIgnoreCase));
+                    if (serviceInfo != null && !string.IsNullOrWhiteSpace(serviceInfo.Code))
                     {
-                        // Found a config. Does it have our ErrorCode?
-                        // We need to peek inside.
-                        try 
+                        var safeCode = serviceInfo.Code.ToUpperInvariant();
+                        var newPath = Path.Combine(docsPath, "MockXmlResponses", safeCode, version, "mock_responses.json");
+                        
+                        _logger.LogInformation("Resolved Service '{Service}' to Code '{Code}'. Checking path: {NewPath}", service, safeCode, newPath);
+                        
+                        if (System.IO.File.Exists(newPath))
                         {
-                            var tempContent = await System.IO.File.ReadAllTextAsync(subConfigPath);
-                            if (tempContent.Contains(errorCode, StringComparison.OrdinalIgnoreCase)) 
-                            {
-                                // Optimization: String check is fast. If it's there, we use this file.
-                                mockJsonPath = subConfigPath;
-                                configFound = true;
-                                _logger.LogInformation("Found potentially matching config at: {MockJsonPath}", mockJsonPath);
-                                break;
-                            }
+                            mockJsonPath = newPath;
+                            resolvedFromList = true;
                         }
-                        catch { /* ignore read errors, try next */ }
                     }
                 }
-
-                if (!configFound)
+                catch (Exception ex)
                 {
-                     // If we still haven't found it, stick to original path so the error below triggers correctly
-                     _logger.LogWarning("No matching config found in subdirectories.");
+                    _logger.LogWarning(ex, "Failed to read or parse PSServiceList.json");
                 }
             }
-        }
 
-        if (!System.IO.File.Exists(mockJsonPath))
-        {
-            _logger.LogWarning("File not found: {MockJsonPath}", mockJsonPath);
-            return NotFound($"Mock configuration not found for service '{safeService}'. Searched in: {mockJsonPath} and subdirectories.");
+            if (!resolvedFromList)
+            {
+                 return NotFound($"Mock configuration not found for service '{safeService}' version '{version}'. Also failed to resolve via PSServiceList. Searched at: {mockJsonPath}");
+            }
         }
 
         try
@@ -131,7 +121,7 @@ public class MockController : ControllerBase
             if (responseItem == null)
             {
                 _logger.LogWarning("ErrorCode '{ErrorCode}' not found in {MockJsonPath}", errorCode, mockJsonPath);
-                return NotFound($"ErrorCode '{errorCode}' not found in mock configuration for service '{safeService}'.");
+                return NotFound($"ErrorCode '{errorCode}' not found in mock configuration for service '{safeService}' version '{version}'.");
             }
 
             if (string.IsNullOrWhiteSpace(responseItem.StubResponseFile))
@@ -153,8 +143,6 @@ public class MockController : ControllerBase
             string soapEnvelopeFromConfig;
 
             // Check if the payload is already a SOAP Envelope
-            // We look for the standard SOAP envelope namespace. 
-            // A robust check would parse XML, but for mocks, a string check is usually sufficient and faster.
             if (payloadFromConfig.Contains("http://schemas.xmlsoap.org/soap/envelope/") && 
                 (payloadFromConfig.Contains(":Envelope") || payloadFromConfig.Contains("Envelope")))
             {
@@ -170,7 +158,7 @@ public class MockController : ControllerBase
 </soapenv:Envelope>";
             }
             
-            _logger.LogInformation("Successfully generated response for {Service}/{ErrorCode}", service, errorCode);
+            _logger.LogInformation("Successfully generated response for {Service}/{Version}/{ErrorCode}", service, version, errorCode);
             return Content(soapEnvelopeFromConfig, "text/xml; charset=utf-8");
         }
         catch (Exception ex)
@@ -178,5 +166,11 @@ public class MockController : ControllerBase
             _logger.LogError(ex, "Error processing mock request.");
             return StatusCode(500, $"Error processing mock request: {ex.Message}");
         }
+    }
+
+    private class ServiceInfo 
+    {
+        public string ServiceName { get; set; }
+        public string Code { get; set; }
     }
 }
