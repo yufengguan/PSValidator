@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Navbar, Button, Spinner, Alert, Row, Col } from 'react-bootstrap';
+import { Container, Navbar, Button, Spinner, Alert, Row, Col, Card } from 'react-bootstrap';
 import ServiceSelector from './components/ServiceSelector';
 import EndpointInput from './components/EndpointInput';
 import RequestPanel from './components/RequestPanel';
 import ResponsePanel from './components/ResponsePanel';
 import ValidationPanel from './components/ValidationPanel';
 import AboutModal from './components/AboutModal';
-import logo from './assets/logo.png';
 import './App.css';
 
 function App() {
@@ -292,31 +291,20 @@ function App() {
 
   return (
     <>
-      {/* Header with PromoStandards Logo */}
-      <header style={{
-        background: 'rgb(38, 56, 128)',
-        borderBottom: '3px solid #0066cc',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
-      }}>
-        <Container fluid className="py-3" style={{ position: 'relative' }}>
-          <div className="d-flex align-items-center">
-            <div style={{ position: 'absolute', left: '10rem', display: 'flex', alignItems: 'center' }}>
-              <a href="https://promostandards.org" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center' }}>
-                <img
-                  src={logo}
-                  alt="PromoStandards"
-                  style={{ height: '50px', marginRight: '2.5rem' }}
-                />
-              </a>
-            </div>
-            <div style={{ marginLeft: 'calc(10rem + 200px)', borderLeft: '2px solid rgba(255,255,255,0.3)', paddingLeft: '1.5rem', height: '40px', display: 'flex', alignItems: 'center' }}>
-              <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: '600', color: '#ffffff' }}>Web Service Validator</h1>
-            </div>
-          </div>
-        </Container>
-      </header>
-
-      <Container fluid style={{ paddingLeft: '2rem', paddingRight: '2rem', marginTop: '2rem' }}>
+      <Container fluid style={{ paddingLeft: '2rem', paddingRight: '2rem', marginTop: '0' }}>
+        <div style={{
+          width: '100%',
+          height: '60px',
+          backgroundColor: '#f8f9fa',
+          borderBottom: '1px solid #dee2e6',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: '1rem',
+          borderRadius: '0.25rem'
+        }}>
+          <h3 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 'bold', color: '#212529' }}>Web Service Validator</h3>
+        </div>
         <ServiceSelector
           services={services}
           onSelectionChange={handleSelectionChange}
@@ -352,24 +340,7 @@ function App() {
           </Col>
         </Row>
 
-        {validationResult?.responseTimeMs > 0 && (
-          <Row className="mb-3">
-            <Col md={12}>
-              <div className="d-flex justify-content-between align-items-center px-2 py-1"
-                style={{
-                  background: '#f8f9fa',
-                  border: '1px solid #dee2e6',
-                  borderTop: 'none',
-                  borderBottomLeftRadius: '0.25rem',
-                  borderBottomRightRadius: '0.25rem',
-                  fontSize: '0.85rem'
-                }}>
-                <strong>Performance Metrics</strong>
-                <span>Time: <strong>{validationResult.responseTimeMs.toFixed(0)} ms</strong></span>
-              </div>
-            </Col>
-          </Row>
-        )}
+
 
         <Row>
           <Col md={12}>
@@ -381,72 +352,7 @@ function App() {
 
       </Container>
 
-      {/* Footer styled like PromoStandards.org */}
-      <footer style={{ marginTop: '4rem' }}>
-        {/* Main footer content */}
-        <div style={{
-          background: 'rgb(16, 31, 90)',
-          borderTop: '3px solid rgba(255,255,255,0.1)'
-        }}>
-          <Container className="py-4">
-            <Row className="mb-4">
-              <Col md={4} className="mb-3 mb-md-0">
-                <h5 style={{ color: '#ffffff', fontWeight: '600', marginBottom: '1rem', fontSize: '1.1rem' }}>About This Tool</h5>
-                <p style={{ color: '#e8e8e8', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                  The PromoStandards Web Service Validator helps developers test and validate their PromoStandards web service implementations.
-                </p>
-                <a
-                  href="#"
-                  onClick={(e) => { e.preventDefault(); setShowAboutModal(true); }}
-                  style={{ color: '#ffffff', textDecoration: 'underline', fontSize: '0.9rem' }}
-                >
-                  Learn more →
-                </a>
-              </Col>
-              <Col md={4} className="mb-3 mb-md-0">
-                <h5 style={{ color: '#ffffff', fontWeight: '600', marginBottom: '1rem', fontSize: '1.1rem' }}>Quick Links</h5>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="https://promostandards.org/standards-services/" target="_blank" rel="noopener noreferrer" style={{ color: '#e8e8e8', textDecoration: 'none', fontSize: '0.9rem' }}>
-                      Documentation
-                    </a>
-                  </li>
-                  <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="https://github.com/yufengguan/PSValidator" target="_blank" rel="noopener noreferrer" style={{ color: '#e8e8e8', textDecoration: 'none', fontSize: '0.9rem' }}>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" style={{ marginRight: '0.4rem', marginBottom: '2px' }}>
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-                      </svg>
-                      Source Code
-                    </a>
-                  </li>
-                </ul>
-              </Col>
-              <Col md={4}>
-                <h5 style={{ color: '#ffffff', fontWeight: '600', marginBottom: '1rem', fontSize: '1.1rem' }}>Contact</h5>
-                <p style={{ color: '#e8e8e8', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '0.5rem' }}>
-                  For questions about PromoStandards:
-                </p>
-                <p style={{ color: '#e8e8e8', fontSize: '0.9rem' }}>
-                  <a href="mailto:admin@promostandards.org" style={{ color: '#ffffff', textDecoration: 'none' }}>admin@promostandards.org</a>
-                </p>
-              </Col>
-            </Row>
-          </Container>
-        </div>
 
-        {/* Copyright section with darker background */}
-        <div style={{ background: 'rgb(16, 31, 90)', padding: '1.5rem 0', opacity: 0.9 }}>
-          <Container>
-            <Row>
-              <Col className="text-center">
-                <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '0.85rem', margin: 0 }}>
-                  PromoStandards © {new Date().getFullYear()}
-                </p>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      </footer>
 
       <AboutModal show={showAboutModal} onHide={() => setShowAboutModal(false)} />
     </>
