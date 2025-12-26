@@ -176,6 +176,9 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
                _logger.LogWarning("Response Validation Failed for {Service} {Version} {Operation} Endpoint: {Endpoint}. Errors: {Errors}", serviceName, version, operationName, endpoint, string.Join("; ", result.ValidationResultMessages));
             }
             
+            _logger.LogInformation("ValidationCompleted: {Service} {Version} {Operation} IsValid:{IsValid} Errors:{ErrorCount} DurationMs:{DurationMs}", 
+                serviceName, version, operationName, result.IsValid, result.ValidationResultMessages.Count, result.ResponseTimeMs);
+            
             return result;
 
         }

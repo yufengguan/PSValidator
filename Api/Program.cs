@@ -1,4 +1,5 @@
 using PromoStandards.Validator.Api.Services;
+using PromoStandards.Validator.Api.Middleware;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,7 @@ app.UseSwaggerUI(c =>
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseSerilogRequestLogging();
+app.UseMiddleware<AnalyticsMiddleware>();
 
 app.UseAuthorization();
 

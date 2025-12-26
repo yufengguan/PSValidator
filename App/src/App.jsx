@@ -31,6 +31,13 @@ function App() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
   useEffect(() => {
+    // Session ID Generation
+    let sessionId = sessionStorage.getItem('ps_validator_session_id');
+    if (!sessionId) {
+      sessionId = crypto.randomUUID();
+      sessionStorage.setItem('ps_validator_session_id', sessionId);
+    }
+
     fetch(`${API_BASE_URL}/ServiceList`)
       .then(res => res.json())
       .then(data => setServices(data))
@@ -123,12 +130,15 @@ function App() {
     try {
       const res = await fetch(`${API_BASE_URL}/Validator/validate-response`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-ID': sessionStorage.getItem('ps_validator_session_id') || 'unknown'
+        },
         body: JSON.stringify({
           service: selection.service,
           version: selection.version,
           operation: selection.operation,
-          xmlContent: requestXml,
+          xmlContent: requestXml, // Note: Usage of requestXml for response validation workflow if manual input
           endpoint: endpoint
         })
       });
@@ -193,7 +203,10 @@ function App() {
     try {
       const res = await fetch(`${API_BASE_URL}/Validator/validate-request`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-ID': sessionStorage.getItem('ps_validator_session_id') || 'unknown'
+        },
         body: JSON.stringify({
           service: selection.service,
           version: selection.version,
