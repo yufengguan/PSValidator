@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Row, Col, InputGroup } from 'react-bootstrap';
 
-const ServiceSelector = ({ services, onSelectionChange, error }) => {
-    const [selectedService, setSelectedService] = useState('');
-    const [selectedVersion, setSelectedVersion] = useState('');
-    const [selectedOperation, setSelectedOperation] = useState('');
+const ServiceSelector = ({ services, selection, onSelectionChange, error }) => {
+    // Derived state from props
+    const selectedService = selection?.service || '';
+    const selectedVersion = selection?.version || '';
+    const selectedOperation = selection?.operation || '';
 
     const handleServiceChange = (e) => {
         const serviceName = e.target.value;
-        setSelectedService(serviceName);
-        setSelectedVersion('');
-        setSelectedOperation('');
         onSelectionChange({ service: serviceName, version: '', operation: '' });
     };
 
     const handleVersionChange = (e) => {
         const version = e.target.value;
-        setSelectedVersion(version);
-        setSelectedOperation('');
         onSelectionChange({ service: selectedService, version: version, operation: '' });
     };
 
     const handleOperationChange = (e) => {
         const operation = e.target.value;
-        setSelectedOperation(operation);
         onSelectionChange({ service: selectedService, version: selectedVersion, operation: operation });
     };
 

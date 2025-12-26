@@ -28,7 +28,6 @@
 - [x] **Performance**: Add response time monitoring (`DurationMs` and `ExternalDurationMs` in Seq)
 
 ### Security & Optimization
-- [ ] Review and optimize Docker image sizes
 - [ ] Implement API rate limiting [Optional, keep monitoring for now]
 
 ## ✅ Completed

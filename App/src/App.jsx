@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Navbar, Button, Spinner, Alert, Row, Col, Card } from 'react-bootstrap';
+import { Container, Navbar, Button, Spinner, Alert, Row, Col, Card, Form } from 'react-bootstrap';
 import ServiceSelector from './components/ServiceSelector';
 import EndpointInput from './components/EndpointInput';
 import RequestPanel from './components/RequestPanel';
@@ -239,6 +239,114 @@ function App() {
     }
   };
 
+  const [exportWithCredentials, setExportWithCredentials] = useState(false);
+
+  const scrubCredentials = (xml) => {
+    if (!xml) return xml;
+    // Replace content of id, password, accessKey with ******
+    // Regex matches <tag>content</tag>
+    return xml
+      .replace(/(<(?:ws:)?id>)(.*?)(<\/(?:ws:)?id>)/gi, '$1******$3')
+      .replace(/(<(?:ws:)?password>)(.*?)(<\/(?:ws:)?password>)/gi, '$1******$3')
+      .replace(/(<(?:ws:)?accessKey>)(.*?)(<\/(?:ws:)?accessKey>)/gi, '$1******$3');
+  };
+
+  const handleExport = () => {
+    // Exclude oversized/redundant fields from validationResult
+    const { responseContent, ...cleanValidationResult } = validationResult || {};
+
+    let xmlToExport = requestXml;
+    if (!exportWithCredentials) {
+      xmlToExport = scrubCredentials(xmlToExport);
+    }
+
+    const data = {
+      validatorToolUrl: window.location.origin,
+      timestamp: new Date().toISOString(),
+      serviceSelection: selection,
+      endpoint: endpoint,
+      requestXml: xmlToExport,
+      responseXml: responseXml,
+      validationResult: cleanValidationResult
+    };
+
+    // Helper to generate filename
+    // Format: {service-abbr}-{v version, . to -}-{operation}-{domain}-{yyyy-MM-dd-HH-mm-ss}.json
+    const getServiceAbbr = (name) => {
+      if (!name) return 'UNK';
+      return name.split(' ')
+        .map(word => word[0].toUpperCase())
+        .join('');
+    };
+
+    const getVersionStr = (ver) => {
+      if (!ver) return 'v000';
+      return `v${ver.replace(/\./g, '')}`;
+    };
+
+    const getDomain = (urlStr) => {
+      try {
+        const url = new URL(urlStr);
+        return url.hostname; // hostname automatically excludes port
+      } catch {
+        return 'unknown-host';
+      }
+    };
+
+    const getTimestamp = () => {
+      const now = new Date();
+      const pad = (n) => String(n).padStart(2, '0');
+      return `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+    };
+
+    const filename = `${getServiceAbbr(selection.service)}-${getVersionStr(selection.version)}-${selection.operation || 'Op'}-${getDomain(endpoint)}-${getTimestamp()}.json`;
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const fileInputRef = React.useRef(null);
+
+  const handleImportClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleImportFile = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const data = JSON.parse(e.target.result);
+
+        // Restore State
+        if (data.serviceSelection) setSelection(data.serviceSelection);
+        if (data.endpoint) setEndpoint(data.endpoint);
+        if (data.requestXml) setRequestXml(data.requestXml);
+
+        // Specific requirement: Ignore/Clear response and results to force re-validation
+        setResponseXml('');
+        setValidationResult(null);
+        setActiveSchema('none');
+
+        // Clear file input for next use
+        event.target.value = null;
+      } catch (err) {
+        console.error("Error parsing import file:", err);
+        alert("Failed to import session. Invalid JSON file.");
+      }
+    };
+    reader.readAsText(file);
+  };
+
   const getUrlError = (string) => {
     if (!string) return null; // Don't show error if empty (unless touched, but keeping simple)
     try {
@@ -292,21 +400,61 @@ function App() {
   return (
     <>
       <Container fluid style={{ paddingLeft: '2rem', paddingRight: '2rem', marginTop: '0' }}>
+
         <div style={{
           width: '100%',
           height: '60px',
           backgroundColor: '#f8f9fa',
           borderBottom: '1px solid #dee2e6',
           display: 'flex',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
           alignItems: 'center',
           marginBottom: '1rem',
-          borderRadius: '0.25rem'
+          borderRadius: '0.25rem',
+          padding: '0 1rem'
         }}>
           <h3 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 'bold', color: '#212529' }}>Web Service Validator</h3>
+
+          <div className="d-flex align-items-center gap-3">
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleImportFile}
+              style={{ display: 'none' }}
+              accept=".json"
+            />
+            <Button variant="link" onClick={handleImportClick} title="Import a previously exported session (JSON)" style={{ textDecoration: 'none', fontSize: '0.9rem', color: '#6c757d', fontWeight: '500' }}>
+              <span style={{ marginRight: '5px' }}>📂</span> Import
+            </Button>
+
+            <div className="d-flex align-items-center gap-1">
+              <Button
+                variant="link"
+                onClick={handleExport}
+                disabled={!validationResult}
+                title="Export current session to JSON"
+                style={{ textDecoration: 'none', fontSize: '0.9rem', color: validationResult ? '#6c757d' : '#adb5bd', fontWeight: '500' }}
+              >
+                <span style={{ marginRight: '5px' }}>⬇️</span> Export
+              </Button>
+
+              <Form.Check
+                type="checkbox"
+                id="credentials-check"
+                label="with Credentials"
+                title="Include sensitive credentials (id, password, accessKey) in export"
+                reverse // Move label to the left of the checkbox
+                checked={exportWithCredentials}
+                onChange={(e) => setExportWithCredentials(e.target.checked)}
+                disabled={!validationResult}
+                style={{ fontSize: '0.9rem', userSelect: 'none', cursor: 'pointer', marginBottom: 0, marginTop: '2px' }}
+              />
+            </div>
+          </div>
         </div>
         <ServiceSelector
           services={services}
+          selection={selection}
           onSelectionChange={handleSelectionChange}
           error={operationError} // Pass error to selector
         />
@@ -327,6 +475,8 @@ function App() {
             {loading ? <Spinner animation="border" size="sm" /> : 'Validate Response'}
           </Button>
         </div>
+
+
 
         {httpErrorMessage && (
           <Alert variant="danger" className="mb-3">
@@ -350,7 +500,7 @@ function App() {
 
 
 
-      </Container>
+      </Container >
 
 
 
