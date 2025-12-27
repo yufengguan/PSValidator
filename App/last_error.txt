@@ -1,0 +1,1402 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.13 [39m[90mC:/Projects/PS.SC.Validator/PSValidator/App[39m
+
+[90mstdout[2m | src/tests/ValidationPanel.test.jsx[2m > [22m[2mValidationPanel Unit Tests[2m > [22m[2mshould display initial empty state when result is null
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/ValidationPanel.test.jsx[2m > [22m[2mValidationPanel Unit Tests[2m > [22m[2mshould display Success Alert when result is valid
+[22m[39mValidationPanel Result: {
+  type: [32m'Request'[39m,
+  isValid: [33mtrue[39m,
+  validationResultMessages: [ [32m'Validation Successful'[39m ]
+}
+
+[90mstdout[2m | src/tests/ValidationPanel.test.jsx[2m > [22m[2mValidationPanel Unit Tests[2m > [22m[2mshould display Failure Alert and list errors
+[22m[39mValidationPanel Result: {
+  isValid: [33mfalse[39m,
+  validationResultMessages: [ [32m'Line 1: Tag mismatch'[39m, [32m'Position 5: Invalid Attribute'[39m ]
+}
+
+[90mstdout[2m | src/tests/ValidationPanel.test.jsx[2m > [22m[2mValidationPanel Unit Tests[2m > [22m[2mshould clean "Error:" prefix from messages
+[22m[39mValidationPanel Result: {
+  isValid: [33mfalse[39m,
+  validationResultMessages: [ [32m'Error: Invalid XML structure'[39m, [32m'error: lowercase prefix check'[39m ]
+}
+
+[90mstdout[2m | src/tests/ValidationPanel.test.jsx[2m > [22m[2mValidationPanel Unit Tests[2m > [22m[2mshould show Note for structural errors (when not empty body error)
+[22m[39mValidationPanel Result: {
+  isValid: [33mfalse[39m,
+  validationResultMessages: [ [32m'Some structural error occurred'[39m ]
+}
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould fetch and display service list on mount
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/ValidationPanel.test.jsx[2m > [22m[2mValidationPanel Unit Tests[2m > [22m[2mshould NOT show Note if the only error is "Request Body cannot be empty."
+[22m[39mValidationPanel Result: {
+  isValid: [33mfalse[39m,
+  validationResultMessages: [ [32m'Request Body cannot be empty.'[39m ]
+}
+
+ [32m鉁?[39m src/tests/ValidationPanel.test.jsx [2m([22m[2m6 tests[22m[2m)[22m[33m 563[2mms[22m[39m
+     [33m[2m鉁?[22m[39m should display Success Alert when result is valid [33m 343[2mms[22m[39m
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould fetch and display service list on mount
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+ [32m鉁?[39m src/tests/ServiceSelector.test.jsx [2m([22m[2m4 tests[22m[2m)[22m[33m 1518[2mms[22m[39m
+     [33m[2m鉁?[22m[39m should render all dropdowns initially [33m 582[2mms[22m[39m
+     [33m[2m鉁?[22m[39m should allow selecting a service, which then enables version [33m 398[2mms[22m[39m
+ [32m鉁?[39m src/tests/EndpointInput.test.jsx [2m([22m[2m5 tests[22m[2m)[22m[33m 1381[2mms[22m[39m
+     [33m[2m鉁?[22m[39m should render the endpoint label and input [33m 424[2mms[22m[39m
+     [33m[2m鉁?[22m[39m should call onChange when user types [33m 434[2mms[22m[39m
+     [33m[2m鉁?[22m[39m should update value correctly in a controlled setup [33m 374[2mms[22m[39m
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+stderr | src/tests/App.test.jsx > App Integration Tests > should run a full validation flow (Happy Path)
+Validation error: TypeError: Cannot read properties of undefined (reading 'headers')
+    at handleValidateRequest (C:/Projects/PS.SC.Validator/PSValidator/App/src/App.jsx:218:31)
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould run a full validation flow (Happy Path)
+[22m[39mValidationPanel Result: { type: [32m'Request'[39m, isValid: [33mfalse[39m, validationResultMessages: [] }
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+stderr | src/tests/App.test.jsx > App Integration Tests > should handle API Network Errors gracefully
+Error fetching sample request: Error: Network Error
+    at C:/Projects/PS.SC.Validator/PSValidator/App/src/tests/App.test.jsx:121:44
+    at file:///C:/Projects/PS.SC.Validator/PSValidator/App/node_modules/@vitest/runner/dist/index.js:145:11
+    at file:///C:/Projects/PS.SC.Validator/PSValidator/App/node_modules/@vitest/runner/dist/index.js:912:26
+    at file:///C:/Projects/PS.SC.Validator/PSValidator/App/node_modules/@vitest/runner/dist/index.js:1237:20
+    at new Promise (<anonymous>)
+    at runWithTimeout (file:///C:/Projects/PS.SC.Validator/PSValidator/App/node_modules/@vitest/runner/dist/index.js:1203:10)
+    at file:///C:/Projects/PS.SC.Validator/PSValidator/App/node_modules/@vitest/runner/dist/index.js:1647:37
+    at Traces.$ (file:///C:/Projects/PS.SC.Validator/PSValidator/App/node_modules/vitest/dist/chunks/traces.U4xDYhzZ.js:115:27)
+    at trace (file:///C:/Projects/PS.SC.Validator/PSValidator/App/node_modules/vitest/dist/chunks/test.DqQZzsWf.js:234:21)
+    at runTest (file:///C:/Projects/PS.SC.Validator/PSValidator/App/node_modules/@vitest/runner/dist/index.js:1647:12)
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: [1mnull[22m
+
+stderr | src/tests/App.test.jsx > App Integration Tests > should handle API Network Errors gracefully
+Validation error: TypeError: Cannot read properties of undefined (reading 'headers')
+    at handleValidateRequest (C:/Projects/PS.SC.Validator/PSValidator/App/src/App.jsx:218:31)
+
+[90mstdout[2m | src/tests/App.test.jsx[2m > [22m[2mApp Integration Tests[2m > [22m[2mshould handle API Network Errors gracefully
+[22m[39mValidationPanel Result: { type: [32m'Request'[39m, isValid: [33mfalse[39m, validationResultMessages: [] }
+
+ [31m鉂?[39m src/tests/App.test.jsx [2m([22m[2m3 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[33m 4534[2mms[22m[39m
+     [33m[2m鉁?[22m[39m should fetch and display service list on mount [33m 707[2mms[22m[39m
+[31m     [31m脳[31m should run a full validation flow (Happy Path)[39m[33m 2103[2mms[22m[39m
+[31m     [31m脳[31m should handle API Network Errors gracefully[39m[33m 1719[2mms[22m[39m
+
+鈳幆鈳幆鈳幆鈳?[39m Failed Tests 2 鈳幆鈳幆鈳幆鈳?[39m
+
+ FAIL  src/tests/App.test.jsx > App Integration Tests > should run a full validation flow (Happy Path)
+TestingLibraryElementError: Unable to find an element with the text: Validation Successful. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      class="container-fluid"
+      style="padding-left: 2rem; padding-right: 2rem; margin-top: 0px;"
+    >
+      <div
+        style="width: 100%; height: 60px; background-color: rgb(248, 249, 250); border-bottom: 1px solid rgb(222, 226, 230); display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-radius: 0.25rem; padding: 0px 1rem;"
+      >
+        <h3
+          style="margin: 0px; font-size: 1.5rem; font-weight: bold; color: rgb(33, 37, 41);"
+        >
+          Web Service Validator
+        </h3>
+        <div
+          class="d-flex align-items-center gap-3"
+        >
+          <input
+            accept=".json"
+            style="display: none;"
+            type="file"
+          />
+          <button
+            class="btn btn-link"
+            style="text-decoration: none; font-size: 0.9rem; color: rgb(108, 117, 125); font-weight: 500;"
+            title="Import a previously exported session (JSON)"
+            type="button"
+          >
+            <span
+              style="margin-right: 5px;"
+            >
+              馃搨
+            </span>
+             Import
+          </button>
+          <div
+            class="d-flex align-items-center gap-1"
+          >
+            <button
+              class="btn btn-link"
+              style="text-decoration: none; font-size: 0.9rem; color: rgb(108, 117, 125); font-weight: 500;"
+              title="Export current session to JSON"
+              type="button"
+            >
+              <span
+                style="margin-right: 5px;"
+              >
+                猬囷笍
+              </span>
+               Export
+            </button>
+            <div
+              class="form-check form-check-reverse"
+              style="font-size: 0.9rem; user-select: none; cursor: pointer; margin-bottom: 0px; margin-top: 2px;"
+            >
+              <input
+                class="form-check-input"
+                id="credentials-check"
+                type="checkbox"
+              />
+              <label
+                class="form-check-label"
+                for="credentials-check"
+                title="Include sensitive credentials (id, password, accessKey) in export"
+              >
+                with Credentials
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-3 row"
+      >
+        <div
+          class="col-md-3"
+        >
+          <div
+            class="input-group"
+          >
+            <span
+              class="input-group-text"
+            >
+              Service
+            </span>
+            <select
+              aria-label="Select Service"
+              class="form-select"
+            >
+              <option
+                value=""
+              >
+                Select...
+              </option>
+              <option
+                value="OrderStatus"
+              >
+                OrderStatus
+              </option>
+            </select>
+          </div>
+        </div>
+        <div
+          class="col-md-2"
+        >
+          <div
+            class="input-group"
+          >
+            <span
+              class="input-group-text"
+            >
+              Version
+            </span>
+            <select
+              aria-label="Select Version"
+              class="form-select"
+            >
+              <option
+                value=""
+              >
+                ...
+              </option>
+              <option
+                value="2.0.0"
+              >
+                2.0.0
+              </option>
+            </select>
+          </div>
+        </div>
+        <div
+          class="col-md-7"
+        >
+          <div
+            class="input-group has-validation"
+          >
+            <span
+              class="input-group-text"
+            >
+              Operation
+            </span>
+            <select
+              aria-label="Select Operation"
+              class="form-select"
+            >
+              <option
+                value=""
+              >
+                Select Operation...
+              </option>
+              <option
+                value="GetOrderStatusRequest"
+              >
+                GetOrderStatusRequest
+              </option>
+            </select>
+            <div
+              class="invalid-feedback"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-3 row"
+      >
+        <div
+          class="col"
+        >
+          <div
+            class="input-group has-validation"
+          >
+            <span
+              class="input-group-text"
+            >
+              Endpoint URL
+            </span>
+            <input
+              aria-label="Endpoint URL"
+              class="form-control"
+              placeholder="https://..."
+              type="text"
+              value=""
+            />
+            <div
+              class="invalid-feedback"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-3 card"
+      >
+        <div
+          class="d-flex justify-content-between align-items-center card-header"
+        >
+          <span>
+            Request Body
+          </span>
+          <button
+            class="btn btn-sm btn-outline-secondary"
+            style="line-height: 1; padding: 0.2rem 0.5rem;"
+            title="Format XML"
+          >
+            Format
+          </button>
+        </div>
+        <div
+          class="card-body"
+          style="padding: 0px;"
+        >
+          <textarea
+            aria-label="Request Body"
+            class="form-control"
+            style="font-family: monospace; white-space: pre; height: 300px; max-height: 500px; resize: vertical; overflow-y: auto; border: medium; border-radius: 0;"
+          >
+            &lt;Test&gt;XML&lt;/Test&gt;
+          </textarea>
+          <div
+            class="invalid-feedback"
+          />
+        </div>
+      </div>
+      <div
+        class="d-flex gap-2 mb-3"
+      >
+        <button
+          class="flex-grow-1 btn-outline-custom btn btn-outline-primary btn-lg"
+          type="button"
+        >
+          Validate Request
+        </button>
+        <button
+          class="flex-grow-1 btn-primary-custom btn btn-primary btn-lg"
+          type="button"
+        >
+          Validate Response
+        </button>
+      </div>
+      <div
+        class="fade mb-3 alert alert-danger show"
+        role="alert"
+      >
+        Network Error: Cannot read properties of undefined (reading 'headers')
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col-md-12"
+        />
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col-md-12"
+        >
+          <div
+            class="mb-3 card"
+          >
+            <div
+              class="bg-danger text-white card-header"
+            >
+              <strong>
+                Request Validation Results: Failed
+              </strong>
+            </div>
+            <div
+              class="card-body"
+              style="max-height: 300px; overflow-y: auto;"
+            >
+              <div
+                class="fade alert alert-danger show"
+                role="alert"
+              >
+                <ul
+                  style="margin-bottom: 1rem; padding-left: 1.2rem;"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<html>
+  <head />
+  <body>
+    <div>
+      <div
+        class="container-fluid"
+        style="padding-left: 2rem; padding-right: 2rem; margin-top: 0px;"
+      >
+        <div
+          style="width: 100%; height: 60px; background-color: rgb(248, 249, 250); border-bottom: 1px solid rgb(222, 226, 230); display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-radius: 0.25rem; padding: 0px 1rem;"
+        >
+          <h3
+            style="margin: 0px; font-size: 1.5rem; font-weight: bold; color: rgb(33, 37, 41);"
+          >
+            Web Service Validator
+          </h3>
+          <div
+            class="d-flex align-items-center gap-3"
+          >
+            <input
+              accept=".json"
+              style="display: none;"
+              type="file"
+            />
+            <button
+              class="btn btn-link"
+              style="text-decoration: none; font-size: 0.9rem; color: rgb(108, 117, 125); font-weight: 500;"
+              title="Import a previously exported session (JSON)"
+              type="button"
+            >
+              <span
+                style="margin-right: 5px;"
+              >
+                馃搨
+              </span>
+               Import
+            </button>
+            <div
+              class="d-flex align-items-center gap-1"
+            >
+              <button
+                class="btn btn-link"
+                style="text-decoration: none; font-size: 0.9rem; color: rgb(108, 117, 125); font-weight: 500;"
+                title="Export current session to JSON"
+                type="button"
+              >
+                <span
+                  style="margin-right: 5px;"
+                >
+                  猬囷笍
+                </span>
+                 Export
+              </button>
+              <div
+                class="form-check form-check-reverse"
+                style="font-size: 0.9rem; user-select: none; cursor: pointer; margin-bottom: 0px; margin-top: 2px;"
+              >
+                <input
+                  class="form-check-input"
+                  id="credentials-check"
+                  type="checkbox"
+                />
+                <label
+                  class="form-check-label"
+                  for="credentials-check"
+                  title="Include sensitive credentials (id, password, accessKey) in export"
+                >
+                  with Credentials
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mb-3 row"
+        >
+          <div
+            class="col-md-3"
+          >
+            <div
+              class="input-group"
+            >
+              <span
+                class="input-group-text"
+              >
+                Service
+              </span>
+              <select
+                aria-label="Select Service"
+                class="form-select"
+              >
+                <option
+                  value=""
+                >
+                  Select...
+                </option>
+                <option
+                  value="OrderStatus"
+                >
+                  OrderStatus
+                </option>
+              </select>
+            </div>
+          </div>
+          <div
+            class="col-md-2"
+          >
+            <div
+              class="input-group"
+            >
+              <span
+                class="input-group-text"
+              >
+                Version
+              </span>
+              <select
+                aria-label="Select Version"
+                class="form-select"
+              >
+                <option
+                  value=""
+                >
+                  ...
+                </option>
+                <option
+                  value="2.0.0"
+                >
+                  2.0.0
+                </option>
+              </select>
+            </div>
+          </div>
+          <div
+            class="col-md-7"
+          >
+            <div
+              class="input-group has-validation"
+            >
+              <span
+                class="input-group-text"
+              >
+                Operation
+              </span>
+              <select
+                aria-label="Select Operation"
+                class="form-select"
+              >
+                <option
+                  value=""
+                >
+                  Select Operation...
+                </option>
+                <option
+                  value="GetOrderStatusRequest"
+                >
+                  GetOrderStatusRequest
+                </option>
+              </select>
+              <div
+                class="invalid-feedback"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="mb-3 row"
+        >
+          <div
+            class="col"
+          >
+            <div
+              class="input-group has-validation"
+            >
+              <span
+                class="input-group-text"
+              >
+                Endpoint URL
+              </span>
+              <input
+                aria-label="Endpoint URL"
+                class="form-control"
+                placeholder="https://..."
+                type="text"
+                value=""
+              />
+              <div
+                class="invalid-feedback"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="mb-3 card"
+        >
+          <div
+            class="d-flex justify-content-between align-items-center card-header"
+          >
+            <span>
+              Request Body
+            </span>
+            <button
+              class="btn btn-sm btn-outline-secondary"
+              style="line-height: 1; padding: 0.2rem 0.5rem;"
+              title="Format XML"
+            >
+              Format
+            </button>
+          </div>
+          <div
+            class="card-body"
+            style="padding: 0px;"
+          >
+            <textarea
+              aria-label="Request Body"
+              class="form-control"
+              style="font-family: monospace; white-space: pre; height: 300px; max-height: 500px; resize: vertical; overflow-y: auto; border: medium; border-radius: 0;"
+            >
+              &lt;Test&gt;XML&lt;/Test&gt;
+            </textarea>
+            <div
+              class="invalid-feedback"
+            />
+          </div>
+        </div>
+        <div
+          class="d-flex gap-2 mb-3"
+        >
+          <button
+            class="flex-grow-1 btn-outline-custom btn btn-outline-primary btn-lg"
+            type="button"
+          >
+            Validate Request
+          </button>
+          <button
+            class="flex-grow-1 btn-primary-custom btn btn-primary btn-lg"
+            type="button"
+          >
+            Validate Response
+          </button>
+        </div>
+        <div
+          class="fade mb-3 alert alert-danger show"
+          role="alert"
+        >
+          Network Error: Cannot read properties of undefined (reading 'headers')
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-12"
+          />
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-12"
+          >
+            <div
+              class="mb-3 card"
+            >
+              <div
+                class="bg-danger text-white card-header"
+              >
+                <strong>
+                  Request Validation Results: Failed
+                </strong>
+              </div>
+              <div
+                class="card-body"
+                style="max-height: 300px; overflow-y: auto;"
+              >
+                <div
+                  class="fade alert alert-danger show"
+                  role="alert"
+                >
+                  <ul
+                    style="margin-bottom: 1rem; padding-left: 1.2rem;"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+ 鉂?[22m waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ 鉂?[22m src/tests/App.test.jsx:108:15
+    106| 
+    107|         // Expect Validation Results
+    108|         await waitFor(() => {
+       |               ^
+    109|             expect(screen.getByText('Validation Successful')).toBeInTh鈥?    110|         });
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[1/2]鈳?[22m
+
+ FAIL  src/tests/App.test.jsx > App Integration Tests > should handle API Network Errors gracefully
+TestingLibraryElementError: Found multiple elements with the text: /Network Error/i
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+<textarea
+  aria-label="Request Body"
+  class="form-control"
+  style="font-family: monospace; white-space: pre; height: 300px; max-height: 500px; resize: vertical; overflow-y: auto; border: medium; border-radius: 0;"
+>
+  &lt;!-- Error generating sample: Network Error --&gt;&lt;Test/&gt;
+</textarea>
+
+Ignored nodes: comments, script, style
+<div
+  class="fade mb-3 alert alert-danger show"
+  role="alert"
+>
+  Network Error: Cannot read properties of undefined (reading 'headers')
+</div>
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      class="container-fluid"
+      style="padding-left: 2rem; padding-right: 2rem; margin-top: 0px;"
+    >
+      <div
+        style="width: 100%; height: 60px; background-color: rgb(248, 249, 250); border-bottom: 1px solid rgb(222, 226, 230); display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-radius: 0.25rem; padding: 0px 1rem;"
+      >
+        <h3
+          style="margin: 0px; font-size: 1.5rem; font-weight: bold; color: rgb(33, 37, 41);"
+        >
+          Web Service Validator
+        </h3>
+        <div
+          class="d-flex align-items-center gap-3"
+        >
+          <input
+            accept=".json"
+            style="display: none;"
+            type="file"
+          />
+          <button
+            class="btn btn-link"
+            style="text-decoration: none; font-size: 0.9rem; color: rgb(108, 117, 125); font-weight: 500;"
+            title="Import a previously exported session (JSON)"
+            type="button"
+          >
+            <span
+              style="margin-right: 5px;"
+            >
+              馃搨
+            </span>
+             Import
+          </button>
+          <div
+            class="d-flex align-items-center gap-1"
+          >
+            <button
+              class="btn btn-link"
+              style="text-decoration: none; font-size: 0.9rem; color: rgb(108, 117, 125); font-weight: 500;"
+              title="Export current session to JSON"
+              type="button"
+            >
+              <span
+                style="margin-right: 5px;"
+              >
+                猬囷笍
+              </span>
+               Export
+            </button>
+            <div
+              class="form-check form-check-reverse"
+              style="font-size: 0.9rem; user-select: none; cursor: pointer; margin-bottom: 0px; margin-top: 2px;"
+            >
+              <input
+                class="form-check-input"
+                id="credentials-check"
+                type="checkbox"
+              />
+              <label
+                class="form-check-label"
+                for="credentials-check"
+                title="Include sensitive credentials (id, password, accessKey) in export"
+              >
+                with Credentials
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-3 row"
+      >
+        <div
+          class="col-md-3"
+        >
+          <div
+            class="input-group"
+          >
+            <span
+              class="input-group-text"
+            >
+              Service
+            </span>
+            <select
+              aria-label="Select Service"
+              class="form-select"
+            >
+              <option
+                value=""
+              >
+                Select...
+              </option>
+              <option
+                value="OrderStatus"
+              >
+                OrderStatus
+              </option>
+            </select>
+          </div>
+        </div>
+        <div
+          class="col-md-2"
+        >
+          <div
+            class="input-group"
+          >
+            <span
+              class="input-group-text"
+            >
+              Version
+            </span>
+            <select
+              aria-label="Select Version"
+              class="form-select"
+            >
+              <option
+                value=""
+              >
+                ...
+              </option>
+              <option
+                value="2.0.0"
+              >
+                2.0.0
+              </option>
+            </select>
+          </div>
+        </div>
+        <div
+          class="col-md-7"
+        >
+          <div
+            class="input-group has-validation"
+          >
+            <span
+              class="input-group-text"
+            >
+              Operation
+            </span>
+            <select
+              aria-label="Select Operation"
+              class="form-select"
+            >
+              <option
+                value=""
+              >
+                Select Operation...
+              </option>
+              <option
+                value="GetOrderStatusRequest"
+              >
+                GetOrderStatusRequest
+              </option>
+            </select>
+            <div
+              class="invalid-feedback"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-3 row"
+      >
+        <div
+          class="col"
+        >
+          <div
+            class="input-group has-validation"
+          >
+            <span
+              class="input-group-text"
+            >
+              Endpoint URL
+            </span>
+            <input
+              aria-label="Endpoint URL"
+              class="form-control"
+              placeholder="https://..."
+              type="text"
+              value=""
+            />
+            <div
+              class="invalid-feedback"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-3 card"
+      >
+        <div
+          class="d-flex justify-content-between align-items-center card-header"
+        >
+          <span>
+            Request Body
+          </span>
+          <button
+            class="btn btn-sm btn-outline-secondary"
+            style="line-height: 1; padding: 0.2rem 0.5rem;"
+            title="Format XML"
+          >
+            Format
+          </button>
+        </div>
+        <div
+          class="card-body"
+          style="padding: 0px;"
+        >
+          <textarea
+            aria-label="Request Body"
+            class="form-control"
+            style="font-family: monospace; white-space: pre; height: 300px; max-height: 500px; resize: vertical; overflow-y: auto; border: medium; border-radius: 0;"
+          >
+            &lt;!-- Error generating sample: Network Error --&gt;&lt;Test/&gt;
+          </textarea>
+          <div
+            class="invalid-feedback"
+          />
+        </div>
+      </div>
+      <div
+        class="d-flex gap-2 mb-3"
+      >
+        <button
+          class="flex-grow-1 btn-outline-custom btn btn-outline-primary btn-lg"
+          type="button"
+        >
+          Validate Request
+        </button>
+        <button
+          class="flex-grow-1 btn-primary-custom btn btn-primary btn-lg"
+          type="button"
+        >
+          Validate Response
+        </button>
+      </div>
+      <div
+        class="fade mb-3 alert alert-danger show"
+        role="alert"
+      >
+        Network Error: Cannot read properties of undefined (reading 'headers')
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col-md-12"
+        />
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col-md-12"
+        >
+          <div
+            class="mb-3 card"
+          >
+            <div
+              class="bg-danger text-white card-header"
+            >
+              <strong>
+                Request Validation Results: Failed
+              </strong>
+            </div>
+            <div
+              class="card-body"
+              style="max-height: 300px; overflow-y: auto;"
+            >
+              <div
+                class="fade alert alert-danger show"
+                role="alert"
+              >
+                <ul
+                  style="margin-bottom: 1rem; padding-left: 1.2rem;"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<html>
+  <head />
+  <body>
+    <div>
+      <div
+        class="container-fluid"
+        style="padding-left: 2rem; padding-right: 2rem; margin-top: 0px;"
+      >
+        <div
+          style="width: 100%; height: 60px; background-color: rgb(248, 249, 250); border-bottom: 1px solid rgb(222, 226, 230); display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-radius: 0.25rem; padding: 0px 1rem;"
+        >
+          <h3
+            style="margin: 0px; font-size: 1.5rem; font-weight: bold; color: rgb(33, 37, 41);"
+          >
+            Web Service Validator
+          </h3>
+          <div
+            class="d-flex align-items-center gap-3"
+          >
+            <input
+              accept=".json"
+              style="display: none;"
+              type="file"
+            />
+            <button
+              class="btn btn-link"
+              style="text-decoration: none; font-size: 0.9rem; color: rgb(108, 117, 125); font-weight: 500;"
+              title="Import a previously exported session (JSON)"
+              type="button"
+            >
+              <span
+                style="margin-right: 5px;"
+              >
+                馃搨
+              </span>
+               Import
+            </button>
+            <div
+              class="d-flex align-items-center gap-1"
+            >
+              <button
+                class="btn btn-link"
+                style="text-decoration: none; font-size: 0.9rem; color: rgb(108, 117, 125); font-weight: 500;"
+                title="Export current session to JSON"
+                type="button"
+              >
+                <span
+                  style="margin-right: 5px;"
+                >
+                  猬囷笍
+                </span>
+                 Export
+              </button>
+              <div
+                class="form-check form-check-reverse"
+                style="font-size: 0.9rem; user-select: none; cursor: pointer; margin-bottom: 0px; margin-top: 2px;"
+              >
+                <input
+                  class="form-check-input"
+                  id="credentials-check"
+                  type="checkbox"
+                />
+                <label
+                  class="form-check-label"
+                  for="credentials-check"
+                  title="Include sensitive credentials (id, password, accessKey) in export"
+                >
+                  with Credentials
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mb-3 row"
+        >
+          <div
+            class="col-md-3"
+          >
+            <div
+              class="input-group"
+            >
+              <span
+                class="input-group-text"
+              >
+                Service
+              </span>
+              <select
+                aria-label="Select Service"
+                class="form-select"
+              >
+                <option
+                  value=""
+                >
+                  Select...
+                </option>
+                <option
+                  value="OrderStatus"
+                >
+                  OrderStatus
+                </option>
+              </select>
+            </div>
+          </div>
+          <div
+            class="col-md-2"
+          >
+            <div
+              class="input-group"
+            >
+              <span
+                class="input-group-text"
+              >
+                Version
+              </span>
+              <select
+                aria-label="Select Version"
+                class="form-select"
+              >
+                <option
+                  value=""
+                >
+                  ...
+                </option>
+                <option
+                  value="2.0.0"
+                >
+                  2.0.0
+                </option>
+              </select>
+            </div>
+          </div>
+          <div
+            class="col-md-7"
+          >
+            <div
+              class="input-group has-validation"
+            >
+              <span
+                class="input-group-text"
+              >
+                Operation
+              </span>
+              <select
+                aria-label="Select Operation"
+                class="form-select"
+              >
+                <option
+                  value=""
+                >
+                  Select Operation...
+                </option>
+                <option
+                  value="GetOrderStatusRequest"
+                >
+                  GetOrderStatusRequest
+                </option>
+              </select>
+              <div
+                class="invalid-feedback"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="mb-3 row"
+        >
+          <div
+            class="col"
+          >
+            <div
+              class="input-group has-validation"
+            >
+              <span
+                class="input-group-text"
+              >
+                Endpoint URL
+              </span>
+              <input
+                aria-label="Endpoint URL"
+                class="form-control"
+                placeholder="https://..."
+                type="text"
+                value=""
+              />
+              <div
+                class="invalid-feedback"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="mb-3 card"
+        >
+          <div
+            class="d-flex justify-content-between align-items-center card-header"
+          >
+            <span>
+              Request Body
+            </span>
+            <button
+              class="btn btn-sm btn-outline-secondary"
+              style="line-height: 1; padding: 0.2rem 0.5rem;"
+              title="Format XML"
+            >
+              Format
+            </button>
+          </div>
+          <div
+            class="card-body"
+            style="padding: 0px;"
+          >
+            <textarea
+              aria-label="Request Body"
+              class="form-control"
+              style="font-family: monospace; white-space: pre; height: 300px; max-height: 500px; resize: vertical; overflow-y: auto; border: medium; border-radius: 0;"
+            >
+              &lt;!-- Error generating sample: Network Error --&gt;&lt;Test/&gt;
+            </textarea>
+            <div
+              class="invalid-feedback"
+            />
+          </div>
+        </div>
+        <div
+          class="d-flex gap-2 mb-3"
+        >
+          <button
+            class="flex-grow-1 btn-outline-custom btn btn-outline-primary btn-lg"
+            type="button"
+          >
+            Validate Request
+          </button>
+          <button
+            class="flex-grow-1 btn-primary-custom btn btn-primary btn-lg"
+            type="button"
+          >
+            Validate Response
+          </button>
+        </div>
+        <div
+          class="fade mb-3 alert alert-danger show"
+          role="alert"
+        >
+          Network Error: Cannot read properties of undefined (reading 'headers')
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-12"
+          />
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-12"
+          >
+            <div
+              class="mb-3 card"
+            >
+              <div
+                class="bg-danger text-white card-header"
+              >
+                <strong>
+                  Request Validation Results: Failed
+                </strong>
+              </div>
+              <div
+                class="card-body"
+                style="max-height: 300px; overflow-y: auto;"
+              >
+                <div
+                  class="fade alert alert-danger show"
+                  role="alert"
+                >
+                  <ul
+                    style="margin-bottom: 1rem; padding-left: 1.2rem;"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+ 鉂?[22m waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ 鉂?[22m src/tests/App.test.jsx:139:15
+    137|         await user.click(screen.getByRole('button', { name: /Validate 鈥?    138| 
+    139|         await waitFor(() => {
+       |               ^
+    140|             expect(screen.getByText(/Network Error/i)).toBeInTheDocume鈥?    141|         });
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[2/2]鈳?[22m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m3 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m16 passed[39m[22m[90m (18)[39m
+[2m   Start at [22m 20:33:18
+[2m   Duration [22m 8.67s[2m (transform 616ms, setup 1.07s, collect 5.33s, tests 8.00s, environment 7.62s, prepare 134ms)[22m
+

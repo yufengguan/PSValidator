@@ -1,74 +1,104 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import ValidationPanel from '../components/ValidationPanel';
 
 /**
- * Tests for ValidationPanel Component - Section 5.2.2, 3.9
- * Verifies validation result display with line numbers, positions, and descriptions
+ * UNIT TEST REMARKS:
+ * Component: ValidationPanel
+ * Type: Stateless Presentational Component
+ * 
+ * Purpose:
+ * 1. Verify display of "Success" state (Green Alert).
+ * 2. Verify display of "Error" state (Red Alert).
+ * 3. Verify that error messages are "cleaned" (removing redundant "Error:" prefix).
+ * 4. Verify the conditional "Note" block for structural errors.
+ * 5. Verify the Empty/Initial state.
  */
-describe('ValidationPanel - Validation Results Display (Section 5.2.2)', () => {
-    it('should display success message when validation passes', () => {
-        const result = {
-            isValid: true,
-            validationResultMessages: []
-        };
 
-        render(<ValidationPanel result={result} />);
+describe('ValidationPanel Unit Tests', () => {
 
-        expect(screen.getByText(/valid/i)).toBeInTheDocument();
-        expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
-    });
-
-    it('should display validation errors with details (Section 3.9.2)', () => {
-        const result = {
-            isValid: false,
-            validationResultMessages: [
-                'Line 5, Position 12: Element "InvalidElement" is not valid according to schema',
-                'Line 10, Position 3: Required element "wsVersion" is missing'
-            ]
-        };
-
-        render(<ValidationPanel result={result} />);
-
-        expect(screen.getByText(/line 5/i)).toBeInTheDocument();
-        expect(screen.getByText(/position 12/i)).toBeInTheDocument();
-        expect(screen.getByText(/invalidelement/i)).toBeInTheDocument();
-        expect(screen.getByText(/line 10/i)).toBeInTheDocument();
-        expect(screen.getByText(/wsversion/i)).toBeInTheDocument();
-    });
-
-    it('should display overall failure status (Section 3.9.1)', () => {
-        const result = {
-            isValid: false,
-            validationResultMessages: ['Validation failed']
-        };
-
-        render(<ValidationPanel result={result} />);
-
-        expect(screen.getByText(/failed|invalid/i)).toBeInTheDocument();
-    });
-
-    it('should handle empty result gracefully', () => {
+    it('should display initial empty state when result is null', () => {
         render(<ValidationPanel result={null} />);
-
-        expect(screen.queryByText(/valid/i)).not.toBeInTheDocument();
+        expect(screen.getByText('No validation performed yet.')).toBeInTheDocument();
     });
 
-    it('should display multiple validation errors', () => {
+    it('should display Success Alert when result is valid', () => {
+        const result = {
+            type: 'Request',
+            isValid: true,
+            validationResultMessages: ['Validation Successful']
+        };
+
+        render(<ValidationPanel result={result} />);
+
+        // Header
+        expect(screen.getByText(/Request Validation Results: Success/i)).toBeInTheDocument();
+        // Body
+        expect(screen.getByText('Validation Successful')).toBeInTheDocument();
+        // Alert Class (Bootstrap)
+        expect(screen.getByRole('alert')).toHaveClass('alert-success');
+    });
+
+    it('should display Failure Alert and list errors', () => {
         const result = {
             isValid: false,
             validationResultMessages: [
-                'Error 1: Invalid namespace',
-                'Error 2: Missing required attribute',
-                'Error 3: Invalid data type'
+                'Line 1: Tag mismatch',
+                'Position 5: Invalid Attribute'
             ]
         };
 
         render(<ValidationPanel result={result} />);
 
-        expect(screen.getByText(/error 1/i)).toBeInTheDocument();
-        expect(screen.getByText(/error 2/i)).toBeInTheDocument();
-        expect(screen.getByText(/error 3/i)).toBeInTheDocument();
+        // Header
+        expect(screen.getByText(/Validation Results: Failed/i)).toBeInTheDocument();
+        // Errors
+        expect(screen.getByText('Line 1: Tag mismatch')).toBeInTheDocument();
+        expect(screen.getByText('Position 5: Invalid Attribute')).toBeInTheDocument();
+        // Alert Class
+        expect(screen.getByRole('alert')).toHaveClass('alert-danger');
+    });
+
+    it('should clean "Error:" prefix from messages', () => {
+        const result = {
+            isValid: false,
+            validationResultMessages: [
+                'Error: Invalid XML structure',
+                'error: lowercase prefix check'
+            ]
+        };
+
+        render(<ValidationPanel result={result} />);
+
+        // Should find "Invalid XML structure" without "Error: "
+        expect(screen.getByText('Invalid XML structure')).toBeInTheDocument();
+        expect(screen.queryByText('Error: Invalid XML structure')).not.toBeInTheDocument();
+
+        // Regex /i in component handles case insensitivity? 
+        // Component uses: msg.replace(/^Error:\s*/i, '') -> Yes.
+        expect(screen.getByText('lowercase prefix check')).toBeInTheDocument();
+    });
+
+    it('should show Note for structural errors (when not empty body error)', () => {
+        const result = {
+            isValid: false,
+            validationResultMessages: ['Some structural error occurred']
+        };
+
+        render(<ValidationPanel result={result} />);
+
+        expect(screen.getByText(/Some structural errors may prevent further validation/i)).toBeInTheDocument();
+    });
+
+    it('should NOT show Note if the only error is "Request Body cannot be empty."', () => {
+        const result = {
+            isValid: false,
+            validationResultMessages: ['Request Body cannot be empty.']
+        };
+
+        render(<ValidationPanel result={result} />);
+
+        expect(screen.getByText('Request Body cannot be empty.')).toBeInTheDocument();
+        expect(screen.queryByText(/Some structural errors/i)).not.toBeInTheDocument();
     });
 });

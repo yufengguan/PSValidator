@@ -41,6 +41,8 @@ App/.turbo/
 App/.next/
 App/.cache/
 App/coverage/
+App/test-results/
+App/playwright-report/
 App/.DS_Store
 App/.vscode/
 App/.idea/
@@ -61,7 +63,7 @@ App/tsconfig.tsbuildinfo
 
 # --- Docs ---
 Docs/ValidXmlResponses/
-Docs/Guides/
+
 
 # --- Deployment ---
 deploy.config

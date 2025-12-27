@@ -13,6 +13,7 @@ const EndpointInput = ({ endpoint, onChange, error }) => {
                         value={endpoint}
                         onChange={(e) => onChange(e.target.value)}
                         isInvalid={!!error}
+                        aria-label="Endpoint URL"
                     />
                     <Form.Control.Feedback type="invalid">
                         {error}

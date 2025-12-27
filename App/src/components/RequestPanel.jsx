@@ -78,6 +78,7 @@ const RequestPanel = ({ xmlContent, onChange, error }) => {
                         borderRadius: 0
                     }}
                     isInvalid={!!error}
+                    aria-label="Request Body"
                 />
                 <Form.Control.Feedback type="invalid">
                     {error}

@@ -1,57 +1,65 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import EndpointInput from '../components/EndpointInput';
+import { useState } from 'react';
 
 /**
- * Tests for EndpointInput Component - Section 3.5, 5.3.2
- * Verifies endpoint validation and error handling
+ * UNIT TEST REMARKS:
+ * Component: EndpointInput
+ * Type: Controlled Component (Presentational)
+ * 
+ * Purpose:
+ * 1. Verify that the component renders a Label and Input field.
+ * 2. Ensure that typing into the input calls the `onChange` callback.
+ * 3. Verify that the component displays the value passed via the `endpoint` prop (Controlled behavior).
+ * 4. Verify that error messages are displayed when the `error` prop is present.
  */
-describe('EndpointInput - Endpoint Validation (Section 3.5)', () => {
-    it('should render endpoint input field', () => {
-        const mockOnChange = vi.fn();
-        render(<EndpointInput endpoint="" onChange={mockOnChange} />);
 
-        expect(screen.getByLabelText(/endpoint/i)).toBeInTheDocument();
+// Simple wrapper for testing controlled input behavior
+const TestWrapper = () => {
+    const [val, setVal] = useState('');
+    return <EndpointInput endpoint={val} onChange={setVal} />;
+};
+
+describe('EndpointInput Unit Tests', () => {
+
+    it('should render the endpoint label and input', () => {
+        render(<EndpointInput endpoint="" onChange={() => { }} />);
+        expect(screen.getByLabelText(/Endpoint URL/i)).toBeInTheDocument();
+        expect(screen.getByRole('textbox', { name: /Endpoint URL/i })).toBeInTheDocument();
+    });
+
+    it('should display the value from props', () => {
+        render(<EndpointInput endpoint="http://test.com" onChange={() => { }} />);
+        const input = screen.getByRole('textbox', { name: /Endpoint URL/i });
+        expect(input.value).toBe('http://test.com');
     });
 
     it('should call onChange when user types', async () => {
-        const user = userEvent.setup();
         const mockOnChange = vi.fn();
+        const user = userEvent.setup();
 
         render(<EndpointInput endpoint="" onChange={mockOnChange} />);
 
-        const input = screen.getByLabelText(/endpoint/i);
-        await user.type(input, 'https://example.com/service');
+        const input = screen.getByRole('textbox', { name: /Endpoint URL/i });
+        await user.type(input, 'https://test.com');
 
         expect(mockOnChange).toHaveBeenCalled();
     });
 
-    it('should display validation error when empty (Section 3.5.2)', () => {
-        const mockOnChange = vi.fn();
-        render(<EndpointInput endpoint="" onChange={mockOnChange} error="Endpoint is required." />);
-
-        expect(screen.getByText(/endpoint is required/i)).toBeInTheDocument();
-    });
-
-    it('should display service error message when endpoint is unreachable (Section 3.5.2)', () => {
-        const mockOnChange = vi.fn();
-        const errorMessage = 'Unable to connect to the service endpoint';
-
-        render(<EndpointInput endpoint="https://unreachable.com" onChange={mockOnChange} error={errorMessage} />);
-
-        expect(screen.getByText(/unable to connect/i)).toBeInTheDocument();
-    });
-
-    it('should accept valid URL format', async () => {
+    it('should update value correctly in a controlled setup', async () => {
         const user = userEvent.setup();
-        const mockOnChange = vi.fn();
+        render(<TestWrapper />);
 
-        render(<EndpointInput endpoint="" onChange={mockOnChange} />);
+        const input = screen.getByRole('textbox', { name: /Endpoint URL/i });
+        await user.type(input, 'https://new-url.com');
 
-        const input = screen.getByLabelText(/endpoint/i);
-        await user.type(input, 'https://supplier.example.com/promostandards/OrderStatus');
+        expect(input.value).toBe('https://new-url.com');
+    });
 
-        expect(input.value).toBe('https://supplier.example.com/promostandards/OrderStatus');
+    it('should display error message when error prop is provided', () => {
+        render(<EndpointInput endpoint="" onChange={() => { }} error="Invalid URL format" />);
+        expect(screen.getByText('Invalid URL format')).toBeInTheDocument();
     });
 });

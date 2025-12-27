@@ -1,141 +1,144 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
 import ServiceSelector from '../components/ServiceSelector';
+import { useState } from 'react';
 
 /**
- * Tests for ServiceSelector Component - Section 5.1.1
- * Verifies cascading dropdown functionality and filtering behavior
+ * UNIT TEST REMARKS:
+ * Component: ServiceSelector
+ * Type: Controlled Component (Presentational)
+ * 
+ * Purpose:
+ * 1. Verify that the component renders the 3 dropdowns (Service, Version, Operation) based on props.
+ * 2. Ensure that changing a dropdown calls the `onSelectionChange` callback with the NEW selection state.
+ * 3. Verify that the component creates a proper waterfall experience.
+ * 
+ * Key Updates:
+ * - Uses getByRole('combobox', { name: ... }) for robust accessibility selection.
+ * - Uses fireEvent.change for reliable interaction.
+ * - Uses waitFor/await for disabled state assertions.
+ * - Corrected Mock Data structure to match legacy .NET casing used in component (ServiceName, Versions, Major...).
  */
-describe('ServiceSelector - Cascading Dropdowns (Section 5.1.1)', () => {
+
+// Wrapper to simulate App.jsx state management
+const TestWrapper = ({ initialServices }) => {
+    const [selection, setSelection] = useState({ service: '', version: '', operation: '' });
+
+    const handleChange = (newSelection) => {
+        setSelection(newSelection);
+    };
+
+    return (
+        <ServiceSelector
+            services={initialServices}
+            selection={selection}
+            onSelectionChange={handleChange}
+        />
+    );
+};
+
+describe('ServiceSelector Unit Tests', () => {
+    // Correct Mock Data mimicking PromoStandards structure
     const mockServices = [
         {
-            service: 'OrderStatus',
-            versions: [
+            ServiceId: 'S1',
+            ServiceName: 'OrderStatus',
+            Versions: [
                 {
-                    version: '2.0.0',
-                    operations: ['GetOrderStatusRequest', 'GetOrderStatusResponse']
-                },
-                {
-                    version: '1.0.0',
-                    operations: ['GetOrderStatusRequest', 'GetOrderStatusResponse']
+                    Major: 2, Minor: 0, Patch: 0,
+                    Operations: [
+                        { OperationName: 'GetOrderStatusRequest' },
+                        { OperationName: 'GetOrderStatusResponse' }
+                    ]
                 }
             ]
         },
         {
-            service: 'ProductData',
-            versions: [
+            ServiceId: 'S2',
+            ServiceName: 'ProductData',
+            Versions: [
                 {
-                    version: '1.0.0',
-                    operations: ['GetProductRequest', 'GetProductResponse']
+                    Major: 1, Minor: 0, Patch: 0,
+                    Operations: [
+                        { OperationName: 'GetProductRequest' }
+                    ]
                 }
             ]
         }
     ];
 
-    const mockOnSelectionChange = vi.fn();
-
-    beforeEach(() => {
-        mockOnSelectionChange.mockClear();
-    });
-
-    it('should render all three dropdowns', () => {
+    it('should render all dropdowns initially', () => {
         render(
             <ServiceSelector
                 services={mockServices}
-                onSelectionChange={mockOnSelectionChange}
+                selection={{ service: '', version: '', operation: '' }}
+                onSelectionChange={() => { }}
             />
         );
 
-        expect(screen.getByLabelText(/web service/i)).toBeInTheDocument();
-        expect(screen.getByLabelText(/version/i)).toBeInTheDocument();
-        expect(screen.getByLabelText(/operation/i)).toBeInTheDocument();
+        expect(screen.getByRole('combobox', { name: /Select Service/i })).toBeInTheDocument();
+        expect(screen.getByRole('combobox', { name: /Select Version/i })).toBeInTheDocument();
+        expect(screen.getByRole('combobox', { name: /Select Operation/i })).toBeInTheDocument();
     });
 
-    it('should filter versions when service is selected', async () => {
-        const user = userEvent.setup();
-        render(
-            <ServiceSelector
-                services={mockServices}
-                onSelectionChange={mockOnSelectionChange}
-            />
-        );
+    it('should allow selecting a service, which then enables version', async () => {
+        render(<TestWrapper initialServices={mockServices} />);
 
-        const serviceDropdown = screen.getByLabelText(/web service/i);
-        await user.selectOptions(serviceDropdown, 'OrderStatus');
+        // 1. Select Service
+        const serviceSelect = screen.getByRole('combobox', { name: /Select Service/i });
+        fireEvent.change(serviceSelect, { target: { value: 'OrderStatus' } });
 
+        // 2. Verify Version is now enabled
         await waitFor(() => {
-            const versionDropdown = screen.getByLabelText(/version/i);
-            expect(versionDropdown).not.toBeDisabled();
+            expect(screen.getByRole('combobox', { name: /Select Version/i })).not.toBeDisabled();
         });
+
+        // 2.0.0 is constructed from Major.Minor.Patch
+        expect(screen.getByText('2.0.0')).toBeInTheDocument();
     });
 
-    it('should filter operations when version is selected', async () => {
-        const user = userEvent.setup();
-        render(
-            <ServiceSelector
-                services={mockServices}
-                onSelectionChange={mockOnSelectionChange}
-            />
-        );
+    it('should cascade selection from Service -> Version -> Operation', async () => {
+        render(<TestWrapper initialServices={mockServices} />);
 
-        const serviceDropdown = screen.getByLabelText(/web service/i);
-        await user.selectOptions(serviceDropdown, 'OrderStatus');
+        // 1. Select Service
+        fireEvent.change(screen.getByRole('combobox', { name: /Select Service/i }), { target: { value: 'OrderStatus' } });
 
-        const versionDropdown = screen.getByLabelText(/version/i);
-        await user.selectOptions(versionDropdown, '2.0.0');
-
+        // Wait for Version to enable
         await waitFor(() => {
-            const operationDropdown = screen.getByLabelText(/operation/i);
-            expect(operationDropdown).not.toBeDisabled();
+            expect(screen.getByRole('combobox', { name: /Select Version/i })).not.toBeDisabled();
         });
+
+        // 2. Select Version
+        fireEvent.change(screen.getByRole('combobox', { name: /Select Version/i }), { target: { value: '2.0.0' } });
+
+        // Wait for Operation to enable
+        await waitFor(() => {
+            expect(screen.getByRole('combobox', { name: /Select Operation/i })).not.toBeDisabled();
+        });
+
+        // 3. Select Operation
+        const opSelect = screen.getByRole('combobox', { name: /Select Operation/i });
+        fireEvent.change(opSelect, { target: { value: 'GetOrderStatusRequest' } });
+
+        // Verify value is set
+        expect(opSelect.value).toBe('GetOrderStatusRequest');
     });
 
-    it('should call onSelectionChange when all selections are made', async () => {
-        const user = userEvent.setup();
-        render(
-            <ServiceSelector
-                services={mockServices}
-                onSelectionChange={mockOnSelectionChange}
-            />
-        );
+    it('should reset downstream fields when upstream field changes', async () => {
+        render(<TestWrapper initialServices={mockServices} />);
 
-        const serviceDropdown = screen.getByLabelText(/web service/i);
-        await user.selectOptions(serviceDropdown, 'OrderStatus');
+        // Fully select everything for OrderStatus
+        fireEvent.change(screen.getByRole('combobox', { name: /Select Service/i }), { target: { value: 'OrderStatus' } });
+        fireEvent.change(screen.getByRole('combobox', { name: /Select Version/i }), { target: { value: '2.0.0' } });
+        fireEvent.change(screen.getByRole('combobox', { name: /Select Operation/i }), { target: { value: 'GetOrderStatusRequest' } });
 
-        const versionDropdown = screen.getByLabelText(/version/i);
-        await user.selectOptions(versionDropdown, '2.0.0');
+        // Now change Service to ProductData
+        fireEvent.change(screen.getByRole('combobox', { name: /Select Service/i }), { target: { value: 'ProductData' } });
 
-        const operationDropdown = screen.getByLabelText(/operation/i);
-        await user.selectOptions(operationDropdown, 'GetOrderStatusRequest');
-
-        expect(mockOnSelectionChange).toHaveBeenCalledWith({
-            service: 'OrderStatus',
-            version: '2.0.0',
-            operation: 'GetOrderStatusRequest'
+        // Version should be reset (empty)
+        // Wait for verify
+        await waitFor(() => {
+            expect(screen.getByRole('combobox', { name: /Select Version/i }).value).toBe('');
         });
-    });
-
-    it('should reset version and operation when service changes (Section 3.3.2)', async () => {
-        const user = userEvent.setup();
-        render(
-            <ServiceSelector
-                services={mockServices}
-                onSelectionChange={mockOnSelectionChange}
-            />
-        );
-
-        // Select OrderStatus
-        const serviceDropdown = screen.getByLabelText(/web service/i);
-        await user.selectOptions(serviceDropdown, 'OrderStatus');
-
-        const versionDropdown = screen.getByLabelText(/version/i);
-        await user.selectOptions(versionDropdown, '2.0.0');
-
-        // Change service to ProductData
-        await user.selectOptions(serviceDropdown, 'ProductData');
-
-        // Version and operation should be reset
-        expect(versionDropdown.value).toBe('');
     });
 });

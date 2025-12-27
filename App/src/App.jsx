@@ -299,17 +299,23 @@ function App() {
       return `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
     };
 
-    const filename = `${getServiceAbbr(selection.service)}-${getVersionStr(selection.version)}-${selection.operation || 'Op'}-${getDomain(endpoint)}-${getTimestamp()}.json`;
+    const sanitize = (str) => {
+      // Allow alphanumeric, dash, underscore, dot. Replace everything else with underscore.
+      return (str || '').replace(/[^a-zA-Z0-9.\-_]/g, '_');
+    };
 
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
+    const filename = `${sanitize(getServiceAbbr(selection.service))}-${sanitize(getVersionStr(selection.version))}-${sanitize(selection.operation || 'Op')}-${sanitize(getDomain(endpoint))}-${sanitize(getTimestamp())}.json`;
+
+    const jsonStr = JSON.stringify(data, null, 2);
+    const uri = 'data:application/json;charset=utf-8,' + encodeURIComponent(jsonStr);
+
     const link = document.createElement('a');
-    link.href = url;
+    link.href = uri;
     link.download = filename;
+    link.style.display = 'none';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    URL.revokeObjectURL(url);
   };
 
   const fileInputRef = React.useRef(null);

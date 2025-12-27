@@ -34,7 +34,7 @@ const ServiceSelector = ({ services, selection, onSelectionChange, error }) => {
             <Col md={3}>
                 <InputGroup>
                     <InputGroup.Text>Service</InputGroup.Text>
-                    <Form.Select value={selectedService} onChange={handleServiceChange}>
+                    <Form.Select value={selectedService} onChange={handleServiceChange} aria-label="Select Service">
                         <option value="">Select...</option>
                         {services.map(s => (
                             <option key={s.ServiceId} value={s.ServiceName}>{s.ServiceName}</option>
@@ -45,7 +45,7 @@ const ServiceSelector = ({ services, selection, onSelectionChange, error }) => {
             <Col md={2}>
                 <InputGroup>
                     <InputGroup.Text>Version</InputGroup.Text>
-                    <Form.Select value={selectedVersion} onChange={handleVersionChange} disabled={!selectedService}>
+                    <Form.Select value={selectedVersion} onChange={handleVersionChange} disabled={!selectedService} aria-label="Select Version">
                         <option value="">...</option>
                         {currentService?.Versions.map((v, idx) => (
                             <option key={idx} value={getVersionString(v)}>{getVersionString(v)}</option>
@@ -61,6 +61,7 @@ const ServiceSelector = ({ services, selection, onSelectionChange, error }) => {
                         onChange={handleOperationChange}
                         disabled={!selectedVersion}
                         isInvalid={!!error}
+                        aria-label="Select Operation"
                     >
                         <option value="">Select Operation...</option>
                         {currentVersion?.Operations.map((op, idx) => (
