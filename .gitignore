@@ -63,7 +63,7 @@ App/tsconfig.tsbuildinfo
 
 # --- Docs ---
 Docs/ValidXmlResponses/
-
+Docs/Guides/
 
 # --- Deployment ---
 deploy.config

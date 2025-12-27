@@ -1,7 +1,12 @@
 import React from 'react';
 import { Card, Alert } from 'react-bootstrap';
+import { ValidationResult } from '../types';
 
-const ValidationPanel = ({ result }) => {
+interface ValidationPanelProps {
+    result: ValidationResult | null;
+}
+
+const ValidationPanel: React.FC<ValidationPanelProps> = ({ result }) => {
     // Debug log
     console.log("ValidationPanel Result:", result);
 
@@ -12,7 +17,7 @@ const ValidationPanel = ({ result }) => {
         return `${baseTitle}: ${status}`;
     };
 
-    const cleanMessage = (msg) => {
+    const cleanMessage = (msg: string) => {
         if (!msg) return "";
         // Remove "Error:" prefix if present
         return msg.replace(/^Error:\s*/i, '');

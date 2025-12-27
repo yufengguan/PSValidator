@@ -1,7 +1,13 @@
 import React from 'react';
 import { Form, Row, Col, InputGroup } from 'react-bootstrap';
 
-const EndpointInput = ({ endpoint, onChange, error }) => {
+interface EndpointInputProps {
+    endpoint: string;
+    onChange: (endpoint: string) => void;
+    error?: string;
+}
+
+const EndpointInput: React.FC<EndpointInputProps> = ({ endpoint, onChange, error }) => {
     return (
         <Row className="mb-3">
             <Col>
@@ -11,7 +17,7 @@ const EndpointInput = ({ endpoint, onChange, error }) => {
                         type="text"
                         placeholder="https://..."
                         value={endpoint}
-                        onChange={(e) => onChange(e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
                         isInvalid={!!error}
                         aria-label="Endpoint URL"
                     />

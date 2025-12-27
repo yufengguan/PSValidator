@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import EndpointInput from '../components/EndpointInput';
@@ -33,7 +33,7 @@ describe('EndpointInput Unit Tests', () => {
     it('should display the value from props', () => {
         render(<EndpointInput endpoint="http://test.com" onChange={() => { }} />);
         const input = screen.getByRole('textbox', { name: /Endpoint URL/i });
-        expect(input.value).toBe('http://test.com');
+        expect(input).toHaveValue('http://test.com');
     });
 
     it('should call onChange when user types', async () => {
@@ -55,7 +55,7 @@ describe('EndpointInput Unit Tests', () => {
         const input = screen.getByRole('textbox', { name: /Endpoint URL/i });
         await user.type(input, 'https://new-url.com');
 
-        expect(input.value).toBe('https://new-url.com');
+        expect(input).toHaveValue('https://new-url.com');
     });
 
     it('should display error message when error prop is provided', () => {

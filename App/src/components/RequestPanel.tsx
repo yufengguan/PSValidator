@@ -1,15 +1,21 @@
-import React, { useRef } from 'react';
+import React, { useRef, ChangeEvent } from 'react';
 import { Form, Card } from 'react-bootstrap';
 
-const RequestPanel = ({ xmlContent, onChange, error }) => {
-    const textareaRef = useRef(null);
+interface RequestPanelProps {
+    xmlContent: string;
+    onChange: (val: string) => void;
+    error?: string;
+}
+
+const RequestPanel: React.FC<RequestPanelProps> = ({ xmlContent, onChange, error }) => {
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const formatXml = () => {
         if (!xmlContent) return;
         try {
             let formatted = '';
-            let reg = /(>)(<)(\/*)/g;
-            let xml = xmlContent.replace(reg, '$1\r\n$2$3');
+            const reg = /(>)(<)(\/*)/g;
+            const xml = xmlContent.replace(reg, '$1\r\n$2$3');
             let pad = 0;
             const nodes = xml.split('\r\n');
 
@@ -21,7 +27,7 @@ const RequestPanel = ({ xmlContent, onChange, error }) => {
                     if (pad !== 0) {
                         pad -= 1;
                     }
-                } else if (node.match(/^<\w[^>]*[^\/]>.*$/)) {
+                } else if (node.match(/^<\w[^>]*[^/]>/)) {
                     indent = 1;
                 } else {
                     indent = 0;
@@ -66,7 +72,7 @@ const RequestPanel = ({ xmlContent, onChange, error }) => {
                     as="textarea"
                     ref={textareaRef}
                     value={xmlContent}
-                    onChange={(e) => onChange(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)}
                     style={{
                         fontFamily: 'monospace',
                         whiteSpace: 'pre',

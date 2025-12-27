@@ -21,10 +21,10 @@ import { useState } from 'react';
  */
 
 // Wrapper to simulate App.jsx state management
-const TestWrapper = ({ initialServices }) => {
+const TestWrapper = ({ initialServices }: { initialServices: any[] }) => {
     const [selection, setSelection] = useState({ service: '', version: '', operation: '' });
 
-    const handleChange = (newSelection) => {
+    const handleChange = (newSelection: any) => {
         setSelection(newSelection);
     };
 
@@ -121,7 +121,7 @@ describe('ServiceSelector Unit Tests', () => {
         fireEvent.change(opSelect, { target: { value: 'GetOrderStatusRequest' } });
 
         // Verify value is set
-        expect(opSelect.value).toBe('GetOrderStatusRequest');
+        expect(opSelect).toHaveValue('GetOrderStatusRequest');
     });
 
     it('should reset downstream fields when upstream field changes', async () => {
@@ -138,7 +138,7 @@ describe('ServiceSelector Unit Tests', () => {
         // Version should be reset (empty)
         // Wait for verify
         await waitFor(() => {
-            expect(screen.getByRole('combobox', { name: /Select Version/i }).value).toBe('');
+            expect(screen.getByRole('combobox', { name: /Select Version/i })).toHaveValue('');
         });
     });
 });

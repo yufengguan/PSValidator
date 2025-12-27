@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Navbar, Button, Spinner, Alert, Row, Col, Card, Form } from 'react-bootstrap';
+import { useState, useEffect, ChangeEvent, useRef } from 'react';
+import { Container, Button, Spinner, Alert, Row, Col, Form } from 'react-bootstrap';
 import ServiceSelector from './components/ServiceSelector';
 import EndpointInput from './components/EndpointInput';
 import RequestPanel from './components/RequestPanel';
 import ResponsePanel from './components/ResponsePanel';
 import ValidationPanel from './components/ValidationPanel';
 import AboutModal from './components/AboutModal';
+import { Service, Selection, ValidationResult } from './types';
 import './App.css';
 
 function App() {
-  const [services, setServices] = useState([]);
-  const [selection, setSelection] = useState({ service: '', version: '', operation: '' });
-  const [endpoint, setEndpoint] = useState('');
-  const [requestXml, setRequestXml] = useState('');
-  const [responseXml, setResponseXml] = useState('');
-  const [requestSchema, setRequestSchema] = useState('');
-  const [responseSchema, setResponseSchema] = useState('');
-  const [activeSchema, setActiveSchema] = useState('none');
+  const [services, setServices] = useState<Service[]>([]);
+  const [selection, setSelection] = useState<Selection>({ service: '', version: '', operation: '' });
+  const [endpoint, setEndpoint] = useState<string>('');
+  const [requestXml, setRequestXml] = useState<string>('');
+  const [responseXml, setResponseXml] = useState<string>('');
+  const [_requestSchema, setRequestSchema] = useState<string>('');
+  const [_responseSchema, setResponseSchema] = useState<string>('');
+  const [_activeSchema, setActiveSchema] = useState<string>('none');
 
-  const [showAboutModal, setShowAboutModal] = useState(false);
-  const [validationResult, setValidationResult] = useState(null);
+
+  const [showAboutModal, setShowAboutModal] = useState<boolean>(false);
+  const [validationResult, setValidationResult] = useState<ValidationResult | null>(null);
   const [loading, setLoading] = useState(false);
 
   // New error states for inline validation
@@ -40,10 +42,10 @@ function App() {
     fetch(`${API_BASE_URL}/ServiceList`)
       .then(res => res.json())
       .then(data => setServices(data))
-      .catch(err => console.error('Error fetching services:', err));
-  }, []);
+      .catch((err: unknown) => console.error('Error fetching services:', err));
+  }, [API_BASE_URL]);
 
-  const handleSelectionChange = (newSelection) => {
+  const handleSelectionChange = (newSelection: Selection) => {
     setOperationError(''); // Clear error on change
     setRequestError('');
 
@@ -75,7 +77,7 @@ function App() {
               setRequestXml(data.xmlContent);
             }
           })
-          .catch(err => {
+          .catch((err: any) => {
             console.error('Error fetching sample request:', err);
             setRequestXml(`<!-- Error generating sample: ${err.message} -->`);
           });
@@ -167,7 +169,7 @@ function App() {
         setActiveSchema('response');
       }
 
-    } catch (err) {
+    } catch (err: any) {
       console.error('Validation error:', err);
       setValidationResult({ type: 'Response', isValid: false, validationResultMessages: [`Network Error: ${err.message}`] });
     } finally {
@@ -231,7 +233,7 @@ function App() {
       } else {
         setValidationResult({ ...result, type: 'Request' });
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Validation error:', err);
       setValidationResult({ type: 'Request', isValid: false, validationResultMessages: [`Network Error: ${err.message}`] });
     } finally {
@@ -239,9 +241,9 @@ function App() {
     }
   };
 
-  const [exportWithCredentials, setExportWithCredentials] = useState(false);
+  const [exportWithCredentials, setExportWithCredentials] = useState<boolean>(false);
 
-  const scrubCredentials = (xml) => {
+  const scrubCredentials = (xml: string) => {
     if (!xml) return xml;
     // Replace content of id, password, accessKey with ******
     // Regex matches <tag>content</tag>
@@ -253,7 +255,7 @@ function App() {
 
   const handleExport = () => {
     // Exclude oversized/redundant fields from validationResult
-    const { responseContent, ...cleanValidationResult } = validationResult || {};
+    const { responseContent: _responseContent, ...cleanValidationResult } = validationResult || {};
 
     let xmlToExport = requestXml;
     if (!exportWithCredentials) {
@@ -272,19 +274,19 @@ function App() {
 
     // Helper to generate filename
     // Format: {service-abbr}-{v version, . to -}-{operation}-{domain}-{yyyy-MM-dd-HH-mm-ss}.json
-    const getServiceAbbr = (name) => {
+    const getServiceAbbr = (name: string) => {
       if (!name) return 'UNK';
       return name.split(' ')
         .map(word => word[0].toUpperCase())
         .join('');
     };
 
-    const getVersionStr = (ver) => {
+    const getVersionStr = (ver: string) => {
       if (!ver) return 'v000';
       return `v${ver.replace(/\./g, '')}`;
     };
 
-    const getDomain = (urlStr) => {
+    const getDomain = (urlStr: string) => {
       try {
         const url = new URL(urlStr);
         return url.hostname; // hostname automatically excludes port
@@ -295,11 +297,11 @@ function App() {
 
     const getTimestamp = () => {
       const now = new Date();
-      const pad = (n) => String(n).padStart(2, '0');
+      const pad = (n: number) => String(n).padStart(2, '0');
       return `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
     };
 
-    const sanitize = (str) => {
+    const sanitize = (str: string) => {
       // Allow alphanumeric, dash, underscore, dot. Replace everything else with underscore.
       return (str || '').replace(/[^a-zA-Z0-9.\-_]/g, '_');
     };
@@ -318,20 +320,21 @@ function App() {
     document.body.removeChild(link);
   };
 
-  const fileInputRef = React.useRef(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImportClick = () => {
     fileInputRef.current?.click();
   };
 
-  const handleImportFile = (event) => {
-    const file = event.target.files[0];
+  const handleImportFile = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
     if (!file) return;
 
     const reader = new FileReader();
     reader.onload = (e) => {
       try {
-        const data = JSON.parse(e.target.result);
+        if (!e.target?.result) return;
+        const data = JSON.parse(e.target.result as string);
 
         // Restore State
         if (data.serviceSelection) setSelection(data.serviceSelection);
@@ -344,8 +347,8 @@ function App() {
         setActiveSchema('none');
 
         // Clear file input for next use
-        event.target.value = null;
-      } catch (err) {
+        event.target.value = '';
+      } catch (err: any) {
         console.error("Error parsing import file:", err);
         alert("Failed to import session. Invalid JSON file.");
       }
@@ -353,7 +356,7 @@ function App() {
     reader.readAsText(file);
   };
 
-  const getUrlError = (string) => {
+  const getUrlError = (string: string) => {
     if (!string) return null; // Don't show error if empty (unless touched, but keeping simple)
     try {
       const url = new URL(string);
@@ -378,7 +381,7 @@ function App() {
     }
   };
 
-  const getXmlError = (xmlString) => {
+  const getXmlError = (xmlString: string) => {
     if (!xmlString) return null;
     try {
       const parser = new DOMParser();
@@ -388,7 +391,7 @@ function App() {
         return "Invalid XML: " + errorNode.textContent;
       }
       return null;
-    } catch (e) {
+    } catch (_e) {
       return "Error parsing XML";
     }
   };
@@ -451,7 +454,7 @@ function App() {
                 title="Include sensitive credentials (id, password, accessKey) in export"
                 reverse // Move label to the left of the checkbox
                 checked={exportWithCredentials}
-                onChange={(e) => setExportWithCredentials(e.target.checked)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setExportWithCredentials(e.target.checked)}
                 disabled={!validationResult}
                 style={{ fontSize: '0.9rem', userSelect: 'none', cursor: 'pointer', marginBottom: 0, marginTop: '2px' }}
               />

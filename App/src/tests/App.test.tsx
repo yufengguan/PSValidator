@@ -29,7 +29,7 @@ describe('App Integration Tests', () => {
     ];
 
     beforeEach(() => {
-        global.fetch = vi.fn();
+        global.fetch = vi.fn() as any;
         window.sessionStorage.clear();
     });
 
@@ -38,7 +38,7 @@ describe('App Integration Tests', () => {
     });
 
     it('should fetch and display service list on mount', async () => {
-        global.fetch.mockResolvedValueOnce({
+        (global.fetch as any).mockResolvedValueOnce({
             ok: true,
             json: async () => mockServices
         });
@@ -56,19 +56,19 @@ describe('App Integration Tests', () => {
         const user = userEvent.setup();
 
         // 1. Service List
-        global.fetch.mockResolvedValueOnce({
+        (global.fetch as any).mockResolvedValueOnce({
             ok: true,
             json: async () => mockServices
         });
 
         // 2. Sample Request (Triggered by Operation Selection)
-        global.fetch.mockResolvedValueOnce({
+        (global.fetch as any).mockResolvedValueOnce({
             ok: true,
             json: async () => ({ xmlContent: '<Sample>Request</Sample>' })
         });
 
         // 3. Validation API Call
-        global.fetch.mockResolvedValueOnce({
+        (global.fetch as any).mockResolvedValueOnce({
             ok: true,
             headers: { get: () => 'application/json' },
             json: async () => ({
@@ -105,7 +105,7 @@ describe('App Integration Tests', () => {
         // Wait for Sample Request to populate (Wait for fetch to complete and state update)
         const requestInput = screen.getByRole('textbox', { name: /Request Body/i });
         await waitFor(() => {
-            expect(requestInput.value).toBe('<Sample>Request</Sample>');
+            expect(requestInput).toHaveValue('<Sample>Request</Sample>');
         });
 
         // Clear and Enter XML
@@ -126,19 +126,19 @@ describe('App Integration Tests', () => {
         const user = userEvent.setup();
 
         // 1. Service List
-        global.fetch.mockResolvedValueOnce({
+        (global.fetch as any).mockResolvedValueOnce({
             ok: true,
             json: async () => mockServices
         });
 
         // 2. Sample Request
-        global.fetch.mockResolvedValueOnce({
+        (global.fetch as any).mockResolvedValueOnce({
             ok: true,
             json: async () => ({ xmlContent: '<Sample/>' })
         });
 
         // 3. Validation API Failure
-        global.fetch.mockRejectedValueOnce(new Error('Network Error'));
+        (global.fetch as any).mockRejectedValueOnce(new Error('Network Error'));
 
         render(<App />);
 
@@ -154,7 +154,7 @@ describe('App Integration Tests', () => {
 
         // Wait for sample
         const input = screen.getByRole('textbox', { name: /Request Body/i });
-        await waitFor(() => expect(input.value).toBe('<Sample/>'));
+        await waitFor(() => expect(input).toHaveValue('<Sample/>'));
 
         // Use Type without clear? Just appending or overwrite doesn't matter for this fail test, 
         // as long as something is there. But clearing is safer.

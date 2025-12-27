@@ -1,23 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { ChangeEvent } from 'react';
 import { Form, Row, Col, InputGroup } from 'react-bootstrap';
+import { Service, Selection, Version } from '../types';
 
-const ServiceSelector = ({ services, selection, onSelectionChange, error }) => {
+interface ServiceSelectorProps {
+    services: Service[];
+    selection: Selection;
+    onSelectionChange: (selection: Selection) => void;
+    error?: string;
+}
+
+const ServiceSelector: React.FC<ServiceSelectorProps> = ({ services, selection, onSelectionChange, error }) => {
     // Derived state from props
     const selectedService = selection?.service || '';
     const selectedVersion = selection?.version || '';
     const selectedOperation = selection?.operation || '';
 
-    const handleServiceChange = (e) => {
+    const handleServiceChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const serviceName = e.target.value;
         onSelectionChange({ service: serviceName, version: '', operation: '' });
     };
 
-    const handleVersionChange = (e) => {
+    const handleVersionChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const version = e.target.value;
         onSelectionChange({ service: selectedService, version: version, operation: '' });
     };
 
-    const handleOperationChange = (e) => {
+    const handleOperationChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const operation = e.target.value;
         onSelectionChange({ service: selectedService, version: selectedVersion, operation: operation });
     };
@@ -25,7 +33,7 @@ const ServiceSelector = ({ services, selection, onSelectionChange, error }) => {
     const currentService = services.find(s => s.ServiceName === selectedService);
 
     // Helper to format version string
-    const getVersionString = (v) => `${v.Major}.${v.Minor}.${v.Patch}`;
+    const getVersionString = (v: Version) => `${v.Major}.${v.Minor}.${v.Patch}`;
 
     const currentVersion = currentService?.Versions.find(v => getVersionString(v) === selectedVersion);
 

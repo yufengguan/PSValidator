@@ -1,7 +1,12 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-const AboutModal = ({ show, onHide }) => {
+interface AboutModalProps {
+    show: boolean;
+    onHide: () => void;
+}
+
+const AboutModal: React.FC<AboutModalProps> = ({ show, onHide }) => {
     return (
         <Modal show={show} onHide={onHide} size="lg" centered>
             <Modal.Header closeButton style={{ background: 'linear-gradient(90deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%)', color: '#ffffff', borderBottom: '3px solid #1e40af' }}>

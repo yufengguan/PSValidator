@@ -1,12 +1,17 @@
 import React from 'react';
 import { Form, Card } from 'react-bootstrap';
 
-const ResponsePanel = ({ xmlContent, className = "mb-3" }) => {
-    const formatXml = (xml) => {
+interface ResponsePanelProps {
+    xmlContent: string;
+    className?: string;
+}
+
+const ResponsePanel: React.FC<ResponsePanelProps> = ({ xmlContent, className = "mb-3" }) => {
+    const formatXml = (xml: string) => {
         if (!xml) return '';
         try {
             let formatted = '';
-            let reg = /(>)(<)(\/*)/g;
+            const reg = /(>)(<)(\/*)/g;
             xml = xml.replace(reg, '$1\r\n$2$3');
             let pad = 0;
             xml.split('\r\n').forEach((node) => {
@@ -17,7 +22,7 @@ const ResponsePanel = ({ xmlContent, className = "mb-3" }) => {
                     if (pad !== 0) {
                         pad -= 1;
                     }
-                } else if (node.match(/^<\w[^>]*[^\/]>.*$/)) {
+                } else if (node.match(/^<\w[^>]*[^/]>/)) { // Fixed escape
                     indent = 1;
                 } else {
                     indent = 0;
@@ -32,7 +37,7 @@ const ResponsePanel = ({ xmlContent, className = "mb-3" }) => {
                 pad += indent;
             });
             return formatted;
-        } catch (e) {
+        } catch (_e) { // Prefix unused variable
             return xml;
         }
     };
