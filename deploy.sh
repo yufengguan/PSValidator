@@ -196,6 +196,8 @@ echo "Pruning unused Docker images..."
 docker system prune -f
 
 # Pull latest images
+# Limit parallel pulls to reduce peak disk usage during extraction
+export COMPOSE_PARALLEL_LIMIT=1
 if docker compose version &> /dev/null; then
     docker compose pull
 else
