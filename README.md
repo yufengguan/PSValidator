@@ -1,103 +1,149 @@
-# PSValidator
-This application is a demo for PS Validator.
-It was built using Antigravity AI according to Docs\PS_WebServiceValidator_Requirements_V02.md.
+# PromoStandards Validator
 
-## How to Run the Application
+The PromoStandards SOAP Web Service Validator is a testing tool designed to help developers validate their PromoStandards web service implementations. It provides real-time validation of XML requests and responses against official PromoStandards XSD schemas.
 
-### 1. Clone the Repository
-```bash
-git clone <repository-url>
-cd PSValidator
-```
+It was built using Antigravity AI according to [PS_WebServiceValidator_Requirements_V02.md](Docs/PS_WebServiceValidator_Requirements_V02.md). Not a single line of code was written by hand. The code might not be the best or fully DRY, but it works and passes all tests, which were written by Antigravity AI as well.
 
-### 2. Frontend App
+## Architecture
+
+The system consists of five main components:
+*   **Validator API (.NET 8)**: The core validation engine that parses XML/SOAP messages and checks them against standard schemas.
+*   **Frontend (React/Vite)**: A user-friendly web interface for real-time validation and feedback.
+*   **StubServer**: A mock PromoStandards service capable of simulating various API responses (both success and error scenarios) for testing purposes.
+*   **Integration Tests**: A comprehensive suite that verifies the end-to-end flow (Validator → StubServer).
+*   **Seq**: Centralized logging server for real-time diagnostics and performance monitoring. Note: This will be upgraded to AWS CloudWatch due to licensing costs.
+
+---
+
+## Getting Started
+
+### Prerequisites
+*   **General**: Git (to clone the repo)
+*   **For Local Development**:
+    *   Node.js (v18+)
+    *   .NET 8 SDK
+*   **For Docker Execution**:
+    *   Docker Desktop (Node.js and .NET SDK are *not* required on the host)
+
+### Frontend App
+The User Interface for interacting with the validator.
 ```bash
 cd App
 npm install
 npm run dev
 ```
-Open the browser and navigate to http://localhost:5173
+*   **URL**: `http://localhost:5173`
 
-### 3. Backend API
+### Backend API
+The core validation service.
 ```bash
 cd Api
 dotnet restore
-dotnet build
 dotnet run
 ```
-API will be available at http://localhost:5166
-Swagger UI: http://localhost:5166/swagger/index.html
+*   **URL**: `http://localhost:5166`
+*   **Swagger**: `http://localhost:5166/swagger`
 
-### 4. StubServer (Mock PromoStandards Service)
-The StubServer provides mock SOAP responses for testing the validator.
+---
 
+## Testing
+
+### Frontend Tests
+
+#### Unit Tests (Vitest)
+Located in `App/tests/unit`. These tests check individual components and logic.
+```bash
+cd App
+npm run test          # Run tests once
+npm run test:ui       # Open interactive test UI
+npm run test:coverage # Generate coverage report
+```
+
+#### E2E Tests (Playwright)
+Located in `App/tests/e2e`. These tests simulate real user interactions.
+```bash
+cd App
+npx playwright test
+```
+
+
+
+
+### Integration Tests
+Integration tests verify the end-to-end flow: **Validator → Simulated API (StubServer) → Validation Results**.
+
+#### Run Locally
+##### StubServer (Mock Service)
+The StubServer simulates PromoStandards endpoints for testing. It can be run independently:
 ```bash
 cd Tests/StubServer
 dotnet restore
-dotnet build
 dotnet run
 ```
-StubServer will be available at http://localhost:5086
-Swagger UI: http://localhost:5086
+*   **URL**: `http://localhost:5086`
+*   **Swagger**: `http://localhost:5086/swagger`
 
-**Endpoint Format:** `POST /api/{service}/{errorCode}`
-- Example: `POST /api/PPC/ERR_MISSING_PRODUCTID` - Returns a mock response for PPC service with error code ERR_MISSING_PRODUCTID
-
-### 5. Integration Tests
-Integration tests validate the entire flow: Validator → StubServer → Validation Results
-
-#### Run Tests Against Local Services (Default)
+##### Run Integration Tests
 ```bash
 cd Tests/Integration
 dotnet test
 ```
 
-#### Run Tests Against Public Servers
-```bash
-cd Tests/Integration
-dotnet test --environment Production
-```
+## Docker Support
 
-**Configuration:**
-- **Local**: Uses `appsettings.Development.json`
-  - API: `http://localhost:5166`
-  - StubServer: `http://localhost:5086`
-- **Production**: Uses `appsettings.Production.json`
-  - API: `https://api.{domain}.com`
-  - StubServer: `https://stubserver.{domain}.com`
+You can run the API (and other services) using Docker. This ensures an environment identical to production.
+
+### Run API Only
+```bash
+docker compose up --build api
+```
+*   **URL**: `http://localhost:5000` (Note: Port differs from local `dotnet run`)
+*   **Swagger**: `http://localhost:5000/swagger`
+
+### Run Full Stack (App + API + StubServer)
+```bash
+docker compose up --build
+```
+*   **Frontend**: `http://localhost` (Port 80)
+*   **API**: `http://localhost:5000`
+*   **StubServer**: `http://localhost:5001`
+*   **Seq (Logs)**: `http://localhost:5341`
+
+---
 
 ## Deployment
 
-### Deploy to AWS
-```bash
-# Copy the example to create your actual config
-cp deploy.config.example deploy.config
+The project includes an inspection-ready automated deployment script `deploy.sh` for Linux/AWS environments.
 
-# Edit with your real values
-nano deploy.config
+1.  **Configure**:
+    ```bash
+    cp deploy.config.example deploy.config
+    # Edit 'deploy.config' with your server details (Domain, Email, etc.)
+    ```
 
-# Run the deploy script
-./deploy.sh
-```
+2.  **Deploy**:
+    ```bash
+    ./deploy.sh
+    ```
 
-### GitHub Actions
-Push to `main` branch to trigger automatic deployment:
-```bash
-git add .
-git commit -m "Your commit message"
-git push origin main
-```
+---
 
 ## Project Structure
-- **App/** - React frontend application
-- **Api/** - .NET 8 backend API for validation
-- **Tests/StubServer/** - Mock PromoStandards SOAP service
-- **Tests/Integration/** - Integration tests
-- **Docs/** - Documentation and mock XML responses
-- **nginx/** - Nginx configuration templates
 
-## Temporary Public URLs
-- Frontend: https://demo18.com
-- API: https://api.demo18.com
-- StubServer: https://stubserver.demo18.com
+| Directory | Description |
+| :--- | :--- |
+| **Api/** | Core .NET 8 Web API for validation logic. |
+| **App/** | React + Vite frontend application. |
+| **Docs/** | Project documentation, mock XMLs, and schema references. |
+| **Tests/Integration/** | End-to-end integration tests. |
+| **Tests/StubServer/** | Mock web service for simulation. |
+| **nginx/** | Nginx configuration templates for reverse proxy. |
 
+---
+
+## Demo Environment
+
+*   **Frontend**: [https://demo18.com](https://demo18.com)
+*   **API**: [https://api.demo18.com](https://api.demo18.com)
+*   **StubServer**: [https://stubserver.demo18.com](https://stubserver.demo18.com)
+*   **Seq Logs**: [https://logs.demo18.com](https://logs.demo18.com)

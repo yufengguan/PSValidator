@@ -1,24 +1,23 @@
 # Editor directories and files
+.vs/
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
 *.suo
+*.user
+[Bb]in/
+[Oo]bj/
 *.ntvs*
 *.njsproj
 *.sw?
 
 # Logs
 *.log
-**/logs
-**/*.log
+logs/
 
 # --- Api (.NET) ---
-Api/[Bb]in/
-Api/[Oo]bj/
-Api/.vs/
-Api/*.user
-Api/*.suo
+
 Api/*.userprefs
 **/appsettings.Development.json
 Api/appsettings.*.json.local
@@ -78,11 +77,9 @@ seq-data/
 
 
 # --- Tests ---
-Tests/**/[Bb]in/
-Tests/**/[Oo]bj/
-Tests/**/.vs/
-Tests/**/*.user
-Tests/**/*.suo
+
 Tests/**/TestResults/
 Tests/Integration/*.txt
+
+
 

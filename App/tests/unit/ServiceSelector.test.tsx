@@ -1,6 +1,6 @@
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import ServiceSelector from '../components/ServiceSelector';
+import ServiceSelector from '../../src/components/ServiceSelector';
 import { useState } from 'react';
 
 /**
