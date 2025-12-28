@@ -53,8 +53,8 @@ services:
   stubserver:
     image: ghcr.io/yufengguan/psvalidator-stubserver:latest
     build:
-      context: ./Tests/StubServer
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Tests/StubServer/Dockerfile
     ports:
       - "5001:8080"
     environment:

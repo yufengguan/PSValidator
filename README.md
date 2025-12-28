@@ -1,4 +1,4 @@
-# PromoStandards Validator
+# PromoStandards SOAP Web Service Validator
 
 The PromoStandards SOAP Web Service Validator is a testing tool designed to help developers validate their PromoStandards web service implementations. It provides real-time validation of XML requests and responses against official PromoStandards XSD schemas.
 
@@ -17,13 +17,10 @@ The system consists of five main components:
 
 ## Getting Started
 
-### Prerequisites
-*   **General**: Git (to clone the repo)
-*   **For Local Development**:
-    *   Node.js (v18+)
-    *   .NET 8 SDK
-*   **For Docker Execution**:
-    *   Docker Desktop (Node.js and .NET SDK are *not* required on the host)
+### Prerequisites For Local Development
+  * Git
+  * Node.js (v18+)
+  * .NET 8 SDK
 
 ### Frontend App
 The User Interface for interacting with the validator.
@@ -43,6 +40,13 @@ dotnet run
 ```
 *   **URL**: `http://localhost:5166`
 *   **Swagger**: `http://localhost:5166/swagger`
+
+### Logging (Seq)
+The centralized logging server.
+```bash
+docker compose up -d seq
+```
+*   **URL**: `http://localhost:5341`
 
 ---
 
@@ -67,9 +71,7 @@ npx playwright test
 ```
 
 
-
-
-### Integration Tests
+### Backend Integration Tests
 Integration tests verify the end-to-end flow: **Validator → Simulated API (StubServer) → Validation Results**.
 
 #### Run Locally
@@ -91,25 +93,40 @@ dotnet test
 
 ## Docker Support
 
-You can run the API (and other services) using Docker. This ensures an environment identical to production.
+You can run App and Api services using Docker. This ensures an environment identical to production.
 
-### Run API Only
-```bash
-docker compose up --build api
-```
-*   **URL**: `http://localhost:5000` (Note: Port differs from local `dotnet run`)
-*   **Swagger**: `http://localhost:5000/swagger`
-
-### Run Full Stack (App + API + StubServer)
+### Run Full Stack (App + API)
 ```bash
 docker compose up --build
 ```
 *   **Frontend**: `http://localhost` (Port 80)
-*   **API**: `http://localhost:5000`
-*   **StubServer**: `http://localhost:5001`
+*   **API**: `http://localhost:5000/swagger/index.html`
 *   **Seq (Logs)**: `http://localhost:5341`
 
+> [!IMPORTANT]
+> **Docker Networking**: When the Validator API (in Docker) calls the StubServer (in Docker), you **cannot** use `localhost`. 
+> Use the internal service name and internal port instead:
+> *   **Use**: `http://stubserver:8080/api/PD/2.0.0/success`
+> *   **Avoid**: `http://localhost:5001/...` (Connection Refused)
+*   **StubServer**: `http://localhost:5001/index.html`
 ---
+### Run Individually (Docker)
+Frontend (App):
+```bash
+docker compose up --build app
+```
+API:
+```bash
+docker compose up --build api
+```
+SEQ:
+```bash
+docker compose up --build seq
+```
+StubServer:
+```bash
+docker compose up --build stubserver
+```
 
 ## Deployment
 
