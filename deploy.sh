@@ -191,6 +191,10 @@ else
     fi
 fi
 
+# Prune unused docker images to free up space
+echo "Pruning unused Docker images..."
+docker system prune -f
+
 # Pull latest images
 if docker compose version &> /dev/null; then
     docker compose pull
