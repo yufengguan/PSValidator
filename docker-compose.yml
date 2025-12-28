@@ -13,6 +13,7 @@ services:
       - ./Docs:/app/Docs
     depends_on:
       - seq
+    restart: always
 
   seq:
     image: datalust/seq:latest

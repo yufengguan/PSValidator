@@ -143,6 +143,9 @@ sed -e "s/DOMAIN_PLACEHOLDER/${DOMAIN}/g" \
     "$NGINX_HTTPS_TEMPLATE" > "$NGINX_HTTPS"
 
 # Generate nginx-stubserver.conf from template
+echo "Generating StubServer nginx configuration with domain: ${STUBSERVER_DOMAIN}"
+STUBSERVER_DOMAIN_LOWER=$(echo "$STUBSERVER_DOMAIN" | tr '[:upper:]' '[:lower:]')
+sed -e "s/STUBSERVER_DOMAIN_PLACEHOLDER/${STUBSERVER_DOMAIN_LOWER}/g" \
     "$NGINX_STUBSERVER_TEMPLATE" > "$NGINX_STUBSERVER_CONF"
 
 # Generate nginx-seq.conf from template
