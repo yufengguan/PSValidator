@@ -168,6 +168,7 @@ else
         echo "API domain SSL certificate not found."
         CERTS_EXIST=false
     fi
+    if ! sudo test -f "$STUBSERVER_CERT_PATH"; then
         echo "StubServer domain SSL certificate not found."
         CERTS_EXIST=false
     fi
