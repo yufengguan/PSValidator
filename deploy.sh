@@ -258,7 +258,8 @@ if [ "$CERTS_EXIST" = false ]; then
     
     # Restore configs with SSL
     echo "Restoring API nginx configuration with SSL..."
-    sed -e "s/API_DOMAIN_PLACEHOLDER/${API_DOMAIN}/g" \
+    API_DOMAIN_LOWER=$(echo "$API_DOMAIN" | tr '[:upper:]' '[:lower:]')
+    sed -e "s/API_DOMAIN_PLACEHOLDER/${API_DOMAIN_LOWER}/g" \
         "$NGINX_API_TEMPLATE" > "$NGINX_API_CONF"
 
     echo "Restoring StubServer nginx configuration with SSL..."
@@ -267,7 +268,8 @@ if [ "$CERTS_EXIST" = false ]; then
         "$NGINX_STUBSERVER_TEMPLATE" > "$NGINX_STUBSERVER_CONF"
 
     echo "Restoring Seq nginx configuration with SSL..."
-    sed -e "s/SEQ_DOMAIN_PLACEHOLDER/${SEQ_DOMAIN}/g" \
+    SEQ_DOMAIN_LOWER=$(echo "$SEQ_DOMAIN" | tr '[:upper:]' '[:lower:]')
+    sed -e "s/SEQ_DOMAIN_PLACEHOLDER/${SEQ_DOMAIN_LOWER}/g" \
         "$NGINX_SEQ_TEMPLATE" > "$NGINX_SEQ_CONF"
     
     # Reload Nginx
