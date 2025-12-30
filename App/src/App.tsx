@@ -98,7 +98,8 @@ function App() {
     // Reset inline errors
     setOperationError('');
     setEndpointError('');
-    setRequestError('');
+    setValidationResult(null);
+    setResponseXml(''); // Clear response panel content immediately
 
     let hasError = false;
 
@@ -126,7 +127,6 @@ function App() {
     if (hasError) return;
 
     setLoading(true);
-    setValidationResult(null);
 
     try {
       const res = await fetch(`${API_BASE_URL}/Validator/validate-response`, {
@@ -180,6 +180,10 @@ function App() {
   const handleValidateRequest = async () => {
     setOperationError('');
     setRequestError('');
+
+    setValidationResult(null);
+    setResponseXml(''); // Clear response panel content immediately
+
     let hasError = false;
 
     // Validation checks
@@ -200,6 +204,7 @@ function App() {
 
     setLoading(true);
     setValidationResult(null);
+    setResponseXml(''); // Clear response panel content immediately
 
     try {
       const res = await fetch(`${API_BASE_URL}/Validator/validate-request`, {

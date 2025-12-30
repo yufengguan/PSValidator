@@ -394,4 +394,59 @@ describe('App Integration Tests', () => {
         });
     });
 
+    it('should clear validation results and response panel immediately upon clicking Validate', async () => {
+        const user = userEvent.setup();
+        // 1. Initial Setup Mocks
+        (global.fetch as any).mockResolvedValueOnce({ ok: true, json: async () => mockServices });
+        (global.fetch as any).mockResolvedValueOnce({ ok: true, json: async () => ({ xmlContent: '<Sample/>' }) });
+        // 2. First Validation Success
+        (global.fetch as any).mockResolvedValueOnce({
+            ok: true,
+            headers: { get: () => 'application/json' },
+            json: async () => ({ isValid: true, validationResultMessages: ['Success'], responseContent: '<Response>Old</Response>' })
+        });
+
+        render(<App />);
+
+        // Navigate & First Validation
+        await waitFor(() => screen.getByRole('combobox', { name: /Select Service/i }));
+        fireEvent.change(screen.getByRole('combobox', { name: /Select Service/i }), { target: { value: 'OrderStatus' } });
+        await waitFor(() => screen.getByRole('combobox', { name: /Select Version/i }));
+        fireEvent.change(screen.getByRole('combobox', { name: /Select Version/i }), { target: { value: '2.0.0' } });
+        await waitFor(() => screen.getByRole('combobox', { name: /Select Operation/i }));
+        fireEvent.change(screen.getByRole('combobox', { name: /Select Operation/i }), { target: { value: 'GetOrderStatusRequest' } });
+
+        await user.type(screen.getByLabelText(/Endpoint URL/i), 'https://test.com');
+        await waitFor(() => expect(screen.getByRole('textbox', { name: /Request Body/i })).toHaveValue('<Sample/>'));
+
+        const validateBtn = screen.getByRole('button', { name: /Validate Request/i });
+        await user.click(validateBtn);
+
+        // Confirm Old Results Visible
+        await waitFor(() => {
+            expect(screen.getByText('Validation Successful')).toBeInTheDocument();
+        });
+
+        // 3. Second Validation - Slow Response
+        let resolveSecondCall: (value: any) => void;
+        const secondCallPromise = new Promise((resolve) => { resolveSecondCall = resolve; });
+        (global.fetch as any).mockReturnValue(secondCallPromise);
+
+        // Click Validate Again
+        await user.click(validateBtn);
+
+        // IMMEDIATE ASSERTION: Old results should be gone!
+        // We do wait for the "loading" state though, but the text should be gone.
+        await waitFor(() => {
+            expect(screen.queryByText('Validation Successful')).not.toBeInTheDocument();
+        });
+
+        // Cleanup: Resolve the pending promise to avoid open handles
+        resolveSecondCall!({
+            ok: true,
+            headers: { get: () => 'application/json' },
+            json: async () => ({ isValid: false, validationResultMessages: ['New Error'] })
+        });
+    });
+
 });

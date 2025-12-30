@@ -113,19 +113,19 @@ docker compose up --build
 ### Run Individually (Docker)
 Frontend (App):
 ```bash
-docker compose up --build app
+docker compose up --build -d app
 ```
 API:
 ```bash
-docker compose up --build api
+docker compose up --build -d api
 ```
 SEQ:
 ```bash
-docker compose up --build seq
+docker compose up --build -d seq
 ```
 StubServer:
 ```bash
-docker compose up --build stubserver
+docker compose up --build -d stubserver
 ```
 
 ## Deployment
