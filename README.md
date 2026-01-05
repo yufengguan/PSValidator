@@ -21,6 +21,7 @@ The system consists of five main components:
   * Git
   * Node.js (v18+)
   * .NET 8 SDK
+  * Docker
 
 ### Frontend App
 The User Interface for interacting with the validator.
@@ -76,7 +77,8 @@ Integration tests verify the end-to-end flow: **Validator → Simulated API (Stu
 
 #### Run Locally
 ##### StubServer (Mock Service)
-The StubServer simulates PromoStandards endpoints for testing. It can be run independently:
+The StubServer simulates PromoStandards endpoints for testing. 
+It can be run independently:
 ```bash
 cd Tests/StubServer
 dotnet restore

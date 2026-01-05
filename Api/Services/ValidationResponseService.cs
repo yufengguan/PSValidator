@@ -71,7 +71,8 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
 
                     if (!response.IsSuccessStatusCode)
                     {
-                        result.ValidationResultMessages.Add($"HTTP Error: {response.StatusCode} - {responseString}");
+                        var redactedResponse = RedactSensitiveData(responseString);
+                        result.ValidationResultMessages.Add($"HTTP Error: {response.StatusCode} - {redactedResponse}");
                         result.IsValid = false;
                         
                         _logger.LogInformation("ValidationCompleted: {Service} {Version} {Operation} IsValid:{IsValid} Errors:{ErrorCount} DurationMs:{DurationMs} ExternalDurationMs:{ExternalDurationMs}", 
@@ -187,7 +188,7 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
             
             if (!result.IsValid)
             {
-               _logger.LogWarning("Response Validation Failed for {Service} {Version} {Operation} Endpoint: {Endpoint}. Errors: {Errors}", serviceName, version, operationName, endpoint, string.Join("; ", result.ValidationResultMessages));
+               _logger.LogWarning("Response Validation Failed for {Service} {Version} {Operation} Endpoint: {Endpoint}. Errors: {Errors}", serviceName, version, operationName, endpoint, RedactSensitiveData(string.Join("; ", result.ValidationResultMessages)));
             }
             
             _logger.LogInformation("ValidationCompleted: {Service} {Version} {Operation} IsValid:{IsValid} Errors:{ErrorCount} DurationMs:{DurationMs} ExternalDurationMs:{ExternalDurationMs}", 

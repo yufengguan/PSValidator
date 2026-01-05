@@ -167,7 +167,7 @@ public abstract class BaseValidationService
         }
         catch (Exception ex)
         {
-            _logger.LogWarning(ex, "FormatXml Failed for XML: {XmlContent}", xml.Length > 1000 ? xml.Substring(0, 1000) : xml);
+            _logger.LogWarning(ex, "FormatXml Failed for XML: {XmlContent}", xml.Length > 1000 ? RedactSensitiveData(xml.Substring(0, 1000)) : RedactSensitiveData(xml));
             return xml;
         }
     }
@@ -202,6 +202,27 @@ public abstract class BaseValidationService
         catch
         {
             return soapXml; 
+        }
+    }
+
+    protected string RedactSensitiveData(string content)
+    {
+        if (string.IsNullOrEmpty(content)) return content;
+        
+        try
+        {
+            // Regex to find XML password tags and replace content with *****
+            // Handles <password>value</password>, <Password>value</Password>, <ns:password>value</ns:password>
+            // This simple regex assumes relatively well-formed XML tag structure
+            return System.Text.RegularExpressions.Regex.Replace(
+                content, 
+                @"(<[a-zA-Z0-9_:]*[Pp]assword[^>]*>)(.*?)(<\/[a-zA-Z0-9_:]*[Pp]assword>)", 
+                "$1*****$3", 
+                System.Text.RegularExpressions.RegexOptions.Singleline);
+        }
+        catch
+        {
+            return content; // If regex fails, return original (or could return "Error redacting")
         }
     }
 

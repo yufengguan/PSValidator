@@ -60,7 +60,7 @@ public class ValidationRequestService : BaseValidationService, IValidationReques
         
         if (!result.IsValid)
         {
-            _logger.LogWarning("Request Validation Failed for {Service} {Version} {Operation}. Errors: {Errors}", serviceName, version, operationName, string.Join("; ", result.ValidationResultMessages));
+            _logger.LogWarning("Request Validation Failed for {Service} {Version} {Operation}. Errors: {Errors}", serviceName, version, operationName, RedactSensitiveData(string.Join("; ", result.ValidationResultMessages)));
         }
 
         return Task.FromResult(result);
