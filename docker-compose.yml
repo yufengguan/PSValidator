@@ -41,6 +41,7 @@ services:
       - ./nginx/nginx-seq.conf:/etc/nginx/conf.d/seq.conf
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
+      - ./nginx/.htpasswd:/etc/nginx/.htpasswd
     depends_on:
       - api
     restart: always
