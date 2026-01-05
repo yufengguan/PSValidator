@@ -24,46 +24,59 @@ public class ValidationRequestService : BaseValidationService, IValidationReques
         var sw = Stopwatch.StartNew();
         var result = new ValidationResult();
         
-        // Format XML for line numbers in errors
-        string contentToValidate = FormatXml(xmlContent);
-        
-        // Extract SOAP Body if present to avoid schema warnings
-        contentToValidate = ExtractSoapBody(contentToValidate);
-        
-        result.ResponseContent = contentToValidate; // Use formatted/extracted XML as the content to return/display
 
-        // 1. Find Schema Name
-        var schemaName = GetRequestSchemaName(serviceName, version, operationName);
-        if (string.IsNullOrEmpty(schemaName))
+        try
         {
-            result.IsValid = false;
-            result.ValidationResultMessages.Add($"Could not find request schema definition for {serviceName} {version} {operationName}");
+            // Format XML for line numbers in errors
+            string contentToValidate = FormatXml(xmlContent);
+            
+            // Extract SOAP Body if present to avoid schema warnings
+            contentToValidate = ExtractSoapBody(contentToValidate);
+            
+            result.ResponseContent = contentToValidate; // Use formatted/extracted XML as the content to return/display
+
+            // 1. Find Schema Name
+            var schemaName = GetRequestSchemaName(serviceName, version, operationName);
+            if (string.IsNullOrEmpty(schemaName))
+            {
+                result.IsValid = false;
+                result.ValidationResultMessages.Add($"Could not find request schema definition for {serviceName} {version} {operationName}");
+                return Task.FromResult(result);
+            }
+
+            // 2. Find Schema File
+            var schemaPath = FindSchemaFile(schemaName, version, serviceName);
+            if (string.IsNullOrEmpty(schemaPath))
+            {
+                result.IsValid = false;
+                result.ValidationResultMessages.Add($"Schema file {schemaName}.xsd not found for version {version}");
+                return Task.FromResult(result);
+            }
+
+            // 3. Validate
+            var validationResult = ValidateAgainstSchema(contentToValidate, schemaPath);
+            result.IsValid = validationResult.IsValid;
+            result.ValidationResultMessages = validationResult.ValidationResultMessages;
+            
+            sw.Stop();
+            result.ResponseTimeMs = sw.Elapsed.TotalMilliseconds;
+            
+            if (!result.IsValid)
+            {
+                _logger.LogWarning("Request Validation Failed for {Service} {Version} {Operation}. Errors: {Errors} Content: {XmlContent}", serviceName, version, operationName, RedactSensitiveData(string.Join("; ", result.ValidationResultMessages)), RedactSensitiveData(xmlContent));
+            }
+
             return Task.FromResult(result);
         }
-
-        // 2. Find Schema File
-        var schemaPath = FindSchemaFile(schemaName, version, serviceName);
-        if (string.IsNullOrEmpty(schemaPath))
+        catch (Exception ex)
         {
+            sw.Stop();
+            result.ResponseTimeMs = sw.Elapsed.TotalMilliseconds;
             result.IsValid = false;
-            result.ValidationResultMessages.Add($"Schema file {schemaName}.xsd not found for version {version}");
+            result.ValidationResultMessages.Add($"System Error: {ex.Message}");
+            _logger.LogError(ex, "System Error during request validation for {Service} {Version} {Operation} Content: {XmlContent}", serviceName, version, operationName, RedactSensitiveData(xmlContent));
             return Task.FromResult(result);
         }
-
-        // 3. Validate
-        var validationResult = ValidateAgainstSchema(contentToValidate, schemaPath);
-        result.IsValid = validationResult.IsValid;
-        result.ValidationResultMessages = validationResult.ValidationResultMessages;
-        
-        sw.Stop();
-        result.ResponseTimeMs = sw.Elapsed.TotalMilliseconds;
-        
-        if (!result.IsValid)
-        {
-            _logger.LogWarning("Request Validation Failed for {Service} {Version} {Operation}. Errors: {Errors}", serviceName, version, operationName, RedactSensitiveData(string.Join("; ", result.ValidationResultMessages)));
-        }
-
-        return Task.FromResult(result);
     }
     
     // Sample generation logic moved here...

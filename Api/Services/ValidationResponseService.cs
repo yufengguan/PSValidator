@@ -188,7 +188,7 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
             
             if (!result.IsValid)
             {
-               _logger.LogWarning("Response Validation Failed for {Service} {Version} {Operation} Endpoint: {Endpoint}. Errors: {Errors}", serviceName, version, operationName, endpoint, RedactSensitiveData(string.Join("; ", result.ValidationResultMessages)));
+                _logger.LogWarning("Response Validation Failed for {Service} {Version} {Operation} Endpoint: {Endpoint}. Errors: {Errors} Content: {XmlContent}", serviceName, version, operationName, endpoint, RedactSensitiveData(string.Join("; ", result.ValidationResultMessages)), RedactSensitiveData(xmlContent));
             }
             
             _logger.LogInformation("ValidationCompleted: {Service} {Version} {Operation} IsValid:{IsValid} Errors:{ErrorCount} DurationMs:{DurationMs} ExternalDurationMs:{ExternalDurationMs}", 
@@ -203,7 +203,7 @@ public class ValidationResponseService : BaseValidationService, IValidationRespo
             result.ResponseTimeMs = sw.Elapsed.TotalMilliseconds;
             result.IsValid = false;
             result.ValidationResultMessages.Add($"System Error: {ex.Message}");
-            _logger.LogError(ex, "System Error during validation for {Service} {Version} {Operation} Endpoint: {Endpoint}", serviceName, version, operationName, endpoint);
+            _logger.LogError(ex, "System Error during validation for {Service} {Version} {Operation} Endpoint: {Endpoint} Content: {XmlContent}", serviceName, version, operationName, endpoint, RedactSensitiveData(xmlContent));
             return result;
         }
     }

@@ -11,6 +11,7 @@ services:
       - DocsPath=/app/Docs
     volumes:
       - ./Docs:/app/Docs
+      - ./Api/appsettings.Production.json:/app/appsettings.Production.json
     depends_on:
       - seq
     restart: always
