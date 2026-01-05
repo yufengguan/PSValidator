@@ -16,7 +16,7 @@ services:
     restart: always
 
   seq:
-    image: datalust/seq:latest
+    image: datalust/seq:2024.3
     container_name: psvalidator-seq
     environment:
       - ACCEPT_EULA=Y
